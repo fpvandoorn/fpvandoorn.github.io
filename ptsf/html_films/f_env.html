@@ -1,0 +1,2483 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="proviola.css">
+<link href="coqdoc.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $(".command").mouseenter(function() {
+          $(this).next(".output").fadeIn(5);
+                   }).mouseleave(function() {
+          $(this).next(".output").fadeOut(0);})
+      });
+    </script>
+</head>
+<body><div>
+
+<div>
+</div>
+
+<div>
+
+<h1 class="libtitle">Library f_env</h1>
+
+<div>
+<span class="command">
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+<a name="lab4"></a><h1 class="section">Typing Environment Definition and Function Manipulation.</h1>
+
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="base.html#"><span class="id" type="library">base</span></a> <a class="idref" href="f_term.html#"><span class="id" type="library">f_term</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Lists.List.html#"><span class="id" type="library">List</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Peano_dec.html#"><span class="id" type="library">Peano_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Compare_dec.html#"><span class="id" type="library">Compare_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Lt.html#"><span class="id" type="library">Lt</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#"><span class="id" type="library">Le</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Gt.html#"><span class="id" type="library">Gt</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Plus.html#"><span class="id" type="library">Plus</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Module</span> <span class="id" type="keyword">Type</span> <a name="f_env_mod"><span class="id" type="module">f_env_mod</span></a> (<span class="id" type="var">X</span>: <a class="idref" href="base.html#"><span class="id" type="module">term_sig</span></a>) (<span class="id" type="var">TM</span>: <a class="idref" href="f_term.html#"><span class="id" type="module">f_term_mod</span></a> <a class="idref" href="f_env.html#"><span class="id" type="module">X</span></a>).</span><div class="output"><pre>Interactive Module Type f_env_mod started
+
+</pre></div>
+<span class="command"><br>
+ <span class="id" type="keyword">Import</span> <span class="id" type="var">TM</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Since we use de Bruijn indexes, Environment (or Context) are
+simply lists of terms:  Γ,(x:A) is encoded as A::Γ. 
+</div>
+<div>
+<span class="command">
+
+<br>
+<span class="id" type="keyword">Definition</span> <a name="f_env_mod.Env"><span class="id" type="definition">Env</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>.</span><div class="output"><pre>Env is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Some manipulation functions (mostly from Bruno Barras' PTS contrib): 
+
+<div> </div>
+
+<ul class="doclist">
+<li> how to find an item in the environment
+
+</li>
+<li> how to truncate an environment 
+
+</li>
+<li> how to insert a new element (with correct de Bruijn update)
+
+</li>
+<li> how to substitute something in the environment
+
+</li>
+</ul>
+ 
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Set Implicit Arguments</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+  <span class="id" type="keyword">Inductive</span> <a name="f_env_mod.item"><span class="id" type="inductive">item</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">x</span>:<a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a>): <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span> -&gt;<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>-&gt;<span class="id" type="keyword">Prop</span> :=<br>
+  | <a name="f_env_mod.item_hd"><span class="id" type="constructor">item_hd</span></a>: <span class="id" type="keyword">forall</span> <span class="id" type="var">Γ</span> :<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span>, (<a class="idref" href="f_env.html#item"><span class="id" type="inductive">item</span></a> <span class="id" type="var">x</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#cons"><span class="id" type="constructor">cons</span></a> <span class="id" type="var">x</span> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#O"><span class="id" type="constructor">O</span></a>)<br>
+  | <a name="f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">Γ</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span>)(<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>)(<span class="id" type="var">y</span>:<span class="id" type="var">A</span>), <a class="idref" href="f_env.html#item"><span class="id" type="inductive">item</span></a> <span class="id" type="var">x</span> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> -&gt; <a class="idref" href="f_env.html#item"><span class="id" type="inductive">item</span></a> <span class="id" type="var">x</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#cons"><span class="id" type="constructor">cons</span></a> <a class="idref" href="f_env.html#y"><span class="id" type="variable">y</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a>) (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>).</span><div class="output"><pre>item is defined
+item_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="f_env.html#item"><span class="id" type="inductive">item</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+In the list Γ, the nth item is syntacticaly x. 
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Notation</span> <a name="f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">"</span></a> x ↓ n ∈ Γ " := (<a class="idref" href="f_env.html#f_env_mod.item"><span class="id" type="inductive">item</span></a> <span class="id" type="var">x</span> <span class="id" type="var">Γ</span> <span class="id" type="var">n</span>) (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>) : <span class="id" type="var">F_scope</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.fun_item"><span class="id" type="lemma">fun_item</span></a>: <span class="id" type="keyword">forall</span> <span class="id" type="var">T</span> (<span class="id" type="var">A</span> <span class="id" type="var">B</span>:<a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a>)(<span class="id" type="var">Γ</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a>)(<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>), <br>
+  <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> -&gt; <a class="idref" href="f_env.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> -&gt; <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="f_env.html#B"><span class="id" type="variable">B</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 7)
+  
+  ============================
+   forall (T : Type) (A B : T) (Γ : list T) (n : nat),
+   A ↓ n ∈ Γ -&gt; B ↓ n ∈ Γ -&gt; A = B
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span> <span class="id" type="var">T</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span>  <span class="id" type="var">Γ</span> <span class="id" type="var">n</span>;<span class="id" type="var">revert</span> <span class="id" type="var">T</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">Γ</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 14)
+  
+  n : nat
+  ============================
+   forall (T : Type) (A B : T) (Γ : list T), A ↓ n ∈ Γ -&gt; B ↓ n ∈ Γ -&gt; A = B
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 26)
+  
+  T : Type
+  A : T
+  B : T
+  Γ : list T
+  H : A ↓ 0 ∈ Γ
+  H0 : B ↓ 0 ∈ Γ
+  ============================
+   A = B
+
+subgoal 2 (ID 32) is:
+ A = B
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">inversion</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 77)
+  
+  T : Type
+  A : T
+  B : T
+  Γ : list T
+  H : A ↓ 0 ∈ Γ
+  H0 : B ↓ 0 ∈ Γ
+  Γ0 : list T
+  H1 : A :: Γ0 = Γ
+  Γ1 : list T
+  H2 : B :: Γ1 = Γ
+  ============================
+   A = B
+
+subgoal 2 (ID 32) is:
+ A = B
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> &lt;- <span class="id" type="var">H2</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">injection</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 32)
+  
+  n : nat
+  IHn : forall (T : Type) (A B : T) (Γ : list T),
+        A ↓ n ∈ Γ -&gt; B ↓ n ∈ Γ -&gt; A = B
+  T : Type
+  A : T
+  B : T
+  Γ : list T
+  H : A ↓ S n ∈ Γ
+  H0 : B ↓ S n ∈ Γ
+  ============================
+   A = B
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">inversion</span> <span class="id" type="var">H0</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 207)
+  
+  n : nat
+  IHn : forall (T : Type) (A B : T) (Γ : list T),
+        A ↓ n ∈ Γ -&gt; B ↓ n ∈ Γ -&gt; A = B
+  T : Type
+  A : T
+  B : T
+  Γ0 : list T
+  y : T
+  H3 : A ↓ n ∈ Γ0
+  Γ1 : list T
+  y0 : T
+  H6 : B ↓ n ∈ Γ1
+  H : A ↓ S n ∈ y :: Γ0
+  H0 : B ↓ S n ∈ y :: Γ0
+  H5 : y0 :: Γ1 = y :: Γ0
+  ============================
+   A = B
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">injection</span> <span class="id" type="var">H5</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 228)
+  
+  n : nat
+  IHn : forall (T : Type) (A B : T) (Γ : list T),
+        A ↓ n ∈ Γ -&gt; B ↓ n ∈ Γ -&gt; A = B
+  T : Type
+  A : T
+  B : T
+  Γ0 : list T
+  y : T
+  H3 : A ↓ n ∈ Γ0
+  H : A ↓ S n ∈ y :: Γ0
+  H0 : B ↓ S n ∈ y :: Γ0
+  H6 : B ↓ n ∈ Γ0
+  H5 : y :: Γ0 = y :: Γ0
+  ============================
+   A = B
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHn</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">Γ</span>:=<span class="id" type="var">Γ0</span>); <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>fun_item is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) : <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>-&gt;<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span> -&gt;<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span>-&gt;<span class="id" type="keyword">Prop</span> :=<br>
+     <a name="f_env_mod.trunc_O"><span class="id" type="constructor">trunc_O</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">Γ</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span>) , (<a class="idref" href="f_env.html#trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#O"><span class="id" type="constructor">O</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a>)<br>
+   | <a name="f_env_mod.trunc_S"><span class="id" type="constructor">trunc_S</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">k</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>)(<span class="id" type="var">Γ</span> <span class="id" type="var">Γ'</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <span class="id" type="var">A</span>)(<span class="id" type="var">x</span>:<span class="id" type="var">A</span>), <a class="idref" href="f_env.html#trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#k"><span class="id" type="variable">k</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a> <br>
+                -&gt; <a class="idref" href="f_env.html#trunc"><span class="id" type="inductive">trunc</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#k"><span class="id" type="variable">k</span></a>) (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#cons"><span class="id" type="constructor">cons</span></a> <a class="idref" href="f_env.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a>) <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a>.</span><div class="output"><pre>trunc is defined
+trunc_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="f_env.html#trunc"><span class="id" type="inductive">trunc</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.item_trunc"><span class="id" type="lemma">item_trunc</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">T</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>) (<span class="id" type="var">Γ</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#list"><span class="id" type="inductive">list</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a>) (<span class="id" type="var">t</span>:<a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a>), <br>
+  <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> -&gt; <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:'exists'_x_'..'_x_','_x"><span class="id" type="notation">exists</span></a> <span class="id" type="var">Γ'</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:'exists'_x_'..'_x_','_x"><span class="id" type="notation">,</span></a> <a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 236)
+  
+  ============================
+   forall (T : Type) (n : nat) (Γ : list T) (t : T),
+   t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span> <span class="id" type="var">T</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 247)
+  
+  T : Type
+  Γ : list T
+  t : T
+  H : t ↓ 0 ∈ Γ
+  ============================
+   exists Γ' : list T, trunc 1 Γ Γ'
+
+subgoal 2 (ID 250) is:
+ exists Γ' : list T, trunc (S (S n)) Γ Γ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 265)
+  
+  T : Type
+  Γ : list T
+  t : T
+  H : t ↓ 0 ∈ Γ
+  Γ0 : list T
+  H0 : t :: Γ0 = Γ
+  ============================
+   exists Γ' : list T, trunc 1 (t :: Γ0) Γ'
+
+subgoal 2 (ID 250) is:
+ exists Γ' : list T, trunc (S (S n)) Γ Γ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exists</span> <span class="id" type="var">Γ0</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 291)
+  
+  T : Type
+  Γ : list T
+  t : T
+  H : t ↓ 0 ∈ Γ
+  Γ0 : list T
+  H0 : t :: Γ0 = Γ
+  ============================
+   trunc 1 (t :: Γ0) Γ0
+
+subgoal 2 (ID 250) is:
+ exists Γ' : list T, trunc (S (S n)) Γ Γ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.trunc_S"><span class="id" type="constructor">trunc_S</span></a>; <span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.trunc_O"><span class="id" type="constructor">trunc_O</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 250)
+  
+  T : Type
+  n : nat
+  IHn : forall (Γ : list T) (t : T),
+        t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+  Γ : list T
+  t : T
+  H : t ↓ S n ∈ Γ
+  ============================
+   exists Γ' : list T, trunc (S (S n)) Γ Γ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 348)
+  
+  T : Type
+  n : nat
+  IHn : forall (Γ : list T) (t : T),
+        t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+  t : T
+  Γ0 : list T
+  y : T
+  H2 : t ↓ n ∈ Γ0
+  H : t ↓ S n ∈ y :: Γ0
+  ============================
+   exists Γ' : list T, trunc (S (S n)) (y :: Γ0) Γ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> (<span class="id" type="var">IHn</span> <span class="id" type="var">Γ0</span> <span class="id" type="var">t</span> <span class="id" type="var">H2</span>).</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 355)
+  
+  T : Type
+  n : nat
+  IHn : forall (Γ : list T) (t : T),
+        t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+  t : T
+  Γ0 : list T
+  y : T
+  H2 : t ↓ n ∈ Γ0
+  H : t ↓ S n ∈ y :: Γ0
+  x : list T
+  H0 : trunc (S n) Γ0 x
+  ============================
+   exists Γ' : list T, trunc (S (S n)) (y :: Γ0) Γ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exists</span> <span class="id" type="var">x</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 357)
+  
+  T : Type
+  n : nat
+  IHn : forall (Γ : list T) (t : T),
+        t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+  t : T
+  Γ0 : list T
+  y : T
+  H2 : t ↓ n ∈ Γ0
+  H : t ↓ S n ∈ y :: Γ0
+  x : list T
+  H0 : trunc (S n) Γ0 x
+  ============================
+   trunc (S (S n)) (y :: Γ0) x
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.trunc_S"><span class="id" type="constructor">trunc_S</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 358)
+  
+  T : Type
+  n : nat
+  IHn : forall (Γ : list T) (t : T),
+        t ↓ n ∈ Γ -&gt; exists Γ' : list T, trunc (S n) Γ Γ'
+  t : T
+  Γ0 : list T
+  y : T
+  H2 : t ↓ n ∈ Γ0
+  H : t ↓ S n ∈ y :: Γ0
+  x : list T
+  H0 : trunc (S n) Γ0 x
+  ============================
+   trunc (S n) Γ0 x
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>item_trunc is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.trunc_inj"><span class="id" type="lemma">trunc_inj</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">n</span> (<span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>),<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>-&gt;<a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a><a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 363)
+  
+  ============================
+   forall (n : nat) (Γ Δ Δ' : Env), trunc n Γ Δ -&gt; trunc n Γ Δ' -&gt; Δ = Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>;<span class="id" type="tactic">inversion</span> 1;<span class="id" type="tactic">inversion</span> 1;<span class="id" type="tactic">subst</span>;[<span class="id" type="tactic">reflexivity</span>|<span class="id" type="tactic">eapply</span> <span class="id" type="var">IHn</span>;<span class="id" type="var">eassumption</span>].</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?631 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>trunc_inj is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.trunc_trans"><span class="id" type="lemma">trunc_trans</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">m</span> <span class="id" type="var">n</span> (<span class="id" type="var">Γ</span> <span class="id" type="var">Γ1</span> <span class="id" type="var">Γ2</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>), <a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> (<a class="idref" href="f_env.html#m"><span class="id" type="variable">m</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a><a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 639)
+  
+  ============================
+   forall (m n : nat) (Γ Γ1 Γ2 : Env),
+   trunc n Γ Γ1 -&gt; trunc m Γ1 Γ2 -&gt; trunc (m + n) Γ Γ2
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>;<span class="id" type="tactic">inversion</span> 1;<span class="id" type="tactic">intros</span>;<span class="id" type="tactic">subst</span>;<span class="id" type="tactic">simpl</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 778)
+  
+  m : nat
+  Γ1 : Env
+  Γ2 : Env
+  H0 : trunc m Γ1 Γ2
+  H : trunc 0 Γ1 Γ1
+  ============================
+   trunc (m + 0) Γ1 Γ2
+
+subgoal 2 (ID 779) is:
+ trunc (m + S n) (x :: Γ0) Γ2
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Plus.html#plus_comm"><span class="id" type="lemma">plus_comm</span></a>;<span class="id" type="tactic">assumption</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 779)
+  
+  m : nat
+  n : nat
+  IHn : forall Γ Γ1 Γ2 : Env,
+        trunc n Γ Γ1 -&gt; trunc m Γ1 Γ2 -&gt; trunc (m + n) Γ Γ2
+  Γ1 : Env
+  Γ2 : Env
+  Γ0 : list Term
+  x : Term
+  H1 : trunc n Γ0 Γ1
+  H4 : trunc m Γ1 Γ2
+  H : trunc (S n) (x :: Γ0) Γ1
+  ============================
+   trunc (m + S n) (x :: Γ0) Γ2
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Plus.html#plus_comm"><span class="id" type="lemma">plus_comm</span></a>;<span class="id" type="tactic">simpl</span>;<span class="id" type="tactic">constructor</span>;<span class="id" type="tactic">rewrite</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Plus.html#plus_comm"><span class="id" type="lemma">plus_comm</span></a>;<span class="id" type="tactic">eapply</span> <span class="id" type="var">IHn</span>;<span class="id" type="var">eassumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?787 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>trunc_trans is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+This type describe how do we add an element in an environment: no type
+checking is done, this is just the mecanic way to do it. 
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Inductive</span> <a name="f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> (<span class="id" type="var">Γ</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> ) (<span class="id" type="var">d1</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>): <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> -&gt; <a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>  -&gt;<span class="id" type="keyword">Prop</span> :=<br>
+  | <a name="f_env_mod.ins_O"><span class="id" type="constructor">ins_O</span></a>: <a class="idref" href="f_env.html#ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#O"><span class="id" type="constructor">O</span></a> <span class="id" type="var">Γ</span> (<span class="id" type="var">d1</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a><span class="id" type="var">Γ</span>)<br>
+  | <a name="f_env_mod.ins_S"><span class="id" type="constructor">ins_S</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>)(<span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> )(<span class="id" type="var">d</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>), (<a class="idref" href="f_env.html#ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">d1</span> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>)<br>
+        -&gt; <a class="idref" href="f_env.html#ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">d1</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) (<a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a><a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>) ( <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">(</span></a><a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> 1 <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">)::</span></a><a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> ).</span><div class="output"><pre>ins_in_env is defined
+ins_in_env_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="f_env.html#ins_in_env"><span class="id" type="inductive">ins_in_env</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Some lemmas about inserting a new element. They explain how
+ terms in the environment are lifted according to their original position
+ and the position of insertion. 
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.ins_item_ge"><span class="id" type="lemma">ins_item_ge</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">d'</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>) (<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>) (<span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>), <br>
+  <a class="idref" href="f_env.html#f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#d'"><span class="id" type="variable">d'</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt; <br>
+  <span class="id" type="keyword">forall</span> (<span class="id" type="var">v</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>), <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&lt;='_x"><span class="id" type="notation">&lt;=</span></a><a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt; <br>
+ <span class="id" type="keyword">forall</span> (<span class="id" type="var">d</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>),  <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>  -&gt; <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 795)
+  
+  ============================
+   forall (d' : Term) (n : nat) (Γ Δ Δ' : Env),
+   ins_in_env Γ d' n Δ Δ' -&gt;
+   forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 811)
+  
+  d' : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' 0 Δ Δ'
+  v : nat
+  H0 : 0 &lt;= v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  ============================
+   d ↓ S v ∈ Δ'
+
+subgoal 2 (ID 819) is:
+ d ↓ S v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 873)
+  
+  d' : Term
+  Δ : Env
+  v : nat
+  H0 : 0 &lt;= v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  H : ins_in_env Δ d' 0 Δ (d' :: Δ)
+  ============================
+   d ↓ S v ∈ d' :: Δ
+
+subgoal 2 (ID 819) is:
+ d ↓ S v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 874)
+  
+  d' : Term
+  Δ : Env
+  v : nat
+  H0 : 0 &lt;= v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  H : ins_in_env Δ d' 0 Δ (d' :: Δ)
+  ============================
+   d ↓ v ∈ Δ
+
+subgoal 2 (ID 819) is:
+ d ↓ S v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">exact</span> <span class="id" type="var">H1</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 819)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' (S n) Δ Δ'
+  v : nat
+  H0 : S n &lt;= v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  ============================
+   d ↓ S v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 937)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ S v ∈ d0 ↑  1 # n :: Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 938)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ v ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">v</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 948)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  H0 : S n &lt;= 0
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ 0 ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ 0 ∈ Δ'0
+
+subgoal 2 (ID 954) is:
+ d ↓ S v ∈ Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">elim</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#le_Sn_O"><span class="id" type="abbreviation">le_Sn_O</span></a> <span class="id" type="var">n</span> <span class="id" type="var">H0</span>).</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 954)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ S v ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHn</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">Γ</span>:=<span class="id" type="var">Γ</span>) (<span class="id" type="var">Δ</span>:=<span class="id" type="var">Δ0</span>).</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 955)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   ins_in_env Γ d' n Δ0 Δ'0
+
+subgoal 2 (ID 956) is:
+ n &lt;= v
+subgoal 3 (ID 957) is:
+ d ↓ v ∈ Δ0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 956)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   n &lt;= v
+
+subgoal 2 (ID 957) is:
+ d ↓ v ∈ Δ0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#le_S_n"><span class="id" type="lemma">le_S_n</span></a> ; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 957)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ v ∈ Δ0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1028)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↓ S v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  Γ0 : list Term
+  n0 : nat
+  y : Term
+  H4 : d ↓ v ∈ Δ0
+  H2 : y = d0
+  H5 : Γ0 = Δ0
+  H6 : n0 = v
+  ============================
+   d ↓ v ∈ Δ0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exact</span> <span class="id" type="var">H4</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>ins_item_ge is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.ins_item_lt"><span class="id" type="lemma">ins_item_lt</span></a>: <span class="id" type="keyword">forall</span> (<span class="id" type="var">d'</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>)(<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>)(<span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>),<br>
+ <a class="idref" href="f_env.html#f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#d'"><span class="id" type="variable">d'</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt;<br>
+ <span class="id" type="keyword">forall</span> (<span class="id" type="var">v</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>), <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&gt;'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt;<br>
+ <span class="id" type="keyword">forall</span> (<span class="id" type="var">d</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>), <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> -&gt; <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">(</span></a><a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> 1 <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">(</span></a><a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">)</span></a><a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> .</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1035)
+  
+  ============================
+   forall (d' : Term) (n : nat) (Γ Δ Δ' : Env),
+   ins_in_env Γ d' n Δ Δ' -&gt;
+   forall v : nat,
+   n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1051)
+  
+  d' : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' 0 Δ Δ'
+  v : nat
+  H0 : 0 &gt; v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  ============================
+   d ↑  1 # (0 - S v) ↓ v ∈ Δ'
+
+subgoal 2 (ID 1059) is:
+ d ↑  1 # (S n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1059)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' (S n) Δ Δ'
+  v : nat
+  H0 : S n &gt; v
+  d : Term
+  H1 : d ↓ v ∈ Δ
+  ============================
+   d ↑  1 # (S n - S v) ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1150)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↑  1 # (S n - S v) ↓ v ∈ d0 ↑  1 # n :: Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">v</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1160)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  H0 : S n &gt; 0
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ 0 ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↑  1 # (S n - 1) ↓ 0 ∈ d0 ↑  1 # n :: Δ'0
+
+subgoal 2 (ID 1166) is:
+ d ↑  1 # (S n - S (S v)) ↓ S v ∈ d0 ↑  1 # n :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1235)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  H0 : S n &gt; 0
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  H1 : d0 ↓ 0 ∈ d0 :: Δ0
+  ============================
+   d0 ↑  1 # (S n - 1) ↓ 0 ∈ d0 ↑  1 # n :: Δ'0
+
+subgoal 2 (ID 1166) is:
+ d ↑  1 # (S n - S (S v)) ↓ S v ∈ d0 ↑  1 # n :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a>1) <span class="id" type="keyword">with</span> <span class="id" type="var">n</span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1239)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  H0 : S n &gt; 0
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  H1 : d0 ↓ 0 ∈ d0 :: Δ0
+  ============================
+   d0 ↑  1 # n ↓ 0 ∈ d0 ↑  1 # n :: Δ'0
+
+subgoal 2 (ID 1166) is:
+ d ↑  1 # (S n - S (S v)) ↓ S v ∈ d0 ↑  1 # n :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_hd"><span class="id" type="constructor">item_hd</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1166)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↑  1 # (S n - S (S v)) ↓ S v ∈ d0 ↑  1 # n :: Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1255)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↑  1 # (S n - S (S v)) ↓ v ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>)) <span class="id" type="keyword">with</span> (<span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>) <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1259)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↑  1 # (n - S v) ↓ v ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHn</span> <span class="id" type="keyword">with</span> (<span class="id" type="var">Γ</span>:=<span class="id" type="var">Γ</span>) (<span class="id" type="var">Δ</span>:=<span class="id" type="var">Δ0</span>).</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 1262)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   ins_in_env Γ d' n Δ0 Δ'0
+
+subgoal 2 (ID 1263) is:
+ n &gt; v
+subgoal 3 (ID 1264) is:
+ d ↓ v ∈ Δ0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exact</span> <span class="id" type="var">H3</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1263)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   n &gt; v
+
+subgoal 2 (ID 1264) is:
+ d ↓ v ∈ Δ0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1264)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  ============================
+   d ↓ v ∈ Δ0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1350)
+  
+  d' : Term
+  n : nat
+  IHn : forall Γ Δ Δ' : Env,
+        ins_in_env Γ d' n Δ Δ' -&gt;
+        forall v : nat,
+        n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d ↑  1 # (n - S v) ↓ v ∈ Δ'
+  Γ : Env
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  Δ0 : Env
+  Δ'0 : Env
+  d0 : Term
+  H3 : ins_in_env Γ d' n Δ0 Δ'0
+  H1 : d ↓ S v ∈ d0 :: Δ0
+  H : ins_in_env Γ d' (S n) (d0 :: Δ0) (d0 ↑  1 # n :: Δ'0)
+  Γ0 : list Term
+  n0 : nat
+  y : Term
+  H4 : d ↓ v ∈ Δ0
+  H2 : y = d0
+  H5 : Γ0 = Δ0
+  H6 : n0 = v
+  ============================
+   d ↓ v ∈ Δ0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exact</span> <span class="id" type="var">H4</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>ins_item_lt is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.ins_item"><span class="id" type="lemma">ins_item</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">Δ</span> <span class="id" type="var">A</span> <span class="id" type="var">v</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Γ'</span>,<a class="idref" href="f_env.html#f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a>-&gt;<a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1361)
+  
+  ============================
+   forall (Δ : Env) (A : Term) (v : nat) (Γ Γ' : Env),
+   ins_in_env Δ A v Γ Γ' -&gt; A ↓ v ∈ Γ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">v</span>;<span class="id" type="tactic">inversion</span> 1;<span class="id" type="tactic">subst</span>;<span class="id" type="tactic">constructor</span>;<span class="id" type="tactic">eapply</span> <span class="id" type="var">IHv</span>;<span class="id" type="var">eassumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?1497 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>ins_item is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.ins_trunc"><span class="id" type="lemma">ins_trunc</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">v</span> <span class="id" type="var">Δ</span> <span class="id" type="var">A</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Γ'</span>,<a class="idref" href="f_env.html#f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a>) <a class="idref" href="f_env.html#%CE%93'"><span class="id" type="variable">Γ'</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1505)
+  
+  ============================
+   forall (v : nat) (Δ : Env) (A : Term) (Γ Γ' : Env),
+   ins_in_env Δ A v Γ Γ' -&gt; trunc (S v) Γ' Δ
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">v</span>;<span class="id" type="tactic">inversion</span> 1;<span class="id" type="tactic">subst</span>;<span class="id" type="tactic">econstructor</span>;<span class="id" type="tactic">try</span> <span class="id" type="tactic">econstructor</span>;<span class="id" type="tactic">eapply</span> <span class="id" type="var">IHv</span>;<span class="id" type="var">eassumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?1648 using , ?1649 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>ins_trunc is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+In the list Γ, t is  nth element correctly lifted according to Γ:
+e.g.: if t ↓ n ⊂ Γ and we insert something in Γ, then 
+we can still speak about t without think of the lift hidden by the insertion. 
+</div>
+<div>
+<span class="command">
+
+<br>
+<span class="id" type="keyword">Definition</span> <a name="f_env_mod.item_lift"><span class="id" type="definition">item_lift</span></a> (<span class="id" type="var">t</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>) (<span class="id" type="var">Γ</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>) (<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>) :=<br>
+     <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:'exists'_x_'..'_x_','_x"><span class="id" type="notation">exists</span></a> <span class="id" type="var">u</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:'exists'_x_'..'_x_','_x"><span class="id" type="notation">,</span></a>  <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="f_env.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x"><span class="id" type="notation">↑</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x"><span class="id" type="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'/%5C'_x"><span class="id" type="notation">/\</span></a>  <a class="idref" href="f_env.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> .</span><div class="output"><pre>item_lift is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Unfold</span> <a class="idref" href="f_env.html#f_env_mod.item_lift"><span class="id" type="definition">item_lift</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Notation</span> <a name="f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">"</span></a> t ↓ n ⊂ Γ " := (<a class="idref" href="f_env.html#f_env_mod.item_lift"><span class="id" type="definition">item_lift</span></a> <span class="id" type="var">t</span> <span class="id" type="var">Γ</span> <span class="id" type="var">n</span>) (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>): <span class="id" type="var">F_scope</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Properties of the item_lift notation.
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.ins_item_lift_lt"><span class="id" type="lemma">ins_item_lift_lt</span></a>: <span class="id" type="keyword">forall</span>  (<span class="id" type="var">d'</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>)(<span class="id" type="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>)(<span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>:<a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> ),<br>
+ <a class="idref" href="f_env.html#f_env_mod.ins_in_env"><span class="id" type="inductive">ins_in_env</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#d'"><span class="id" type="variable">d'</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt;<br>
+ <span class="id" type="keyword">forall</span> (<span class="id" type="var">v</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>),  <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&gt;'_x"><span class="id" type="notation">&gt;</span></a><a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt;<br>
+ <span class="id" type="keyword">forall</span> (<span class="id" type="var">t</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>), <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">⊂</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>  -&gt; <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">(</span></a><a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> 1 <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%8A%82'_x"><span class="id" type="notation">⊂</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1654)
+  
+  ============================
+   forall (d' : Term) (n : nat) (Γ Δ Δ' : Env),
+   ins_in_env Γ d' n Δ Δ' -&gt;
+   forall v : nat, n &gt; v -&gt; forall t : Term, t ↓ v ⊂ Δ -&gt; t ↑  1 # n ↓ v ⊂ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1664)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  H1 : t ↓ v ⊂ Δ
+  ============================
+   t ↑  1 # n ↓ v ⊂ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">H1</span> <span class="id" type="keyword">as</span> [<span class="id" type="var">u</span> [ <span class="id" type="var">P</span> <span class="id" type="var">Q</span>]].</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1672)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  ============================
+   t ↑  1 # n ↓ v ⊂ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">P</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1673)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  ============================
+   u ↑  (S v) ↑  1 # n ↓ v ⊂ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exists</span> (<span class="id" type="var">u</span> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> 1 <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">(</span></a><span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">)</span></a> ); <span class="id" type="tactic">split</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1677)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  ============================
+   u ↑  (S v) ↑  1 # n = u ↑  1 # (n - S v) ↑  (S v)
+
+subgoal 2 (ID 1678) is:
+ u ↑  1 # (n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> <span class="id" type="var">n</span> <span class="id" type="keyword">with</span> ( <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">(</span></a><span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">)</span></a>)  <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span> .</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1682)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  ============================
+   u ↑  (S v) ↑  1 # (S v + (n - S v)) =
+   u ↑  1 # (S v + (n - S v) - S v) ↑  (S v)
+
+subgoal 2 (ID 1678) is:
+ u ↑  1 # (n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <a class="idref" href="f_env.html#TM.liftP2"><span class="id" type="lemma">liftP2</span></a> <span class="id" type="keyword">as</span> (<span class="id" type="var">HH</span>&amp;<span class="id" type="var">HH0</span>);<span class="id" type="tactic">rewrite</span> <span class="id" type="var">HH</span>.</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 1706)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  HH : forall (M : Term) (i j k n : nat),
+       i &lt;= n -&gt; M ↑  j # i ↑  k # (j + n) = M ↑  k # n ↑  j # i
+  HH0 : forall (H : Prf) (i j k n : nat),
+        i &lt;= n -&gt; H ↑h j # i ↑h k # (j + n) = H ↑h k # n ↑h j # i
+  ============================
+   u ↑  1 # (n - S v) ↑  (S v) = u ↑  1 # (S v + (n - S v) - S v) ↑  (S v)
+
+subgoal 2 (ID 1707) is:
+ 0 &lt;= n - S v
+subgoal 3 (ID 1678) is:
+ u ↑  1 # (n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+(</span></a><span class="id" type="var">n</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>) <span class="id" type="keyword">with</span> (<span class="id" type="var">n</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>) <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 1711)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  HH : forall (M : Term) (i j k n : nat),
+       i &lt;= n -&gt; M ↑  j # i ↑  k # (j + n) = M ↑  k # n ↑  j # i
+  HH0 : forall (H : Prf) (i j k n : nat),
+        i &lt;= n -&gt; H ↑h j # i ↑h k # (j + n) = H ↑h k # n ↑h j # i
+  ============================
+   u ↑  1 # (n - S v) ↑  (S v) = u ↑  1 # (n - S v) ↑  (S v)
+
+subgoal 2 (ID 1707) is:
+ 0 &lt;= n - S v
+subgoal 3 (ID 1678) is:
+ u ↑  1 # (n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">reflexivity</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1707)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  HH : forall (M : Term) (i j k n : nat),
+       i &lt;= n -&gt; M ↑  j # i ↑  k # (j + n) = M ↑  k # n ↑  j # i
+  HH0 : forall (H : Prf) (i j k n : nat),
+        i &lt;= n -&gt; H ↑h j # i ↑h k # (j + n) = H ↑h k # n ↑h j # i
+  ============================
+   0 &lt;= n - S v
+
+subgoal 2 (ID 1678) is:
+ u ↑  1 # (n - S v) ↓ v ∈ Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1678)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  t : Term
+  u : Term
+  P : t = u ↑  (S v)
+  Q : u ↓ v ∈ Δ
+  ============================
+   u ↑  1 # (n - S v) ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">clear</span> <span class="id" type="var">t</span> <span class="id" type="var">P</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1746)
+  
+  d' : Term
+  n : nat
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  H : ins_in_env Γ d' n Δ Δ'
+  v : nat
+  H0 : n &gt; v
+  u : Term
+  Q : u ↓ v ∈ Δ
+  ============================
+   u ↑  1 # (n - S v) ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1813)
+  
+  d' : Term
+  Δ : Env
+  v : nat
+  u : Term
+  Q : u ↓ v ∈ Δ
+  H0 : 0 &gt; v
+  H : ins_in_env Δ d' 0 Δ (d' :: Δ)
+  ============================
+   u ↑  1 # (0 - S v) ↓ v ∈ d' :: Δ
+
+subgoal 2 (ID 1830) is:
+ u ↑  1 # (S n0 - S v) ↓ v ∈ d ↑  1 # n0 :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1830)
+  
+  d' : Term
+  Γ : Env
+  v : nat
+  u : Term
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  Q : u ↓ v ∈ d :: Δ0
+  H0 : S n0 &gt; v
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  ============================
+   u ↑  1 # (S n0 - S v) ↓ v ∈ d ↑  1 # n0 :: Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">Q</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1935)
+  
+  d' : Term
+  Γ : Env
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  H0 : S n0 &gt; 0
+  Q : d ↓ 0 ∈ d :: Δ0
+  ============================
+   d ↑  1 # (S n0 - 1) ↓ 0 ∈ d ↑  1 # n0 :: Δ'0
+
+subgoal 2 (ID 1943) is:
+ u ↑  1 # (S n0 - S (S n)) ↓ S n ∈ d ↑  1 # n0 :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n0</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a>1) <span class="id" type="keyword">with</span> <span class="id" type="var">n0</span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1947)
+  
+  d' : Term
+  Γ : Env
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  H0 : S n0 &gt; 0
+  Q : d ↓ 0 ∈ d :: Δ0
+  ============================
+   d ↑  1 # n0 ↓ 0 ∈ d ↑  1 # n0 :: Δ'0
+
+subgoal 2 (ID 1943) is:
+ u ↑  1 # (S n0 - S (S n)) ↓ S n ∈ d ↑  1 # n0 :: Δ'0
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_hd"><span class="id" type="constructor">item_hd</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1943)
+  
+  d' : Term
+  Γ : Env
+  u : Term
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  n : nat
+  H5 : u ↓ n ∈ Δ0
+  Q : u ↓ S n ∈ d :: Δ0
+  H0 : S n0 &gt; S n
+  ============================
+   u ↑  1 # (S n0 - S (S n)) ↓ S n ∈ d ↑  1 # n0 :: Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1962)
+  
+  d' : Term
+  Γ : Env
+  u : Term
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  n : nat
+  H5 : u ↓ n ∈ Δ0
+  Q : u ↓ S n ∈ d :: Δ0
+  H0 : S n0 &gt; S n
+  ============================
+   u ↑  1 # (S n0 - S (S n)) ↓ n ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n0</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span>)) <span class="id" type="keyword">with</span> (<span class="id" type="var">n0</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span>) <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1966)
+  
+  d' : Term
+  Γ : Env
+  u : Term
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  n : nat
+  H5 : u ↓ n ∈ Δ0
+  Q : u ↓ S n ∈ d :: Δ0
+  H0 : S n0 &gt; S n
+  ============================
+   u ↑  1 # (n0 - S n) ↓ n ∈ Δ'0
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.ins_item_lt"><span class="id" type="lemma">ins_item_lt</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">d'</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Δ0</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1970)
+  
+  d' : Term
+  Γ : Env
+  u : Term
+  n0 : nat
+  Δ0 : Env
+  Δ'0 : Env
+  d : Term
+  H1 : ins_in_env Γ d' n0 Δ0 Δ'0
+  H : ins_in_env Γ d' (S n0) (d :: Δ0) (d ↑  1 # n0 :: Δ'0)
+  n : nat
+  H5 : u ↓ n ∈ Δ0
+  Q : u ↓ S n ∈ d :: Δ0
+  H0 : S n0 &gt; S n
+  ============================
+   n0 &gt; n
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>ins_item_lift_lt is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+This type describe how do we do substitution inside a context.
+As previously, no type checking is done at this point.
+</div>
+<div>
+<span class="command">
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> (<span class="id" type="var">Γ</span> : <a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a>) (<span class="id" type="var">t</span> <span class="id" type="var">T</span>:<a class="idref" href="f_env.html#TM.Term"><span class="id" type="inductive">Term</span></a>):<br>
+  <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a> -&gt; <a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> -&gt; <a class="idref" href="f_env.html#f_env_mod.Env"><span class="id" type="definition">Env</span></a> -&gt; <span class="id" type="keyword">Prop</span> :=<br>
+    | <a name="f_env_mod.sub_O"><span class="id" type="constructor">sub_O</span></a> :  <a class="idref" href="f_env.html#sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> 0 (<span class="id" type="var">T</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a> <span class="id" type="var">Γ</span>) <span class="id" type="var">Γ</span><br>
+    | <a name="f_env_mod.sub_S"><span class="id" type="constructor">sub_S</span></a> :<br>
+        <span class="id" type="keyword">forall</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span> <span class="id" type="var">n</span>  <span class="id" type="var">B</span>,<br>
+        <a class="idref" href="f_env.html#sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt;<br>
+        <a class="idref" href="f_env.html#sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <span class="id" type="var">Γ</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) (<a class="idref" href="f_env.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>) ( <a class="idref" href="f_env.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[</span></a><a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">←</span></a> <span class="id" type="var">t</span><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>).</span><div class="output"><pre>sub_in_env is defined
+sub_in_env_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="f_env.html#sub_in_env"><span class="id" type="inductive">sub_in_env</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Some ins / subst related facts: what happens to term when we do
+ a substitution in a context.
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.nth_sub_sup"><span class="id" type="lemma">nth_sub_sup</span></a> :<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">n</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span>,<br>
+   <a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt;<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">v</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>, <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&lt;='_x"><span class="id" type="notation">&lt;=</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt; <br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">d</span> , <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> -&gt; <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2004)
+  
+  ============================
+   forall (n : nat) (Γ Δ Δ' : Env) (t T : Term),
+   sub_in_env Γ t T n Δ Δ' -&gt;
+   forall v : nat, n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">induction</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2031)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  v : nat
+  H : 0 &lt;= v
+  d : Term
+  H0 : d ↓ S v ∈ T :: Γ
+  ============================
+   d ↓ v ∈ Γ
+
+subgoal 2 (ID 2035) is:
+ d ↓ v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H0</span>; <span class="id" type="tactic">subst</span>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2112)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  v : nat
+  H : 0 &lt;= v
+  d : Term
+  H0 : d ↓ S v ∈ T :: Γ
+  H2 : d ↓ v ∈ Γ
+  ============================
+   d ↓ v ∈ Γ
+
+subgoal 2 (ID 2035) is:
+ d ↓ v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2035)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &lt;= v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  ============================
+   d ↓ v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2189)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &lt;= v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  H3 : d ↓ v ∈ Δ
+  ============================
+   d ↓ v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">v</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2199)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  H0 : S n &lt;= 0
+  d : Term
+  H1 : d ↓ 1 ∈ B :: Δ
+  H3 : d ↓ 0 ∈ Δ
+  ============================
+   d ↓ 0 ∈ B [n ←  t] :: Δ'
+
+subgoal 2 (ID 2205) is:
+ d ↓ S v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">elim</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#le_Sn_O"><span class="id" type="abbreviation">le_Sn_O</span></a> <span class="id" type="var">n</span> <span class="id" type="var">H0</span>).</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2205)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  H1 : d ↓ S (S v) ∈ B :: Δ
+  H3 : d ↓ S v ∈ Δ
+  ============================
+   d ↓ S v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2206)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &lt;= S v
+  d : Term
+  H1 : d ↓ S (S v) ∈ B :: Δ
+  H3 : d ↓ S v ∈ Δ
+  ============================
+   d ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#le_S_n"><span class="id" type="lemma">le_S_n</span></a> <span class="id" type="keyword">in</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2208)
+  
+  Γ : Env
+  t : Term
+  T : Term
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &lt;= v -&gt; forall d : Term, d ↓ S v ∈ Δ -&gt; d ↓ v ∈ Δ'
+  v : nat
+  H0 : n &lt;= v
+  d : Term
+  H1 : d ↓ S (S v) ∈ B :: Δ
+  H3 : d ↓ S v ∈ Δ
+  ============================
+   d ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHsub_in_env</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>nth_sub_sup is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.nth_sub_inf"><span class="id" type="lemma">nth_sub_inf</span></a> :<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> <span class="id" type="var">n</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span>,<br>
+   <a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#%CE%93"><span class="id" type="variable">Γ</span></a> <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> -&gt;<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">v</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>,<br>
+   <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&gt;'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt;<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">d</span> , <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> -&gt;  <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">(</span></a> <a class="idref" href="f_env.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[</span></a><a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">←</span></a> <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a><a class="idref" href="f_term.html#f_term_mod.:F_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">)↓</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%94'"><span class="id" type="variable">Δ'</span></a> .</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2220)
+  
+  ============================
+   forall (t T : Term) (n : nat) (Γ Δ Δ' : Env),
+   sub_in_env Γ t T n Δ Δ' -&gt;
+   forall v : nat,
+   n &gt; v -&gt; forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> <span class="id" type="var">n</span> <span class="id" type="var">Γ</span> <span class="id" type="var">Δ</span> <span class="id" type="var">Δ'</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">induction</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">intros</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2247)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  v : nat
+  H : 0 &gt; v
+  d : Term
+  H0 : d ↓ v ∈ T :: Γ
+  ============================
+   d [(0 - S v) ←  t] ↓ v ∈ Γ
+
+subgoal 2 (ID 2251) is:
+ d [(S n - S v) ←  t] ↓ v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2251)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &gt; v
+  d : Term
+  H1 : d ↓ v ∈ B :: Δ
+  ============================
+   d [(S n - S v) ←  t] ↓ v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">v</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2288)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  H0 : S n &gt; 0
+  d : Term
+  H1 : d ↓ 0 ∈ B :: Δ
+  ============================
+   d [(S n - 1) ←  t] ↓ 0 ∈ B [n ←  t] :: Δ'
+
+subgoal 2 (ID 2293) is:
+ d [(S n - S (S v)) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2362)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  H0 : S n &gt; 0
+  H1 : B ↓ 0 ∈ B :: Δ
+  ============================
+   B [(S n - 1) ←  t] ↓ 0 ∈ B [n ←  t] :: Δ'
+
+subgoal 2 (ID 2293) is:
+ d [(S n - S (S v)) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a>1) <span class="id" type="keyword">with</span> <span class="id" type="var">n</span> <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2366)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  H0 : S n &gt; 0
+  H1 : B ↓ 0 ∈ B :: Δ
+  ============================
+   B [n ←  t] ↓ 0 ∈ B [n ←  t] :: Δ'
+
+subgoal 2 (ID 2293) is:
+ d [(S n - S (S v)) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_hd"><span class="id" type="constructor">item_hd</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2293)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  ============================
+   d [(S n - S (S v)) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>)) <span class="id" type="keyword">with</span> (<span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>) <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2385)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  ============================
+   d [(n - S v) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">inversion</span> <span class="id" type="var">H1</span>; <span class="id" type="tactic">subst</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2464)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  H3 : d ↓ v ∈ Δ
+  ============================
+   d [(n - S v) ←  t] ↓ S v ∈ B [n ←  t] :: Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.item_tl"><span class="id" type="constructor">item_tl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2465)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : S n &gt; S v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  H3 : d ↓ v ∈ Δ
+  ============================
+   d [(n - S v) ←  t] ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Gt.html#gt_S_n"><span class="id" type="lemma">gt_S_n</span></a> <span class="id" type="keyword">in</span> <span class="id" type="var">H0</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2467)
+  
+  t : Term
+  T : Term
+  Γ : Env
+  Δ : Env
+  Δ' : Env
+  n : nat
+  B : Term
+  H : sub_in_env Γ t T n Δ Δ'
+  IHsub_in_env : forall v : nat,
+                 n &gt; v -&gt;
+                 forall d : Term, d ↓ v ∈ Δ -&gt; d [(n - S v) ←  t] ↓ v ∈ Δ'
+  v : nat
+  H0 : n &gt; v
+  d : Term
+  H1 : d ↓ S v ∈ B :: Δ
+  H3 : d ↓ v ∈ Δ
+  ============================
+   d [(n - S v) ←  t] ↓ v ∈ Δ'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHsub_in_env</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>nth_sub_inf is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.nth_sub_item_inf"><span class="id" type="lemma">nth_sub_item_inf</span></a> :<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> <span class="id" type="var">T</span> <span class="id" type="var">n</span> <span class="id" type="var">g</span> <span class="id" type="var">e</span> <span class="id" type="var">f</span> , <a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#g"><span class="id" type="variable">g</span></a> <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#e"><span class="id" type="variable">e</span></a> <a class="idref" href="f_env.html#f"><span class="id" type="variable">f</span></a> -&gt;<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">v</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>, <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'&gt;'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt;<br>
+   <span class="id" type="keyword">forall</span> <span class="id" type="var">u</span> , <a class="idref" href="f_env.html#f_env_mod.item_lift"><span class="id" type="definition">item_lift</span></a> <a class="idref" href="f_env.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="f_env.html#e"><span class="id" type="variable">e</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a> -&gt; <a class="idref" href="f_env.html#f_env_mod.item_lift"><span class="id" type="definition">item_lift</span></a> (<a class="idref" href="f_env.html#TM.subst_rec"><span class="id" type="definition">subst_rec</span></a> <a class="idref" href="f_env.html#t"><span class="id" type="variable">t</span></a> <a class="idref" href="f_env.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) <a class="idref" href="f_env.html#f"><span class="id" type="variable">f</span></a> <a class="idref" href="f_env.html#v"><span class="id" type="variable">v</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2477)
+  
+  ============================
+   forall (t T : Term) (n : nat) (g e f : Env),
+   sub_in_env g t T n e f -&gt;
+   forall v : nat, n &gt; v -&gt; forall u : Term, u ↓ v ⊂ e -&gt; u [n ←  t] ↓ v ⊂ f
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2488)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  u : Term
+  H1 : u ↓ v ⊂ e
+  ============================
+   u [n ←  t] ↓ v ⊂ f
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <span class="id" type="var">H1</span> <span class="id" type="keyword">as</span> [<span class="id" type="var">y</span> [<span class="id" type="var">K</span> <span class="id" type="var">L</span>]].</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2496)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  u : Term
+  y : Term
+  K : u = y ↑  (S v)
+  L : y ↓ v ∈ e
+  ============================
+   u [n ←  t] ↓ v ⊂ f
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">exists</span> (<a class="idref" href="f_env.html#TM.subst_rec"><span class="id" type="definition">subst_rec</span></a> <span class="id" type="var">t</span> <span class="id" type="var">y</span> (<span class="id" type="var">n</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span>)); <span class="id" type="tactic">split</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2500)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  u : Term
+  y : Term
+  K : u = y ↑  (S v)
+  L : y ↓ v ∈ e
+  ============================
+   u [n ←  t] = y [(n - S v) ←  t] ↑  (S v)
+
+subgoal 2 (ID 2501) is:
+ y [(n - S v) ←  t] ↓ v ∈ f
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">K</span>; <span class="id" type="tactic">clear</span> <span class="id" type="var">u</span> <span class="id" type="var">K</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2503)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  y : Term
+  L : y ↓ v ∈ e
+  ============================
+   y ↑  (S v) [n ←  t] = y [(n - S v) ←  t] ↑  (S v)
+
+subgoal 2 (ID 2501) is:
+ y [(n - S v) ←  t] ↓ v ∈ f
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">pattern</span> <span class="id" type="var">n</span> <span class="id" type="tactic">at</span> 1 .</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2504)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  y : Term
+  L : y ↓ v ∈ e
+  ============================
+   (fun n0 : nat =&gt; y ↑  (S v) [n0 ←  t] = y [(n - S v) ←  t] ↑  (S v)) n
+
+subgoal 2 (ID 2501) is:
+ y [(n - S v) ←  t] ↓ v ∈ f
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">replace</span> <span class="id" type="var">n</span> <span class="id" type="keyword">with</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">(</span></a> <span class="id" type="var">n</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'-'_x"><span class="id" type="notation">-</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">v</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">)</span></a>) <span class="id" type="tactic">by</span> <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 2508)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  y : Term
+  L : y ↓ v ∈ e
+  ============================
+   y ↑  (S v) [(S v + (n - S v)) ←  t] = y [(n - S v) ←  t] ↑  (S v)
+
+subgoal 2 (ID 2501) is:
+ y [(n - S v) ←  t] ↓ v ∈ f
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#TM.substP2"><span class="id" type="lemma">substP2</span></a>; <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2501)
+  
+  t : Term
+  T : Term
+  n : nat
+  g : Env
+  e : Env
+  f : Env
+  H : sub_in_env g t T n e f
+  v : nat
+  H0 : n &gt; v
+  u : Term
+  y : Term
+  K : u = y ↑  (S v)
+  L : y ↓ v ∈ e
+  ============================
+   y [(n - S v) ←  t] ↓ v ∈ f
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="f_env.html#f_env_mod.nth_sub_inf"><span class="id" type="lemma">nth_sub_inf</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">T</span> <span class="id" type="var">g</span> <span class="id" type="var">e</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>nth_sub_item_inf is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.subst_item"><span class="id" type="lemma">subst_item</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">n</span> <span class="id" type="var">Δ</span> <span class="id" type="var">T</span> <span class="id" type="var">A</span> <span class="id" type="var">Γ1</span> <span class="id" type="var">Γ2</span>,<a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a>-&gt;<a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">↓</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#f_env_mod.:F_scope:x_'%E2%86%93'_x_'%E2%88%88'_x"><span class="id" type="notation">∈</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2552)
+  
+  ============================
+   forall (n : nat) (Δ : Env) (T A : Term) (Γ1 Γ2 : Env),
+   sub_in_env Δ T A n Γ1 Γ2 -&gt; A ↓ n ∈ Γ1
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1;<span class="id" type="tactic">constructor</span>;<span class="id" type="tactic">assumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>subst_item is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.subst_trunc"><span class="id" type="lemma">subst_trunc</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">n</span> <span class="id" type="var">Δ</span> <span class="id" type="var">T</span> <span class="id" type="var">A</span> <span class="id" type="var">Γ1</span> <span class="id" type="var">Γ2</span>,<a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a>) <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2587)
+  
+  ============================
+   forall (n : nat) (Δ : Env) (T A : Term) (Γ1 Γ2 : Env),
+   sub_in_env Δ T A n Γ1 Γ2 -&gt; trunc (S n) Γ1 Δ
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1;<span class="id" type="tactic">constructor</span>;<span class="id" type="tactic">constructor</span>||<span class="id" type="tactic">assumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>subst_trunc is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="f_env_mod.subst_trunc2"><span class="id" type="lemma">subst_trunc2</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">n</span> <span class="id" type="var">Δ</span> <span class="id" type="var">T</span> <span class="id" type="var">A</span> <span class="id" type="var">Γ1</span> <span class="id" type="var">Γ2</span>,<a class="idref" href="f_env.html#f_env_mod.sub_in_env"><span class="id" type="inductive">sub_in_env</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a> <a class="idref" href="f_env.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="f_env.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%931"><span class="id" type="variable">Γ1</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a>-&gt;<a class="idref" href="f_env.html#f_env_mod.trunc"><span class="id" type="inductive">trunc</span></a> <a class="idref" href="f_env.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="f_env.html#%CE%932"><span class="id" type="variable">Γ2</span></a> <a class="idref" href="f_env.html#%CE%94"><span class="id" type="variable">Δ</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 2627)
+  
+  ============================
+   forall (n : nat) (Δ : Env) (T A : Term) (Γ1 Γ2 : Env),
+   sub_in_env Δ T A n Γ1 Γ2 -&gt; trunc n Γ2 Δ
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1;<span class="id" type="tactic">constructor</span>;<span class="id" type="tactic">constructor</span>||<span class="id" type="tactic">assumption</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>subst_trunc2 is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">End</span> <a class="idref" href="f_env.html#"><span class="id" type="module">f_env_mod</span></a>.</span><div class="output"><pre>Module Type f_env_mod is defined
+
+</pre></div>
+<span class="command"><br>
+</span><div class="output"><pre></pre></div>
+</div>
+</div>
+
+<div>
+<hr>
+<a href="index.html">Index</a><hr>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div></body>
+</html>

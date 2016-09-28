@@ -1,0 +1,994 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="proviola.css">
+<link href="coqdoc.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $(".command").mouseenter(function() {
+          $(this).next(".output").fadeIn(5);
+                   }).mouseleave(function() {
+          $(this).next(".output").fadeOut(0);})
+      });
+    </script>
+</head>
+<body><div>
+
+<div>
+</div>
+
+<div>
+
+<h1 class="libtitle">Library red</h1>
+
+<div>
+<span class="command">
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+<a name="lab11"></a><h1 class="section">Beta reduction for annotated terms </h1>
+
+As for the usual terms, we extend the definition of <span class="inlinecode"><a name="ut_red_mod.Beta"><span class="id" type="inductive">Beta</span></a></span> to handle the
+two additional annotations. Since we want to prove that the typed version
+of the reduction is confluent, we don't care to prove it for this version.
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Peano_dec.html#"><span class="id" type="library">Peano_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Compare_dec.html#"><span class="id" type="library">Compare_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Lt.html#"><span class="id" type="library">Lt</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Le.html#"><span class="id" type="library">Le</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Gt.html#"><span class="id" type="library">Gt</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Plus.html#"><span class="id" type="library">Plus</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Minus.html#"><span class="id" type="library">Minus</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Bool.Bool.html#"><span class="id" type="library">Bool</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="base.html#"><span class="id" type="library">base</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="term.html#"><span class="id" type="library">term</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Module</span> <span class="id" type="keyword">Type</span> <a name="red_mod"><span class="id" type="module">red_mod</span></a> (<span class="id" type="var">X</span>:<a class="idref" href="base.html#"><span class="id" type="module">term_sig</span></a>) (<span class="id" type="var">TM</span>:<a class="idref" href="term.html#"><span class="id" type="module">term_mod</span></a> <a class="idref" href="red.html#"><span class="id" type="module">X</span></a>).</span><div class="output"><pre>Interactive Module Type red_mod started
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Import</span> <span class="id" type="var">TM</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Reserved Notation</span> " A → B " (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80).</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="red_mod.Beta"><span class="id" type="inductive">Beta</span></a> : <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <span class="id" type="keyword">Prop</span> :=<br>
+ | <a name="red_mod.Beta_head"><span class="id" type="constructor">Beta_head</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">K</span> <span class="id" type="var">L</span> , <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">(</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a> <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)·(</span></a><a class="idref" href="red.html#K"><span class="id" type="variable">K</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#L"><span class="id" type="variable">L</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[←</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a><br>
+ | <a name="red_mod.Beta_red1"><span class="id" type="constructor">Beta_red1</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span> <span class="id" type="var">N</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>  <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><br>
+ | <a name="red_mod.Beta_red2"><span class="id" type="constructor">Beta_red2</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">N'</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span>, <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>  <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a><br>
+ | <a name="red_mod.Beta_red3"><span class="id" type="constructor">Beta_red3</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>, <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>  <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><br>
+ | <a name="red_mod.Beta_red4"><span class="id" type="constructor">Beta_red4</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span>, <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>  <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><br>
+ | <a name="red_mod.Beta_lam"><span class="id" type="constructor">Beta_lam</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span>    , <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a>     <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><br>
+ | <a name="red_mod.Beta_lam2"><span class="id" type="constructor">Beta_lam2</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">M</span>    , <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a>     <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><br>
+ | <a name="red_mod.Beta_pi"><span class="id" type="constructor">Beta_pi</span></a>   : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>    , <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a>     <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><br>
+ | <a name="red_mod.Beta_pi2"><span class="id" type="constructor">Beta_pi2</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span>    , <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a>     <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><br>
+<span class="id" type="keyword">where</span> <a name="red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">"</span></a>M → N" := (<a class="idref" href="red.html#Beta"><span class="id" type="inductive">Beta</span></a> <span class="id" type="var">M</span> <span class="id" type="var">N</span>) : <span class="id" type="var">Typ_scope</span>.</span><div class="output"><pre>Beta is defined
+Beta_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Reserved Notation</span> " A →→ B" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80).</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="red_mod.Betas"><span class="id" type="inductive">Betas</span></a> : <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <span class="id" type="keyword">Prop</span> :=<br>
+ | <a name="red_mod.Betas_refl"><span class="id" type="constructor">Betas_refl</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span>    , <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><br>
+ | <a name="red_mod.Betas_Beta"><span class="id" type="constructor">Betas_Beta</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>  , <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>  -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><br>
+ | <a name="red_mod.Betas_trans"><span class="id" type="constructor">Betas_trans</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">P</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#P"><span class="id" type="variable">P</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#P"><span class="id" type="variable">P</span></a><br>
+<span class="id" type="keyword">where</span> <a name="red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">"</span></a>A →→ B" := (<a class="idref" href="red.html#Betas"><span class="id" type="inductive">Betas</span></a> <span class="id" type="var">A</span> <span class="id" type="var">B</span>) : <span class="id" type="var">Typ_scope</span>.</span><div class="output"><pre>Betas is defined
+Betas_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="red.html#Beta"><span class="id" type="inductive">Beta</span></a> <a class="idref" href="red.html#Betas"><span class="id" type="inductive">Betas</span></a>.</span><div class="output"><pre>Warning: the hint: eapply Betas_trans will only be used by eauto
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betas_App"><span class="id" type="lemma">Betas_App</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span> <span class="id" type="var">N</span> <span class="id" type="var">N'</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a> -&gt;  <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <br>
+  <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a><a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a><a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 52)
+  
+  ============================
+   forall M M' N N' A A' B B' : Term,
+   M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> , <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a> -&gt;  <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a><a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 58)
+  
+  ============================
+   forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+
+subgoal 2 (ID 59) is:
+ forall M M' N N' A A' B B' : Term,
+ M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 59)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  ============================
+   forall M M' N N' A A' B B' : Term,
+   M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span>, <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a><a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a> -&gt; <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 117)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  ============================
+   forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+
+subgoal 2 (ID 118) is:
+ forall M M' N N' A A' B B' : Term,
+ M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+(dependent evars: ?100 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 118)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  ============================
+   forall M M' N N' A A' B B' : Term,
+   M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>, <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 182)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  ============================
+   forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+
+subgoal 2 (ID 183) is:
+ forall M M' N N' A A' B B' : Term,
+ M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 183)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  ============================
+   forall M M' N N' A A' B B' : Term,
+   M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using , ?226 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span>, <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 253)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  ============================
+   forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+
+subgoal 2 (ID 254) is:
+ forall M M' N N' A A' B B' : Term,
+ M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using , ?226 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 254)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  ============================
+   forall M M' N N' A A' B B' : Term,
+   M →→ M' -&gt; N →→ N' -&gt; A →→ A' -&gt; B →→ B' -&gt; M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">intros</span>. </span><div class="output"><pre>1 subgoals, subgoal 1 (ID 336)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M ·( A, B)N →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">eapply</span> <a class="idref" href="red.html#red_mod.Betas_trans"><span class="id" type="constructor">Betas_trans</span></a>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 338)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M ·( A, B)N →→ ?337
+
+subgoal 2 (ID 339) is:
+ ?337 →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <span class="id" type="var">H</span>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 344)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   N →→ ?343
+
+subgoal 2 (ID 339) is:
+ M ·( A, B)?343 →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <span class="id" type="var">H4</span>. </span><div class="output"><pre>1 subgoals, subgoal 1 (ID 339)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M ·( A, B)N' →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">eapply</span> <a class="idref" href="red.html#red_mod.Betas_trans"><span class="id" type="constructor">Betas_trans</span></a>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 346)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M ·( A, B)N' →→ ?345
+
+subgoal 2 (ID 347) is:
+ ?345 →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 using , ?345 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <span class="id" type="var">H0</span>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 352)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M →→ ?348
+
+subgoal 2 (ID 347) is:
+ ?348 ·( A, B)N' →→ M' ·( A', B')N'
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 using , ?345 using ?351 ?350 ?349 ?348 , ?348 open, ?349 using , ?350 using , ?351 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <span class="id" type="var">H3</span>. </span><div class="output"><pre>1 subgoals, subgoal 1 (ID 347)
+  
+  H : forall a b c A B : Term, b →→ c -&gt; a ·( A, B)b →→ a ·( A, B)c
+  H0 : forall a b c A B : Term, b →→ c -&gt; b ·( A, B)a →→ c ·( A, B)a
+  H1 : forall a b A B B' : Term, B →→ B' -&gt; a ·( A, B)b →→ a ·( A, B')b
+  H2 : forall a b A A' B : Term, A →→ A' -&gt; a ·( A, B)b →→ a ·( A', B)b
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  A : Term
+  A' : Term
+  B : Term
+  B' : Term
+  H3 : M →→ M'
+  H4 : N →→ N'
+  H5 : A →→ A'
+  H6 : B →→ B'
+  ============================
+   M' ·( A, B)N' →→ M' ·( A', B')N'
+
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 using , ?345 using ?351 ?350 ?349 ?348 , ?348 using , ?349 using , ?350 using , ?351 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?100 using , ?160 using , ?226 using , ?298 using , ?337 using ?343 ?342 ?341 ?340 , ?340 using , ?341 using , ?342 using , ?343 using , ?345 using ?351 ?350 ?349 ?348 , ?348 using , ?349 using , ?350 using , ?351 using , ?354 using , ?382 using ?398 ?397 ?396 ?395 , ?395 using , ?396 using , ?397 using , ?398 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betas_App is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Resolve</span> <a class="idref" href="red.html#red_mod.Betas_App"><span class="id" type="lemma">Betas_App</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betas_La"><span class="id" type="lemma">Betas_La</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span>, <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 696)
+  
+  ============================
+   forall A A' M M' : Term, A →→ A' -&gt; M →→ M' -&gt; λ [A], M →→ λ [A'], M'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span> , <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a>  <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 700)
+  
+  ============================
+   forall a b c : Term, a →→ b -&gt; λ [c], a →→ λ [c], b
+
+subgoal 2 (ID 701) is:
+ forall A A' M M' : Term, A →→ A' -&gt; M →→ M' -&gt; λ [A], M →→ λ [A'], M'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 701)
+  
+  H : forall a b c : Term, a →→ b -&gt; λ [c], a →→ λ [c], b
+  ============================
+   forall A A' M M' : Term, A →→ A' -&gt; M →→ M' -&gt; λ [A], M →→ λ [A'], M'
+
+(dependent evars: ?740 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span>, <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 755)
+  
+  H : forall a b c : Term, a →→ b -&gt; λ [c], a →→ λ [c], b
+  ============================
+   forall a b c : Term, a →→ b -&gt; λ [a], c →→ λ [b], c
+
+subgoal 2 (ID 756) is:
+ forall A A' M M' : Term, A →→ A' -&gt; M →→ M' -&gt; λ [A], M →→ λ [A'], M'
+(dependent evars: ?740 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 756)
+  
+  H : forall a b c : Term, a →→ b -&gt; λ [c], a →→ λ [c], b
+  H0 : forall a b c : Term, a →→ b -&gt; λ [a], c →→ λ [b], c
+  ============================
+   forall A A' M M' : Term, A →→ A' -&gt; M →→ M' -&gt; λ [A], M →→ λ [A'], M'
+
+(dependent evars: ?740 using , ?796 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?740 using , ?796 using , ?818 using , ?832 using ?836 ?835 , ?835 using , ?836 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betas_La is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Resolve</span> <a class="idref" href="red.html#red_mod.Betas_La"><span class="id" type="lemma">Betas_La</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betas_Pi"><span class="id" type="lemma">Betas_Pi</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>, <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 950)
+  
+  ============================
+   forall A A' B B' : Term, A →→ A' -&gt; B →→ B' -&gt; Π (A), B →→ Π (A'), B'
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span> , <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a> <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 954)
+  
+  ============================
+   forall a b c : Term, a →→ b -&gt; Π (c), a →→ Π (c), b
+
+subgoal 2 (ID 955) is:
+ forall A A' B B' : Term, A →→ A' -&gt; B →→ B' -&gt; Π (A), B →→ Π (A'), B'
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 955)
+  
+  H : forall a b c : Term, a →→ b -&gt; Π (c), a →→ Π (c), b
+  ============================
+   forall A A' B B' : Term, A →→ A' -&gt; B →→ B' -&gt; Π (A), B →→ Π (A'), B'
+
+(dependent evars: ?994 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">assert</span> (<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">b</span> <span class="id" type="var">c</span>, <a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#a"><span class="id" type="variable">a</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#b"><span class="id" type="variable">b</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a> <a class="idref" href="red.html#c"><span class="id" type="variable">c</span></a>).</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1009)
+  
+  H : forall a b c : Term, a →→ b -&gt; Π (c), a →→ Π (c), b
+  ============================
+   forall a b c : Term, a →→ b -&gt; Π (a), c →→ Π (b), c
+
+subgoal 2 (ID 1010) is:
+ forall A A' B B' : Term, A →→ A' -&gt; B →→ B' -&gt; Π (A), B →→ Π (A'), B'
+(dependent evars: ?994 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1010)
+  
+  H : forall a b c : Term, a →→ b -&gt; Π (c), a →→ Π (c), b
+  H0 : forall a b c : Term, a →→ b -&gt; Π (a), c →→ Π (b), c
+  ============================
+   forall A A' B B' : Term, A →→ A' -&gt; B →→ B' -&gt; Π (A), B →→ Π (A'), B'
+
+(dependent evars: ?994 using , ?1050 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?994 using , ?1050 using , ?1072 using , ?1086 using ?1090 ?1089 , ?1089 using , ?1090 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betas_Pi is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Resolve</span> <a class="idref" href="red.html#red_mod.Betas_Pi"><span class="id" type="lemma">Betas_Pi</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Reserved Notation</span> "M →' N" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80).</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="red_mod.Betap"><span class="id" type="inductive">Betap</span></a> : <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <span class="id" type="keyword">Prop</span> :=<br>
+ | <a name="red_mod.Betap_sort"><span class="id" type="constructor">Betap_sort</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">s</span>                  , <a class="idref" href="term.html#term_mod.:Typ_scope:'!'_x"><span class="id" type="notation">!</span></a><a class="idref" href="red.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'!'_x"><span class="id" type="notation">!</span></a><a class="idref" href="red.html#s"><span class="id" type="variable">s</span></a><br>
+ | <a name="red_mod.Betap_var"><span class="id" type="constructor">Betap_var</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">v</span>                  , <a class="idref" href="term.html#term_mod.:Typ_scope:'#'_x"><span class="id" type="notation">#</span></a><a class="idref" href="red.html#v"><span class="id" type="variable">v</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'#'_x"><span class="id" type="notation">#</span></a><a class="idref" href="red.html#v"><span class="id" type="variable">v</span></a><br>
+ | <a name="red_mod.Betap_lam"><span class="id" type="constructor">Betap_lam</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span>          , <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><br>
+ | <a name="red_mod.Betap_pi"><span class="id" type="constructor">Betap_pi</span></a>   : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>          , <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">Π</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%A0'_'('_x_')'_','_x"><span class="id" type="notation">),</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><br>
+ | <a name="red_mod.Betap_App"><span class="id" type="constructor">Betap_App</span></a>  : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span> <span class="id" type="var">N</span> <span class="id" type="var">N'</span> <span class="id" type="var">A</span> <span class="id" type="var">A'</span> <span class="id" type="var">B</span> <span class="id" type="var">B'</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a> -&gt; <a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a> -&gt; <a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a> -&gt;<br>
+    <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">·(</span></a><a class="idref" href="red.html#A'"><span class="id" type="variable">A'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#B'"><span class="id" type="variable">B'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a><br>
+ | <a name="red_mod.Betap_head"><span class="id" type="constructor">Betap_head</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">A</span> <span class="id" type="var">M</span> <span class="id" type="var">M'</span> <span class="id" type="var">N</span> <span class="id" type="var">N'</span> <span class="id" type="var">K</span> <span class="id" type="var">L</span>    , <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a> -&gt; <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a> -&gt; <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">(</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">λ</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">[</span></a><a class="idref" href="red.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:'%CE%BB'_'%5B'_x_'%5D'_','_x"><span class="id" type="notation">],</span></a><a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)·(</span></a><a class="idref" href="red.html#K"><span class="id" type="variable">K</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">,</span></a><a class="idref" href="red.html#L"><span class="id" type="variable">L</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%C2%B7('_x_','_x_')'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M'"><span class="id" type="variable">M'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[←</span></a> <a class="idref" href="red.html#N'"><span class="id" type="variable">N'</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a><br>
+<span class="id" type="keyword">where</span> <a name="red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">"</span></a>A →' B" := (<a class="idref" href="red.html#Betap"><span class="id" type="inductive">Betap</span></a> <span class="id" type="var">A</span> <span class="id" type="var">B</span> ) : <span class="id" type="var">Typ_scope</span>.</span><div class="output"><pre>Betap is defined
+Betap_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Reserved Notation</span> "M  →→' N" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80).</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Inductive</span> <a name="red_mod.Betaps"><span class="id" type="inductive">Betaps</span></a> : <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <a class="idref" href="red.html#TM.Term"><span class="id" type="inductive">Term</span></a> -&gt; <span class="id" type="keyword">Prop</span> :=<br>
+ | <a name="red_mod.Betaps_intro"><span class="id" type="constructor">Betaps_intro</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>  , <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a>  <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a><br>
+ | <a name="red_mod.Betaps_trans"><span class="id" type="constructor">Betaps_trans</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">P</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#P"><span class="id" type="variable">P</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#P"><span class="id" type="variable">P</span></a><br>
+<span class="id" type="keyword">where</span> <a name="red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">"</span></a>M →→' N" := (<a class="idref" href="red.html#Betaps"><span class="id" type="inductive">Betaps</span></a> <span class="id" type="var">M</span> <span class="id" type="var">N</span>) : <span class="id" type="var">Typ_scope</span>.</span><div class="output"><pre>Betaps is defined
+Betaps_ind is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Constructors</span> <a class="idref" href="red.html#Betap"><span class="id" type="inductive">Betap</span></a> <a class="idref" href="red.html#Betaps"><span class="id" type="inductive">Betaps</span></a>.</span><div class="output"><pre>Warning: the hint: eapply Betaps_trans will only be used by eauto
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betap_to_Betas"><span class="id" type="lemma">Betap_to_Betas</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1232)
+  
+  ============================
+   forall M N : Term, M →' N -&gt; M →→ N
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1310)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   (λ [A], M) ·( K, L)N →→ M' [ ← N']
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">eapply</span> <a class="idref" href="red.html#red_mod.Betas_trans"><span class="id" type="constructor">Betas_trans</span></a>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1376)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   (λ [A], M) ·( K, L)N →→ ?1375
+
+subgoal 2 (ID 1377) is:
+ ?1375 →→ M' [ ← N']
+(dependent evars: ?1375 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">eapply</span> <a class="idref" href="red.html#red_mod.Betas_App"><span class="id" type="lemma">Betas_App</span></a>. </span><div class="output"><pre>5 subgoals, subgoal 1 (ID 1382)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   λ [A], M →→ ?1378
+
+subgoal 2 (ID 1383) is:
+ N →→ ?1381
+subgoal 3 (ID 1384) is:
+ K →→ ?1379
+subgoal 4 (ID 1385) is:
+ L →→ ?1380
+subgoal 5 (ID 1377) is:
+ ?1378 ·( ?1379, ?1380)?1381 →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 open, ?1379 open, ?1380 open, ?1381 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">eapply</span> <a class="idref" href="red.html#red_mod.Betas_La"><span class="id" type="lemma">Betas_La</span></a>. </span><div class="output"><pre>6 subgoals, subgoal 1 (ID 1388)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   A →→ ?1386
+
+subgoal 2 (ID 1389) is:
+ M →→ ?1387
+subgoal 3 (ID 1383) is:
+ N →→ ?1381
+subgoal 4 (ID 1384) is:
+ K →→ ?1379
+subgoal 5 (ID 1385) is:
+ L →→ ?1380
+subgoal 6 (ID 1377) is:
+ (λ [?1386], ?1387) ·( ?1379, ?1380)?1381 →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 open, ?1380 open, ?1381 open, ?1386 open, ?1387 open,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <a class="idref" href="red.html#red_mod.Betas_refl"><span class="id" type="constructor">Betas_refl</span></a>.</span><div class="output"><pre>5 subgoals, subgoal 1 (ID 1389)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   M →→ ?1387
+
+subgoal 2 (ID 1383) is:
+ N →→ ?1381
+subgoal 3 (ID 1384) is:
+ K →→ ?1379
+subgoal 4 (ID 1385) is:
+ L →→ ?1380
+subgoal 5 (ID 1377) is:
+ (λ [A], ?1387) ·( ?1379, ?1380)?1381 →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 open, ?1380 open, ?1381 open, ?1386 using , ?1387 open,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <span class="id" type="var">IHBetap1</span>. </span><div class="output"><pre>4 subgoals, subgoal 1 (ID 1383)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   N →→ ?1381
+
+subgoal 2 (ID 1384) is:
+ K →→ ?1379
+subgoal 3 (ID 1385) is:
+ L →→ ?1380
+subgoal 4 (ID 1377) is:
+ (λ [A], M') ·( ?1379, ?1380)?1381 →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 open, ?1380 open, ?1381 open, ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <span class="id" type="var">IHBetap2</span>. </span><div class="output"><pre>3 subgoals, subgoal 1 (ID 1384)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   K →→ ?1379
+
+subgoal 2 (ID 1385) is:
+ L →→ ?1380
+subgoal 3 (ID 1377) is:
+ (λ [A], M') ·( ?1379, ?1380)N' →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 open, ?1380 open, ?1381 using , ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <a class="idref" href="red.html#red_mod.Betas_refl"><span class="id" type="constructor">Betas_refl</span></a>. </span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1385)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   L →→ ?1380
+
+subgoal 2 (ID 1377) is:
+ (λ [A], M') ·( K, ?1380)N' →→ M' [ ← N']
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 using , ?1380 open, ?1381 using , ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <a class="idref" href="red.html#red_mod.Betas_refl"><span class="id" type="constructor">Betas_refl</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1377)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   (λ [A], M') ·( K, L)N' →→ M' [ ← N']
+
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 using , ?1380 using , ?1381 using , ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">constructor</span>. </span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1392)
+  
+  A : Term
+  M : Term
+  M' : Term
+  N : Term
+  N' : Term
+  K : Term
+  L : Term
+  H : M →' M'
+  H0 : N →' N'
+  IHBetap1 : M →→ M'
+  IHBetap2 : N →→ N'
+  ============================
+   (λ [A], M') ·( K, L)N' → M' [ ← N']
+
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 using , ?1380 using , ?1381 using , ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">econstructor</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?1375 using ?1381 ?1380 ?1379 ?1378 , ?1378 using ?1387 ?1386 , ?1379 using , ?1380 using , ?1381 using , ?1386 using , ?1387 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betap_to_Betas is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betaps_to_Betas"><span class="id" type="lemma">Betaps_to_Betas</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1396)
+  
+  ============================
+   forall M N : Term, M →→' N -&gt; M →→ N
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">eauto</span>. </span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1410)
+  
+  M : Term
+  N : Term
+  H : M →' N
+  ============================
+   M →→ N
+
+(dependent evars: ?1676 using ,)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">apply</span> <a class="idref" href="red.html#red_mod.Betap_to_Betas"><span class="id" type="lemma">Betap_to_Betas</span></a> <span class="id" type="keyword">in</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?1676 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betaps_to_Betas is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betap_refl"><span class="id" type="lemma">Betap_refl</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1690)
+  
+  ============================
+   forall M : Term, M →' M
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">M</span>; <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betap_refl is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Hint Resolve</span> <a class="idref" href="red.html#red_mod.Betap_refl"><span class="id" type="lemma">Betap_refl</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betaps_Beta_closure"><span class="id" type="lemma">Betaps_Beta_closure</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>,  <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92'''_x"><span class="id" type="notation">→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1758)
+  
+  ============================
+   forall M N : Term, M → N -&gt; M →' N
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1; <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betaps_Beta_closure is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="red_mod.Betaps_Betas_closure"><span class="id" type="lemma">Betaps_Betas_closure</span></a> :  <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">N</span>, <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'_x"><span class="id" type="notation">→→</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a> -&gt; <a class="idref" href="red.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="red.html#red_mod.:Typ_scope:x_'%E2%86%92%E2%86%92'''_x"><span class="id" type="notation">→→'</span></a> <a class="idref" href="red.html#N"><span class="id" type="variable">N</span></a>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1941)
+  
+  ============================
+   forall M N : Term, M →→ N -&gt; M →→' N
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> 1. </span><div class="output"><pre>3 subgoals, subgoal 1 (ID 1957)
+  
+  M : Term
+  ============================
+   M →→' M
+
+subgoal 2 (ID 1960) is:
+ M →→' N
+subgoal 3 (ID 1968) is:
+ M →→' P
+(dependent evars:)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 1960)
+  
+  M : Term
+  N : Term
+  H : M → N
+  ============================
+   M →→' N
+
+subgoal 2 (ID 1968) is:
+ M →→' P
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">apply</span> <a class="idref" href="red.html#red_mod.Betaps_Beta_closure"><span class="id" type="lemma">Betaps_Beta_closure</span></a> <span class="id" type="keyword">in</span>  <span class="id" type="var">H</span>; <span class="id" type="tactic">intuition</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 1968)
+  
+  M : Term
+  N : Term
+  P : Term
+  H : M →→ N
+  H0 : N →→ P
+  IHBetas1 : M →→' N
+  IHBetas2 : N →→' P
+  ============================
+   M →→' P
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">eauto</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars: ?1980 using ,)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>Betaps_Betas_closure is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">End</span> <a class="idref" href="red.html#"><span class="id" type="module">red_mod</span></a>.</span><div class="output"><pre>Module Type red_mod is defined
+
+</pre></div>
+<span class="command"><br>
+</span><div class="output"><pre></pre></div>
+</div>
+</div>
+
+<div>
+<hr>
+<a href="index.html">Index</a><hr>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div></body>
+</html>

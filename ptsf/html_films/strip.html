@@ -1,0 +1,437 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="proviola.css">
+<link href="coqdoc.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $(".command").mouseenter(function() {
+          $(this).next(".output").fadeIn(5);
+                   }).mouseleave(function() {
+          $(this).next(".output").fadeOut(0);})
+      });
+    </script>
+</head>
+<body><div>
+
+<div>
+</div>
+
+<div>
+
+<h1 class="libtitle">Library strip</h1>
+
+<div>
+<span class="command">
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+<a name="lab12"></a><h1 class="section">Stripping functions</h1>
+
+In this file, we describe how to get rid of the annotations
+introduced in PTSATR, to translate terms from PTSATR to PTS or PTSe.
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="base.html#"><span class="id" type="library">base</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="ut_term.html#"><span class="id" type="library">ut_term</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="ut_red.html#"><span class="id" type="library">ut_red</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="ut_env.html#"><span class="id" type="library">ut_env</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="term.html#"><span class="id" type="library">term</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="env.html#"><span class="id" type="library">env</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Peano_dec.html#"><span class="id" type="library">Peano_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Compare_dec.html#"><span class="id" type="library">Compare_dec</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Lt.html#"><span class="id" type="library">Lt</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Lists.List.html#"><span class="id" type="library">List</span></a>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Module</span> <a name="strip_mod"><span class="id" type="module">strip_mod</span></a> (<span class="id" type="var">X</span>:<a class="idref" href="base.html#"><span class="id" type="module">term_sig</span></a>) (<span class="id" type="var">TM</span>:<a class="idref" href="ut_term.html#"><span class="id" type="module">ut_term_mod</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">X</span></a>) (<span class="id" type="var">T'M</span> : <a class="idref" href="term.html#"><span class="id" type="module">term_mod</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">X</span></a>) (<span class="id" type="var">EM</span>: <a class="idref" href="ut_env.html#"><span class="id" type="module">ut_env_mod</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">X</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">TM</span></a>) (<span class="id" type="var">E'M</span>: <a class="idref" href="env.html#"><span class="id" type="module">env_mod</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">X</span></a> <a class="idref" href="strip.html#"><span class="id" type="module">T'M</span></a>).</span><div class="output"><pre>Interactive Module strip_mod started
+
+</pre></div>
+<span class="command"><br>
+ <span class="id" type="keyword">Import</span> <span class="id" type="var">X</span> <span class="id" type="var">TM</span> <span class="id" type="var">T'M</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">Typ_scope</span>.</span><div class="output"><pre></pre></div>
+<span class="command"><br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Stripping function for terms and contexts.
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Fixpoint</span> <a name="strip_mod.strip"><span class="id" type="definition">strip</span></a> (<span class="id" type="var">T</span> : <a class="idref" href="strip.html#T'M.Term"><span class="id" type="inductive">T'M.Term</span></a> ) : <a class="idref" href="strip.html#TM.Term"><span class="id" type="inductive">TM.Term</span></a> := <span class="id" type="keyword">match</span> <a class="idref" href="strip.html#T"><span class="id" type="variable">T</span></a> <span class="id" type="keyword">with</span><br>
+ | <a class="idref" href="strip.html#T'M.Pi"><span class="id" type="constructor">Pi</span></a> <span class="id" type="var">A</span> <span class="id" type="var">B</span> =&gt; <a class="idref" href="strip.html#TM.Pi"><span class="id" type="constructor">TM.Pi</span></a> (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">A</span>) (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">B</span>)<br>
+ | <a class="idref" href="strip.html#T'M.La"><span class="id" type="constructor">La</span></a> <span class="id" type="var">A</span> <span class="id" type="var">M</span> =&gt; <a class="idref" href="strip.html#TM.La"><span class="id" type="constructor">TM.La</span></a> (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">A</span>) (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">M</span>)<br>
+ | <a class="idref" href="strip.html#T'M.App"><span class="id" type="constructor">App</span></a> <span class="id" type="var">M</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">N</span> =&gt; <a class="idref" href="strip.html#TM.App"><span class="id" type="constructor">TM.App</span></a> (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">M</span>) (<a class="idref" href="strip.html#strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">N</span>)<br>
+ | <a class="idref" href="term.html#term_mod.:Typ_scope:'!'_x"><span class="id" type="notation">!</span></a><span class="id" type="var">s</span> =&gt; <a class="idref" href="strip.html#TM.Sort"><span class="id" type="constructor">TM.Sort</span></a> <span class="id" type="var">s</span><br>
+ | <a class="idref" href="term.html#term_mod.:Typ_scope:'#'_x"><span class="id" type="notation">#</span></a><span class="id" type="var">x</span> =&gt; <a class="idref" href="strip.html#TM.Var"><span class="id" type="constructor">TM.Var</span></a> <span class="id" type="var">x</span><br>
+<span class="id" type="keyword">end</span>.</span><div class="output"><pre>strip is recursively defined (decreasing on 1st argument)
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Fixpoint</span> <a name="strip_mod.strip_env"><span class="id" type="definition">strip_env</span></a> (<span class="id" type="var">Γ</span>: <a class="idref" href="strip.html#E'M.Env"><span class="id" type="definition">E'M.Env</span></a>) : <a class="idref" href="strip.html#EM.Env"><span class="id" type="definition">EM.Env</span></a> := <span class="id" type="keyword">match</span> <a class="idref" href="strip.html#%CE%93"><span class="id" type="variable">Γ</span></a> <span class="id" type="keyword">with</span><br>
+ | <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" type="constructor">nil</span></a>   =&gt; <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" type="constructor">nil</span></a><br>
+ | <span class="id" type="var">A</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">::</span></a><span class="id" type="var">Γ'</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">(</span></a><a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> <span class="id" type="var">A</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">)::(</span></a><a class="idref" href="strip.html#strip_env"><span class="id" type="definition">strip_env</span></a> <span class="id" type="var">Γ'</span><a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Datatypes.html#:list_scope:x_'::'_x"><span class="id" type="notation">)</span></a><br>
+<span class="id" type="keyword">end</span>.</span><div class="output"><pre>strip_env is recursively defined (decreasing on 1st argument)
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+</span><div class="output"><pre></pre></div>
+</div>
+
+<div>
+Stripping doesn't not mess with lift or subst .
+</div>
+<div>
+<span class="command">
+<span class="id" type="keyword">Lemma</span> <a name="strip_mod.strip_lift"><span class="id" type="lemma">strip_lift</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> (<a class="idref" href="strip.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> <a class="idref" href="strip.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="strip.html#m"><span class="id" type="variable">m</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> (<a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">(</span></a><a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> <a class="idref" href="strip.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">↑</span></a> <a class="idref" href="strip.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%E2%86%91'_x_'#'_x"><span class="id" type="notation">#</span></a> <a class="idref" href="strip.html#m"><span class="id" type="variable">m</span></a>)%<span class="id" type="var">UT</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 11)
+  
+  ============================
+   forall (M : Term) (n m : nat), strip M ↑ n # m = ((strip M) ↑ n # m)%UT
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">M</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> *.</span><div class="output"><pre>5 subgoals, subgoal 1 (ID 59)
+  
+  v : Vars
+  n : nat
+  m : nat
+  ============================
+   strip (if le_gt_dec m v then #(n + v) else #v) =
+   (if le_gt_dec m v then #(n + v)%UT else #v%UT)
+
+subgoal 2 (ID 63) is:
+ !s%UT = !s%UT
+subgoal 3 (ID 74) is:
+ strip M1 ↑ n # m · strip M4 ↑ n # m =
+ ((strip M1) ↑ n # m)%UT · ((strip M4) ↑ n # m)%UT
+subgoal 4 (ID 81) is:
+ (Π (strip (M1 ↑ n # m)%Typ), strip (M2 ↑ n # (S m))%Typ)%UT =
+ (Π ((strip M1) ↑ n # m), (strip M2) ↑ n # (S m))%UT
+subgoal 5 (ID 88) is:
+ (λ [strip (M1 ↑ n # m)%Typ], strip (M2 ↑ n # (S m))%Typ)%UT =
+ (λ [(strip M1) ↑ n # m], (strip M2) ↑ n # (S m))%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Compare_dec.html#le_gt_dec"><span class="id" type="definition">le_gt_dec</span></a>; <span class="id" type="tactic">simpl</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>4 subgoals, subgoal 1 (ID 63)
+  
+  s : Sorts
+  n : nat
+  m : nat
+  ============================
+   !s%UT = !s%UT
+
+subgoal 2 (ID 74) is:
+ strip M1 ↑ n # m · strip M4 ↑ n # m =
+ ((strip M1) ↑ n # m)%UT · ((strip M4) ↑ n # m)%UT
+subgoal 3 (ID 81) is:
+ (Π (strip (M1 ↑ n # m)%Typ), strip (M2 ↑ n # (S m))%Typ)%UT =
+ (Π ((strip M1) ↑ n # m), (strip M2) ↑ n # (S m))%UT
+subgoal 4 (ID 88) is:
+ (λ [strip (M1 ↑ n # m)%Typ], strip (M2 ↑ n # (S m))%Typ)%UT =
+ (λ [(strip M1) ↑ n # m], (strip M2) ↑ n # (S m))%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 74)
+  
+  M1 : Term
+  M2 : Term
+  M3 : Term
+  M4 : Term
+  IHM1 : forall n m : nat, strip M1 ↑ n # m = ((strip M1) ↑ n # m)%UT
+  IHM2 : forall n m : nat, strip M2 ↑ n # m = ((strip M2) ↑ n # m)%UT
+  IHM3 : forall n m : nat, strip M3 ↑ n # m = ((strip M3) ↑ n # m)%UT
+  IHM4 : forall n m : nat, strip M4 ↑ n # m = ((strip M4) ↑ n # m)%UT
+  n : nat
+  m : nat
+  ============================
+   strip M1 ↑ n # m · strip M4 ↑ n # m =
+   ((strip M1) ↑ n # m)%UT · ((strip M4) ↑ n # m)%UT
+
+subgoal 2 (ID 81) is:
+ (Π (strip (M1 ↑ n # m)%Typ), strip (M2 ↑ n # (S m))%Typ)%UT =
+ (Π ((strip M1) ↑ n # m), (strip M2) ↑ n # (S m))%UT
+subgoal 3 (ID 88) is:
+ (λ [strip (M1 ↑ n # m)%Typ], strip (M2 ↑ n # (S m))%Typ)%UT =
+ (λ [(strip M1) ↑ n # m], (strip M2) ↑ n # (S m))%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM4</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 81)
+  
+  M1 : Term
+  M2 : Term
+  IHM1 : forall n m : nat, strip M1 ↑ n # m = ((strip M1) ↑ n # m)%UT
+  IHM2 : forall n m : nat, strip M2 ↑ n # m = ((strip M2) ↑ n # m)%UT
+  n : nat
+  m : nat
+  ============================
+   (Π (strip (M1 ↑ n # m)%Typ), strip (M2 ↑ n # (S m))%Typ)%UT =
+   (Π ((strip M1) ↑ n # m), (strip M2) ↑ n # (S m))%UT
+
+subgoal 2 (ID 88) is:
+ (λ [strip (M1 ↑ n # m)%Typ], strip (M2 ↑ n # (S m))%Typ)%UT =
+ (λ [(strip M1) ↑ n # m], (strip M2) ↑ n # (S m))%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM2</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 88)
+  
+  M1 : Term
+  M2 : Term
+  IHM1 : forall n m : nat, strip M1 ↑ n # m = ((strip M1) ↑ n # m)%UT
+  IHM2 : forall n m : nat, strip M2 ↑ n # m = ((strip M2) ↑ n # m)%UT
+  n : nat
+  m : nat
+  ============================
+   (λ [strip (M1 ↑ n # m)%Typ], strip (M2 ↑ n # (S m))%Typ)%UT =
+   (λ [(strip M1) ↑ n # m], (strip M2) ↑ n # (S m))%UT
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM2</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>strip_lift is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">Lemma</span> <a name="strip_mod.strip_subst"><span class="id" type="lemma">strip_subst</span></a> : <span class="id" type="keyword">forall</span> <span class="id" type="var">M</span> <span class="id" type="var">n</span> <span class="id" type="var">N</span>, <a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> (<a class="idref" href="strip.html#M"><span class="id" type="variable">M</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[</span></a><a class="idref" href="strip.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">←</span></a> <a class="idref" href="strip.html#N"><span class="id" type="variable">N</span></a><a class="idref" href="term.html#term_mod.:Typ_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Init.Logic.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> (<a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">(</span></a><a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> <a class="idref" href="strip.html#M"><span class="id" type="variable">M</span></a><a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">)</span></a> <a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">[</span></a> <a class="idref" href="strip.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">←</span></a> <a class="idref" href="strip.html#strip_mod.strip"><span class="id" type="definition">strip</span></a> <a class="idref" href="strip.html#N"><span class="id" type="variable">N</span></a><a class="idref" href="ut_term.html#ut_term_mod.:UT_scope:x_'%5B'_x_'%E2%86%90'_x_'%5D'"><span class="id" type="notation">]</span></a>)%<span class="id" type="var">UT</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 115)
+  
+  ============================
+   forall (M : Term) (n : nat) (N : Term),
+   strip M [n ← N] = ((strip M) [n ← strip N])%UT
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">induction</span> <span class="id" type="var">M</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> *.</span><div class="output"><pre>5 subgoals, subgoal 1 (ID 163)
+  
+  v : Vars
+  n : nat
+  N : Term
+  ============================
+   strip
+     match lt_eq_lt_dec v n with
+     | inleft (left _) =&gt; #v
+     | inleft (right _) =&gt; N ↑ n
+     | inright _ =&gt; #(v - 1)
+     end =
+   match lt_eq_lt_dec v n with
+   | inleft (left _) =&gt; #v%UT
+   | inleft (right _) =&gt; ((strip N) ↑ n)%UT
+   | inright _ =&gt; #(v - 1)%UT
+   end
+
+subgoal 2 (ID 167) is:
+ !s%UT = !s%UT
+subgoal 3 (ID 178) is:
+ strip M1 [n ← N] · strip M4 [n ← N] =
+ ((strip M1) [n ← strip N])%UT · ((strip M4) [n ← strip N])%UT
+subgoal 4 (ID 185) is:
+ (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+ (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+subgoal 5 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">destruct</span> <a class="idref" href="http://coq.inria.fr/distrib/8.4/stdlib/Coq.Arith.Compare_dec.html#lt_eq_lt_dec"><span class="id" type="definition">lt_eq_lt_dec</span></a> <span class="id" type="keyword">as</span> [ [] | ]; <span class="id" type="tactic">simpl</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>5 subgoals, subgoal 1 (ID 210)
+  
+  v : Vars
+  n : nat
+  N : Term
+  e : v = n
+  ============================
+   strip N ↑ n = ((strip N) ↑ n)%UT
+
+subgoal 2 (ID 167) is:
+ !s%UT = !s%UT
+subgoal 3 (ID 178) is:
+ strip M1 [n ← N] · strip M4 [n ← N] =
+ ((strip M1) [n ← strip N])%UT · ((strip M4) [n ← strip N])%UT
+subgoal 4 (ID 185) is:
+ (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+ (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+subgoal 5 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <a class="idref" href="strip.html#strip_mod.strip_lift"><span class="id" type="lemma">strip_lift</span></a>. </span><div class="output"><pre>5 subgoals, subgoal 1 (ID 212)
+  
+  v : Vars
+  n : nat
+  N : Term
+  e : v = n
+  ============================
+   ((strip N) ↑ n)%UT = ((strip N) ↑ n)%UT
+
+subgoal 2 (ID 167) is:
+ !s%UT = !s%UT
+subgoal 3 (ID 178) is:
+ strip M1 [n ← N] · strip M4 [n ← N] =
+ ((strip M1) [n ← strip N])%UT · ((strip M4) [n ← strip N])%UT
+subgoal 4 (ID 185) is:
+ (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+ (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+subgoal 5 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>4 subgoals, subgoal 1 (ID 167)
+  
+  s : Sorts
+  n : nat
+  N : Term
+  ============================
+   !s%UT = !s%UT
+
+subgoal 2 (ID 178) is:
+ strip M1 [n ← N] · strip M4 [n ← N] =
+ ((strip M1) [n ← strip N])%UT · ((strip M4) [n ← strip N])%UT
+subgoal 3 (ID 185) is:
+ (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+ (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+subgoal 4 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>3 subgoals, subgoal 1 (ID 178)
+  
+  M1 : Term
+  M2 : Term
+  M3 : Term
+  M4 : Term
+  IHM1 : forall (n : nat) (N : Term),
+         strip M1 [n ← N] = ((strip M1) [n ← strip N])%UT
+  IHM2 : forall (n : nat) (N : Term),
+         strip M2 [n ← N] = ((strip M2) [n ← strip N])%UT
+  IHM3 : forall (n : nat) (N : Term),
+         strip M3 [n ← N] = ((strip M3) [n ← strip N])%UT
+  IHM4 : forall (n : nat) (N : Term),
+         strip M4 [n ← N] = ((strip M4) [n ← strip N])%UT
+  n : nat
+  N : Term
+  ============================
+   strip M1 [n ← N] · strip M4 [n ← N] =
+   ((strip M1) [n ← strip N])%UT · ((strip M4) [n ← strip N])%UT
+
+subgoal 2 (ID 185) is:
+ (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+ (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+subgoal 3 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM4</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>2 subgoals, subgoal 1 (ID 185)
+  
+  M1 : Term
+  M2 : Term
+  IHM1 : forall (n : nat) (N : Term),
+         strip M1 [n ← N] = ((strip M1) [n ← strip N])%UT
+  IHM2 : forall (n : nat) (N : Term),
+         strip M2 [n ← N] = ((strip M2) [n ← strip N])%UT
+  n : nat
+  N : Term
+  ============================
+   (Π (strip (M1 [n ← N])%Typ), strip (M2 [(S n) ← N])%Typ)%UT =
+   (Π ((strip M1) [n ← strip N]), (strip M2) [(S n) ← strip N])%UT
+
+subgoal 2 (ID 192) is:
+ (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+ (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM2</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>1 subgoals, subgoal 1 (ID 192)
+  
+  M1 : Term
+  M2 : Term
+  IHM1 : forall (n : nat) (N : Term),
+         strip M1 [n ← N] = ((strip M1) [n ← strip N])%UT
+  IHM2 : forall (n : nat) (N : Term),
+         strip M2 [n ← N] = ((strip M2) [n ← strip N])%UT
+  n : nat
+  N : Term
+  ============================
+   (λ [strip (M1 [n ← N])%Typ], strip (M2 [(S n) ← N])%Typ)%UT =
+   (λ [(strip M1) [n ← strip N]], (strip M2) [(S n) ← strip N])%UT
+
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="tactic">rewrite</span> <span class="id" type="var">IHM1</span>, <span class="id" type="var">IHM2</span>; <span class="id" type="tactic">trivial</span>.</span><div class="output"><pre>No more subgoals.
+(dependent evars:)
+
+</pre></div>
+<span class="command"><br>
+<span class="id" type="keyword">Qed</span>.</span><div class="output"><pre>strip_subst is defined
+
+</pre></div>
+<span class="command"><br>
+
+<br>
+<span class="id" type="keyword">End</span> <a class="idref" href="strip.html#"><span class="id" type="module">strip_mod</span></a>.</span><div class="output"><pre>Module strip_mod is defined
+
+</pre></div>
+<span class="command"><br>
+</span><div class="output"><pre></pre></div>
+</div>
+</div>
+
+<div>
+<hr>
+<a href="index.html">Index</a><hr>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div></body>
+</html>

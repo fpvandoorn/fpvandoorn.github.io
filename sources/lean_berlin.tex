@@ -1,0 +1,1105 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[xcolor=table]{beamer}
+\mode<presentation> {
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+}
+
+\usepackage{pgfpages}
+
+\usepackage{array}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx,bussproofs,tikz,multirow,wasysym}
+\usepackage{tikz,mathdots}
+\usetikzlibrary{arrows,calc,positioning,backgrounds}
+\beamertemplatenavigationsymbolsempty
+%\setbeameroption{show notes}
+%% \setbeamertemplate{note page}[plain]
+
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb}
+\definecolor{keywordcolor}{rgb}{0.7, 0.1, 0.1}   % red
+\definecolor{tacticcolor}{rgb}{0.1, 0.2, 0.6}    % blue
+\definecolor{commentcolor}{rgb}{0.4, 0.4, 0.4}   % grey
+\definecolor{symbolcolor}{rgb}{0.0, 0.1, 0.6}    % blue
+\definecolor{sortcolor}{rgb}{0.1, 0.5, 0.1}      % green
+\definecolor{attributecolor}{rgb}{0.7, 0.1, 0.1} % red
+
+\usepackage{listings}
+\def\lstlanguagefiles{lstlean.tex}
+%% \lstset{language=lean}
+\lstset{language=lean,breakatwhitespace}
+
+
+\newcommand{\sy}{\ensuremath{^{-1}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}}
+\newcommand{\fa}[2]{\ensuremath{\Pi(#1),\ #2}}
+\newcommand{\fax}[2]{\ensuremath{\Pi#1,\ #2}}
+\newcommand{\ex}[2]{\ensuremath{\Sigma(#1),\ #2}}
+\newcommand{\exx}[2]{\ensuremath{\Sigma#1,\ #2}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\definecolor{grey}{RGB}{80,80,80}
+\newcommand{\na}{\mbox{}\\}
+\newcommand{\nb}{\mbox{}\\[2pt]}
+\newcommand{\nc}{\mbox{}\\[6pt]}
+\newcommand{\nn}{\mbox{}\\ \mbox{}\\}
+\newcommand{\base}{\textnormal{base}}
+\newcommand{\colimit}{\textnormal{colimit}}
+\newcommand{\lp}{\textnormal{loop}}
+\newcommand{\refl}{\textnormal{refl}}
+%% \newcommand{\red}[1]{\alert{#1}}
+%% \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{darkgreen}{#1}}
+%% \newcommand{\grey}[1]{\textcolor{grey}{#1}}
+\renewcommand\arraystretch{1.3}
+\DeclareMathOperator{\type}{Type}
+\DeclareMathOperator{\UU}{\mathcal{U}}
+\newcommand{\formalizedtable}{%
+\begin{tabular}{c|ccccccccccccccc}
+           & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+\textbf{1} &   &   &   &   & + & + & + & + & + &   & + & + &   &   &   \\
+\textbf{2} & + & + & + & + &   & + & + & + & + & + & + & + & + & + & + \\
+\textbf{3} & + & + & + & + & ½ & + & + & + & + &   & + &   &   &   &   \\
+\textbf{4} & - & + & + & + &   & + & + & + & + &   &   &   &   &   &   \\
+\textbf{5} & - &   & ½ & - & - &   &   & ½ &   &   &   &   &   &   &   \\
+\textbf{6} &   & + & + & + & + & + & + & + & ¾ & ¼ & ¾ & + &   &   &   \\
+\textbf{7} & + & + & + & - & ¾ & - & - &   &   &   &   &   &   &   &   \\
+\textbf{8} & + & + & + & + & + & ¾ & + & + & + & ¼ &   &   &   &   &   \\
+\textbf{9} & ¾ & + & + & ½ & ¾ & ½ & - & - & - &   &   &   &   &   &   \\
+\textbf{10}& ¼ & - & - & - & - &   &   &   &   &   &   &   &   &   &   \\
+\textbf{11}& - & - & - & - & - & - &   &   &   &   &   &   &   &   &   \\
+\end{tabular}}
+
+%\usepackage{diagrams}
+%\diagramstyle[labelstyle=\scriptstyle]
+
+
+  \tikzset{
+    invisible/.style={opacity=0},
+    visible on/.style={alt={#1{}{invisible}}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+  }
+
+
+\title{Homotopy Type Theory in Lean}
+
+\author{Floris van Doorn}
+
+\institute[CMU]{Department of Philosophy\\
+Carnegie Mellon University\nb
+\url{leanprover.github.io}}
+
+\date{14 July 2016}
+
+\begin{document}
+
+{\setbeamertemplate{headline}[default]
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+%% \begin{frame}{Outline}
+
+%% \begin{itemize}
+%%  \item The Lean Theorem Prover
+%%  \item Lean's kernel
+%%  \item Lean's elaborator
+%%  \item The HoTT library
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Formal verification}
+
+%% Formal methods can be used to verify correctness:
+%% \begin{itemize}
+%% \item verifying that a circuit description, an algorithm, or a network or security protocol meets its specification; or
+%% \item verifying that a mathematical statement is true.
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Formal verification in industry}
+
+%% Formal methods are commonly used:
+%% \begin{itemize}
+%%  \item Intel and AMD use ITP to verify processors.
+%%  \item Microsoft uses formal tools such as Boogie and SLAM to verify programs and drivers.
+%%  \item CompCert has verified the correctness of a C compiler.
+%%  \item Airbus uses formal methods to verify avionics software.
+%%  \item Toyota uses formal methods for hybrid systems to verify control systems.
+%%  \item Formal methods were used to verify Paris' driverless line 14 of the Metro.
+%%  \item The NSA uses (it seems) formal methods to verify cryptographic algorithms.
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Formal verification in mathematics}
+
+%% There is no sharp line between industrial and mathematical verification:
+%% \begin{itemize}
+%%  \item Designs and specifications are expressed in mathematical terms.
+%%  \item Claims rely on background mathematical knowledge.
+%% \end{itemize}
+
+%% \bigskip
+
+%% Mathematics has a different character, however:
+%% \begin{itemize}
+%%  \item Problems are conceptually deeper, less heterogeneous.
+%%  \item More user interaction is needed.
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Interactive theorem proving}
+
+%% Working with a proof assistant, users construct a formal axiomatic proof.
+
+%% \bigskip
+
+%% In most systems, this proof object can be extracted and verified independently.
+
+%% \end{frame}
+
+%% \begin{frame}{Interactive theorem proving}
+
+%% Some systems with large mathematical libraries:
+%% \begin{itemize}
+%%  \item Mizar (set theory)
+%%  \item HOL (simple type theory)
+%%  \item Isabelle (simple type theory)
+%%  \item HOL light (simple type theory)
+%%  \item Coq (constructive dependent type theory)
+%%  \item ACL2 (primitive recursive arithmetic)
+%%  \item PVS (classical dependent type theory)
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Interactive theorem proving}
+
+%% Some theorems formalized to date:
+%% \begin{itemize}
+%%  \item the prime number theorem
+%%  \item the four-color theorem
+%%  \item the Jordan curve theorem
+%%  \item G\"odel's first and second incompleteness theorems
+%%  \item Dirichlet's theorem on primes in an arithmetic progression
+%%  \item Cartan fixed-point theorems
+%%  \item the central limit theorem
+%% \end{itemize}
+
+%% \bigskip
+
+%% There are good libraries for elementary number theory, real and complex analysis, point-set topology, measure-theoretic probability, abstract algebra, Galois theory, \ldots
+
+%% \end{frame}
+
+%% \begin{frame}{Interactive theorem proving}
+
+%% Georges Gonthier and coworkers verified the  Feit-Thompson Odd Order Theorem in Coq.
+%% \begin{itemize}
+%%  \item The original 1963 journal publication ran 255 pages.
+%%  \item The formal proof is constructive.
+%%  \item The development includes libraries for finite group theory, linear algebra, and representation theory.
+%% \end{itemize}
+
+%% \bigskip
+
+%% The project was completed on September 20, 2012, with roughly
+%% \begin{itemize}
+%%  \item 150,000 lines of code,
+%%  \item 4,000 definitions, and
+%%  \item 13,000 lemmas and theorems.
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Interactive theorem proving}
+
+%% Hales announced the completion of the formal verification of the Kepler conjecture (\emph{Flyspeck}) in August 2014.
+
+%% \smallskip
+
+%% \begin{itemize}
+%%  \item Most of the proof was verified in HOL light.
+%%  \item The classification of tame graphs was verified in Isabelle.
+%%  \item Verifying several hundred nonlinear inequalities required roughly 5000 processor hours on the Microsoft Azure cloud.
+%% \end{itemize}
+
+%% \end{frame}
+
+%% \begin{frame}{Homotopy Type Theory}
+
+%% Homotopy Type Theory opens up new avenues for formal verification.
+
+%% \bigskip
+
+%% It provides a framework for:
+%% \begin{itemize}
+%%  \item ``synthetic'' reasoning about spaces up to homotopy
+%%  \item reasoning about structures of interest in algebraic topology
+%%  \item reasoning structures in general, and higher-order equivalences between them
+%%  \item reasoning about generic computation and invariance under change of representation
+%% \end{itemize}
+
+%% \end{frame}
+
+\begin{frame}{The Lean Theorem Prover}
+
+Lean is a new interactive theorem prover, developed principally by Leonardo de Moura at Microsoft Research, Redmond.
+
+\bigskip
+
+It was ``announced'' in the summer of 2015.
+
+\bigskip
+
+It is open source, released under a permissive license, Apache 2.0.
+
+\bigskip
+
+The goal is to make it a community project, like Clang.
+
+\end{frame}
+
+\begin{frame}{The Lean Theorem Prover}
+
+The aim is to bring interactive and automated reasoning together, and build
+\begin{itemize}
+ \item an interactive theorem prover with powerful automation
+ \item an automated reasoning tool that
+ \begin{itemize}
+ \item produces (detailed) proofs,
+ \item has a rich language,
+ \item can be used interactively, and
+ \item is built on a verified mathematical library.
+ \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Lean Theorem Prover}
+
+Lean is a designed to be a mature system, rather than an experimental one.
+\begin{itemize}
+ \item Take advantage of existing theory.
+ \item Build on strengths of existing interactive and automated theorem provers.
+ \item Craft clean but pragmatic solutions.
+\end{itemize}
+
+\bigskip
+
+We have drawn ideas and inspiration from Coq, SSReflect, Isabelle, Agda, and Nuprl, among others.
+
+\end{frame}
+
+%% \begin{frame}{The Lean Theorem Prover}
+
+%% Goals:
+%% \begin{itemize}
+%%  \item Verify hardware, software, and hybrid systems.
+%%  \item Verify mathematics.
+%%  \item Combine powerful automation with user interaction.
+%%  \item Support reasoning and exploration.
+%%  \item Support formal methods in education.
+%%  \item Create an eminently powerful, usable system.
+%%  \item Bring formal methods to the masses.
+%% \end{itemize}
+
+%% \end{frame}
+
+\begin{frame}{The Lean Theorem Prover}
+
+Notable features:
+\begin{itemize}
+ \item based on a powerful dependent type theory
+ \item written in C++, with multi-core support
+ \item small, trusted kernel with an independent type checker
+ \item standard and HoTT instantiations
+ \item powerful elaborator
+ \item can use proof terms or tactics
+ \item Emacs mode with proof-checking on the fly
+ \item browser version runs in javascript
+ \item already has a respectable library
+ \item automation is now the main focus
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Contributors}
+
+Currently working on the code base: Leonardo de Moura, Daniel Selsam, Lev Nachman, Soonho Kong
+
+\bigskip
+
+Currently working the standard library: Jeremy Avigad, Rob Lewis, Jacob Gross
+
+\bigskip
+
+Currently working on the HoTT library: Floris van Doorn, Ulrik Buchholtz, Jakob von Raumer
+
+\bigskip
+
+Contributors: Cody Roux, Joe Hendrix, Parikshit Khanna, Sebastian Ullrich, Haitao Zhang, Andrew Zipperer, and many others.
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Lean's kernel}
+
+Lean's kernel implements dependent type theory with
+\begin{itemize}
+ \item A hierarchy of (non-cumulative) universes:
+       \lstinline~Type.{0} : Type.{1} : Type.{2} : Type.{3} : ...~
+ \item universe polymorphism:
+       \lstinline~definition id.{u} {A : Type.{u}} : A → A := λa, a~
+ \item dependent products: \lstinline{Πx : A, B}
+ \item inductive types (\`a la Dybjer, constructors and recursors)
+\end{itemize}
+
+\bigskip
+
+The kernel is smaller and simpler than those of Coq and Agda.
+
+\bigskip
+
+Daniel Selsam has written an independent type checker in Haskell, which is less than 2,000 lines
+long.
+
+\bigskip
+
+The kernel can be instantiated into two modes, a standard mode and the HoTT mode.
+
+\end{frame}
+
+\frame[containsverbatim]{\frametitle{Lean's kernel}
+
+Definitions like these are compiled down to recursors:
+
+\begin{lstlisting}
+definition tail {A : Type} :
+  Π{n}, vector A (succ n) → vector A n
+| tail (h :: t) := t
+
+definition zip {A B : Type} :
+  Π{n}, vector A n → vector B n → vector (A × B) n
+| zip nil nil         := nil
+| zip (a::va) (b::vb) := (a, b) :: zip va vb
+
+definition diag : Π{n}, vector (vector A n) n → vector A n
+| diag nil             := nil
+| diag ((a :: v) :: M) := a :: diag (map tail M)
+\end{lstlisting}
+}
+
+
+\frame[containsverbatim]{\frametitle{Standard mode}
+
+Specific to the standard mode:
+\begin{itemize}
+ \item \lstinline~Type.{0}~ (aka \lstinline{Prop}) is impredicative and (definitionally) proof irrelevant.
+ \item quotient types (\lstinline{lift f H (quot.mk x) = f x} definitionally).
+\end{itemize}
+We use additional axioms for classical reasoning: propositional extensionality, Hilbert choice.
+
+Lean keeps track of which definitions are computable.
+
+\begin{lstlisting}
+noncomputable definition inv_fun (f : X → Y)
+  (s : set X) (dflt : X) (y : Y) : X :=
+if H : ∃₀ x ∈ s, f x = y then some H else dflt
+
+definition add (x y : ℝ) : ℝ := ...
+
+noncomputable definition div (x y : ℝ) : ℝ :=
+x * y⁻¹
+
+\end{lstlisting}
+
+}
+
+\begin{frame}
+\frametitle{HoTT mode}
+
+In the HoTT mode:
+\begin{itemize}
+\item There is no \lstinline{Prop}.
+ \item The Univalence Axiom is assumed.
+ \item There are two primitive HITs in Lean: the $n$-truncation and \emph{quotients}.
+  Given $A : \UU$ and $R : A \to A \to \UU$ the quotient is:\na
+  \texttt{HIT} $quotient_A(R) :=$
+  \begin{itemize}
+  \item $q : A \to quotient_A(R)$
+  \item $\fa{x, y : A}{R(x, y) \to q(x) = q(y)}$
+  \end{itemize}
+\end{itemize}
+
+\bigskip
+
+Many HITs can be constructed from these two:
+  \begin{itemize}
+    \item colimits;
+    \item pushouts, hence also suspensions, spheres, joins, $\ldots$
+    \item the propositional truncation;
+    \item HITs with 2-constructors, such as the torus and Eilenberg-MacLane spaces $K(G,1)$;
+    \item \mbox{}[WIP] $n$-truncations and certain ($\omega$-compact) localizations (Egbert Rijke, vD).
+  \end{itemize}
+
+\bigskip
+
+\end{frame}
+
+
+\begin{frame}{Lean's elaborator}
+
+Fully detailed expressions in dependent type theory are long.
+
+\bigskip
+
+Systems of dependent type theory allow users to leave a lot of information implicit.
+
+\bigskip
+
+Such systems therefore:
+\begin{itemize}
+ \item Parse user input.
+ \item Fill in the implicit information.
+\end{itemize}
+The last step is known as ``elaboration.''
+
+\end{frame}
+
+
+\begin{frame}{Lean's elaborator}
+
+Lean has a powerful elaborator that handles:
+\begin{itemize}
+ \item implicit universe levels
+ \item higher-order unification
+ \item computational reductions
+ \item ad-hoc overloading
+ \item coercions
+ \item type class inference
+ \item tactic proofs
+\end{itemize}
+
+\end{frame}
+
+
+%% \begin{frame}[fragile]{Higher-order unification}
+
+%% \begin{lstlisting}
+%% variables {A : Type} {B : A → Type} {C : Πa, B a → Type}
+%% definition sigma_transport {a₁ a₂ : A} (p : a₁ = a₂)
+%%   (x : Σ(b : B a₁), C a₁ b) : p ▸ x = ⟨p ▸ x.1, p ▸D x.2⟩ :=
+%% by induction p; induction x; reflexivity
+%% \end{lstlisting}\na
+%% \lstinline{▸} is transport. \lstinline{.1} and \lstinline{.2} are projections.\nc
+%% The first transport is along the family \lstinline{λ(a : A), Σ(b : B a), C a b}\nc
+%% The second transport is along \lstinline{B}\nc
+%% The last transport is a ``dependent transport'' which is a map \lstinline{C a₁ x.1 → C a₂ (p ▸ x.1)}
+
+%% \end{frame}
+
+
+
+\begin{frame}{Type classes}
+
+Structures and type class inference have been optimized to handle the algebraic hierarchy.
+
+\bigskip
+
+The algebraic hierarchy consist of:
+\begin{itemize}
+ \item order structures (including lattices, complete lattices)
+ \item additive and multiplicative semigroups, monoids, groups, \ldots
+ \item rings, fields, ordered rings, ordered fields, \ldots
+ \item modules over arbitrary rings, vector spaces, normed spaces, \ldots
+ \item homomorphisms preserving appropriate parts of structures
+\end{itemize}
+
+\bigskip
+
+In the HoTT library we also use type classes to infer truncatedness (\lstinline{is_trunc n A}).
+%% Type classes work beautifully.
+
+\end{frame}
+
+\frame[containsverbatim]{\frametitle{Type classes}
+
+\footnotesize
+
+\begin{lstlisting}
+structure has_mul [class] (A : Type) := (mul : A → A → A)
+
+structure semigroup [class] (A : Type) extends has_mul A :=
+  (is_set_carrier : is_set A)
+  (mul_assoc : ∀a b c, mul (mul a b) c = mul a (mul b c))
+
+structure monoid [class] (A : Type) extends semigroup A, has_one A :=
+  (one_mul : ∀a, mul one a = a) (mul_one : ∀a, mul a one = a)
+
+variables {A : Type} [monoid A]
+definition pow (a : A) : ℕ → A
+| 0     := 1
+| (n+1) := pow n * a
+
+theorem pow_add (a : A) (m : ℕ) : ∀n, a^(m + n) = a^m * a^n
+| 0     := by rewrite [nat.add_zero, pow_zero, mul_one]
+| (n+1) := by rewrite [add_succ, *pow_succ, pow_add, mul.assoc]
+
+definition int.linear_ordered_comm_ring [instance] :
+  linear_ordered_comm_ring int := ...
+\end{lstlisting}
+}
+
+%% \frame[containsverbatim]{\frametitle{Type classes}
+
+%% Type classes are also used in the standard library:
+%% \begin{itemize}
+%%  \item to infer straightforward facts (\lstinline{finite s}, \lstinline{is_subgroup G})
+%%  \item to simulate classical reasoning constructively (\lstinline{decidable p})
+%% \end{itemize}
+
+%% \bigskip
+
+%% They are used in the HoTT library:
+%% \begin{itemize}
+%%  \item for category theory
+%%  \item to infer truncatedness (\lstinline{is_trunc n A})
+%%  \item to infer half-adjoint equivalence (\lstinline{is_equiv f})
+%% \end{itemize}
+
+%% }
+
+\frame[containsverbatim]{\frametitle{Calculational proofs}
+
+$$\sum_{(a, b) : \Sigma_{a : A}B(a)}C(a) \simeq \sum_{(a, c) : \Sigma_{a : A}C(a)}B(a)$$
+
+\small
+
+\begin{lstlisting}[gobble=2]
+  definition sigma_assoc_comm_equiv {A : Type} (B C : A → Type)
+    : (Σ(v : Σa, B a), C v.1) ≃ (Σ(u : Σa, C a), B u.1) :=
+  calc
+    (Σ(v : Σa, B a), C v.1)
+        ≃ (Σa (b : B a), C a)     : sigma_assoc_equiv
+    ... ≃ (Σa (c : C a), B a)     : sigma_equiv_sigma_right
+                                      (λa, !comm_equiv_nondep)
+    ... ≃ (Σ(u : Σa, C a), B u.1) : sigma_assoc_equiv
+
+\end{lstlisting}
+
+}
+
+\frame[containsverbatim]{\frametitle{Tactics and terms}
+
+In Lean, we can present a proof as a term, as in Agda, with nice syntactic sugar.
+
+\bigskip
+
+We can also use tactics.
+
+\bigskip
+
+The two modes can be mixed freely:
+\begin{itemize}
+ \item anywhere a term is expected, \lstinline{begin ... end} or \lstinline{by} enter tactic mode.
+ \item within tactic mode, \lstinline{have ..., from ...} or \lstinline{show ..., from ...} or \lstinline{exact} specify terms.
+\end{itemize}
+
+}
+
+\frame[containsverbatim]{\frametitle{Example term proof}
+
+\scriptsize
+
+\begin{lstlisting}
+theorem sqrt_two_irrational {a b : ℕ} (co : coprime a b) :
+  a^2 ≠ 2 * b^2 :=
+assume H : a^2 = 2 * b^2,
+have even (a^2),
+  from even_of_exists (exists.intro _ H),
+have even a,
+  from even_of_even_pow this,
+obtain (c : ℕ) (aeq : a = 2 * c),
+  from exists_of_even this,
+have 2 * (2 * c^2) = 2 * b^2,
+  by rewrite [-H, aeq, *pow_two, mul.assoc, mul.left_comm c],
+have 2 * c^2 = b^2,
+  from eq_of_mul_eq_mul_left dec_trivial this,
+have even (b^2),
+  from even_of_exists (exists.intro _ (eq.symm this)),
+have even b,
+  from even_of_even_pow this,
+assert 2 ∣ gcd a b,
+  from dvd_gcd (dvd_of_even `even a`) (dvd_of_even `even b`),
+have 2 ∣ 1,
+  by rewrite [gcd_eq_one_of_coprime co at this]; exact this,
+show false,
+  from absurd `2 ∣ 1` dec_trivial
+\end{lstlisting}
+}
+
+\frame[containsverbatim]{\frametitle{Example tactic proof}
+
+\scriptsize
+
+\begin{lstlisting}[gobble=2]
+  variable (P : S¹ → Type)
+  definition circle.rec_unc (v : Σ(p : P base), p =[loop] p)
+    : Π(x : S¹), P x :=
+  begin
+    intro x, induction v with p q, induction x,
+    { exact p},
+    { exact q}
+  end
+
+  definition circle_pi_equiv
+    : (Π(x : S¹), P x) ≃ Σ(p : P base), p =[loop] p :=
+  begin
+    fapply equiv.MK,
+    { intro f, exact ⟨f base, apd f loop⟩},
+    { exact circle.rec_unc P},
+    { intro v, induction v with p q, fapply sigma_eq,
+      { reflexivity},
+      { esimp, apply pathover_idp_of_eq, apply rec_loop}},
+    { intro f, apply eq_of_homotopy, intro x, induction x,
+      { reflexivity},
+      { apply eq_pathover_dep, apply hdeg_squareover, esimp, apply rec_loop}}
+  end
+\end{lstlisting}
+}
+
+\begin{frame}{Current plans}
+
+Leo is now doing a major rewrite of the system.
+\begin{itemize}
+\item The elaborator will be slightly less general, but much more stable and predictable.
+\item ``Let'' definitions will be added to the kernel.
+\item There will be a better foundation for automation (e.g. goals with indexed hypotheses).
+\item There will be a byte-code compiler and fast evaluator for Lean.\\
+ This makes it possible to use Lean as an interpreted programming language.
+\item Monadic interfaces will make it possible to write custom tactics from within Lean.
+\item There will be powerful automation; a general theorem prover, a term simplifier and a flexible framework for adding domain specific tools.
+\end{itemize}
+
+\end{frame}
+
+%% \begin{frame}{Automation}
+
+%% Plans for automation:
+%% \begin{itemize}
+%%  \item A general theorem prover and term simplifier, with
+%%  \begin{itemize}
+%%  \item awareness of type classes
+%%  \item powerful unification and e-matching
+%%  \end{itemize}
+%%  \item Custom methods for arithmetic reasoning, linear and nonlinear inequalities.
+%%  \item A flexible framework for adding domain specific tools.
+%% \end{itemize}
+
+%% \end{frame}
+
+\begin{frame}{Standard library}
+
+Already has:
+\begin{itemize}
+ \item datatypes: booleans, lists, tuples, finsets, sets
+ \item number systems: nat, int, rat, real, complex
+ \item the algebraic hierarchy, through ordered fields
+ \item ``big operations'': finite sums and products, etc.
+ \item elementary number theory (e.g.~primes, gcd's, unique factorization, etc.)
+ \item elementary set theory
+ \item elementary group theory
+ \item beginnings of analysis: topological spaces, limits, continuity, the intermediate value theorem
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+%% \begin{frame}
+%%   \begin{center}
+%%    {\huge Demo}\nn \nn
+
+%%    Browser version available at:\na
+%%    \url{leanprover.github.io/tutorial/?live&hott}
+%%   \end{center}
+%% \end{frame}
+
+%% Language                     files          blank        comment           code
+%% -------------------------------------------------------------------------------
+%% Lean                           160           7214           1393          28227
+%% Coq                            281           6204           2752          31421
+%% Agda                           162           4468            562          17799
+%% UniMath                        142          13790           2806          52091
+%% Note: in comment column only single-line comments are counted
+
+\begin{frame}[fragile]{HoTT library}
+
+  \makebox[\textwidth][c]{{\small \formalizedtable}}\nb
+          {\footnotesize this table is online: \url{github.com/leanprover/lean/blob/master/hott/book.md}}
+
+\end{frame}
+%------------------------------------------------
+
+%% \begin{frame}
+%% \frametitle{Statistics}
+%% HoTT-Lean: $\sim$28k LOC\na
+%% HoTT-Coq: $\sim$31k LOC (in \texttt{theories/} folder)\na
+%% HoTT-Agda: $\sim$18k LOC (excluding \texttt{old/} folder)\na
+%% UniMath: $\sim$52k LOC\nn
+%% \footnotesize(excluding blank lines and single-line comments)
+%% \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Lean-HoTT library}
+The library also includes:
+\begin{itemize}
+\item A library of squares, cubes, pathovers, squareovers, cubeovers (based on the paper by Licata and Brunerie)
+\begin{lstlisting}
+definition circle.rec {P : S¹ → Type}
+  (Pbase : P base) (Ploop : Pbase =[loop] Pbase)
+  (x : S¹) : P x
+\end{lstlisting}
+\item<2-> A library of pointed types, pointed maps, pointed homotopies, pointed equivalences
+\begin{lstlisting}[gobble=2]
+  definition loopn_ptrunc_pequiv
+    (n : ℕ₋₂) (k : ℕ) (A : Type*) :
+    Ω[k] (ptrunc (n+k) A) ≃* ptrunc n (Ω[k] A)
+\end{lstlisting}
+
+\item<3-> Category theory, e.g. limits, colimits and exponential laws:
+\begin{lstlisting}
+definition functor_functor_iso (C D E : Precategory) :
+  (C ^c D) ^c E ≅c C ^c (E ×c D)
+\end{lstlisting}
+%\item<4-> The h-space structure of $S^3$.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Homotopy Theory in Lean}
+The Hopf fibration (by Ulrik Buchholtz):
+\begin{lstlisting}[gobble=2]
+  variables (A : Type) [H : h_space A] [K : is_conn 0 A]
+
+  definition hopf : susp A → Type :=
+  susp.elim_type A A
+    (λa, equiv.mk (λx, a * x) !is_equiv_mul_left)
+
+  definition hopf.total (A : Type) [H : h_space A]
+    [K : is_conn 0 A] : sigma (hopf A) ≃ join A A
+
+  definition circle_h_space : h_space S¹
+  definition sphere_three_h_space : h_space (S 3)
+\end{lstlisting}
+
+\end{frame}
+
+%------------------------------------------------
+
+%% \begin{frame}[fragile]
+%%   \frametitle{Homotopy Theory in Lean}
+%%   We have ported formalizations from Agda, such as the Freudenthal equivalence
+%% \begin{lstlisting}
+%% definition freudenthal_pequiv (A : Type*) {n k : ℕ}
+%%   [is_conn n A] (H : k ≤ 2 * n) :
+%%   ptrunc k A ≃* ptrunc k (Ω (psusp A))
+%% \end{lstlisting}
+%% and the associativity of join (by Jakob von Raumer)
+%% \begin{lstlisting}[gobble=2]
+%%   definition join.assoc (A B C : Type) :
+%%     join (join A B) C ≃ join A (join B C)
+%% \end{lstlisting}
+
+
+%% \end{frame}
+
+%------------------------------------------------
+
+%% \begin{frame}[fragile]
+%% \frametitle{Homotopy Theory in Lean}
+%% Truncated Whitehead's principle:
+%% \begin{lstlisting}[gobble=2]
+%%   definition whitehead_principle (n : ℕ₋₂) {A B : Type}
+%%     [HA : is_trunc n A] [HB : is_trunc n B] (f : A → B)
+%%     (H' : is_equiv (trunc_functor 0 f))
+%%     (H : Πa k, is_equiv
+%%                  (π→*[k + 1] (pmap_of_map f a))) :
+%%     is_equiv f
+%% \end{lstlisting}
+
+%% Here `\lstinline{pmap_of_map f a}' is the pointed map $(A,a) \stackrel f\to (B, f(a))$.
+
+%% \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Homotopy Theory in Lean}
+Eilenberg-MacLane spaces (based on the paper by Licata and Finster):
+\begin{lstlisting}[gobble=2]
+  definition EM : CommGroup → ℕ → Type*
+  variables (G : CommGroup) (n : ℕ)
+  definition homotopy_group_EM :
+    πg[n+1] (EM G (n+1)) ≃g G
+  theorem is_conn_EM : is_conn (n.-1) (EM G n)
+  theorem is_trunc_EM : is_trunc n (EM G n)
+
+  definition EM_pequiv_1 {X : Type*} (e : π₁ X ≃g G)
+    [is_conn 0 X] [is_trunc 1 X] : EM G 1 ≃* X
+  -- TODO for n > 1
+\end{lstlisting}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+%% \begin{frame}[fragile]
+%% \frametitle{Homotopy Theory in Lean}
+%% Seifert-van Kampen Theorem: the fundamental groupoid of a pushout is the pushout of the fundamental groupoids.
+
+%% \end{frame}
+
+%------------------------------------------------
+
+%% \begin{frame}
+%% \frametitle{LES of homotopy groups}
+%% The long exact sequence of homotopy groups.\nn
+%% Given a pointed map $f : X \to Y$.\nn
+%% \visible<2->{Define $F :\equiv \text{fiber}_f(y_0) :\equiv (\ex{x : X}{f(x)=y_0})$.}\nn\nn
+%% \makebox[\textwidth]{%
+%% \begin{tikzpicture}[>=stealth',auto,node distance=3cm,
+%%     thick,main node/.style={font=\sffamily\Large\bfseries},text height=1.5ex, node distance=7mm]
+%%   \node (Y)     at (0,0) {$Y$};
+%%   \node[left = of Y] (X) {$X$};
+%%   \node[left = of X, visible on=<2->] (F) {$F$};
+%%   \node[left = of F, visible on=<3->] (F2) {$F^{(2)}$};
+%%   \node[left = of F2, visible on=<3->] (F3) {$F^{(3)}$};
+%%   \node[left = of F3, visible on=<3->] (F4) {$F^{(4)}$};
+%%   \node[left = of F4, visible on=<3->] (F5) {$F^{(5)}$};
+%%   \node[left = of F5, visible on=<3->] (F6) {$F^{(6)}$};
+%%   \node[below = of F2, visible on=<4->] (OY) {$\Omega Y$};
+%%   \node[below = of F3, visible on=<4->] (OX) {$\Omega X$};
+%%   \node[below = of F4, visible on=<4->] (OF) {$\Omega F$};
+%%   \node[below = of F5, visible on=<4->] (OF2) {$\Omega F^{(2)}$};
+%%   \node[below = of F6, visible on=<4->] (OF3) {$\Omega F^{(3)}$};
+%%   \node[below = of OF2, visible on=<6->] (O2Y) {$\Omega^2 Y$};
+%%   \node[below = of OF3, visible on=<6->] (O2X) {$\Omega^2 X$};
+%%   \node[rotate=90, visible on=<4->] (foo) at ($(F2)!0.5!(OY)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<4->] (foo) at ($(F3)!0.5!(OX)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<4->] (foo) at ($(F4)!0.5!(OF)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<4->] (foo) at ($(F5)!0.5!(OF2)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<4->] (foo) at ($(F6)!0.5!(OF3)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<6->] (foo) at ($(OF2)!0.5!(O2Y)$) {$\simeq$};
+%%   \node[rotate=90, visible on=<6->] (foo) at ($(OF3)!0.5!(O2X)$) {$\simeq$};
+%%   \path[every node/.style={font=\sffamily\small}]
+%%   (X) edge[->] node [above] (f){$f$} (Y)
+%%   (F) edge[->, visible on=<2->] node [above] (f){$p_1$} (X)
+%%   (F2) edge[->, visible on=<3->] node [above] (f){$p_1^{(2)}$} (F)
+%%   (F3) edge[->, visible on=<3->] node [above] (f){$p_1^{(3)}$} (F2)
+%%   (F4) edge[->, visible on=<3->] node [above] (f){$p_1^{(4)}$} (F3)
+%%   (F5) edge[->, visible on=<3->] node [above] (f){$p_1^{(5)}$} (F4)
+%%   (F6) edge[->, visible on=<3->] node [above] (f){$p_1^{(6)}$} (F5)
+%%   (OX) edge[->, visible on=<5->] node [above] (f){$-\Omega f$} (OY)
+%%   (OF) edge[->, visible on=<5->] node [above] (f){$-\Omega p_1$} (OX)
+%%   (OF2) edge[->, visible on=<5->] node [above] (f){$-\Omega p_1^{(2)}$} (OF)
+%%   (OF3) edge[->, visible on=<5->] node [above] (f){$-\Omega p_1^{(3)}$} (OF2)
+%%   (O2X) edge[->, visible on=<6->] node [above] (f){$\Omega^2 f$} (O2Y)
+%%   (OY) edge[->, visible on=<7->] node [below right] (f){$\delta$} (F)
+%%   (O2Y) edge[->, visible on=<7->] node [below right] (f){$-\Omega\delta$} (OF);
+%% \end{tikzpicture}%
+%% }
+
+%% \end{frame}
+
+%% %------------------------------------------------
+
+%% \begin{frame}
+%% \frametitle{LES of homotopy groups}
+%%   \begin{columns}[c]
+%%     \begin{column}{.5\textwidth}
+%%       \makebox[\textwidth][c]{
+%% \begin{tikzpicture}[>=stealth',auto,node distance=3cm,
+%%     thick,main node/.style={font=\sffamily\Large\bfseries},text height=1.5ex, node distance=12mm]
+%%   \node (Y)     at (0,0) {$\pi_0(Y)$};
+%%   \node[left = of Y] (X) {$\pi_0(X)$};
+%%   \node[left = of X] (F) {$\pi_0(F)$};
+%%   \node[above = of Y] (OY) {$\pi_1(Y)$};
+%%   \node[above = of X] (OX) {$\pi_1(X)$};
+%%   \node[above = of F] (OF) {$\pi_1(F)$};
+%%   \node[above = of OY] (O2Y) {$\pi_2(Y)$};
+%%   \node[above = of OX] (O2X) {$\pi_2(X)$};
+%%   \node[above = of OF] (O2F) {$\pi_2(F)$};
+%%   \path[every node/.style={font=\sffamily\small}]
+%%   (X) edge[->] node [above] (f){$\pi_0(f)$} (Y)
+%%   (F) edge[->] node [below] (f){$\pi_0(p_1)$} (X)
+%%   (OY) edge[->] node [left] (f){$\pi_0(\delta)\quad\mbox{}$} (F)
+%%   (OX) edge[->] node [above] (f){$\only<2>{\fbox{$-$}}\only<1>{-}\pi_1(f)$} (OY)
+%%   (OF) edge[->] node [below] (f){$\only<2>{\fbox{$-$}}\only<1>{-}\pi_1(p_1)$} (OX)
+%%   (O2Y) edge[->] node [left] (f){$\only<2>{\fbox{$-$}}\only<1>{-}\pi_1(\delta)\quad\mbox{}$} (OF)
+%%   (O2X) edge[->] node [above] (f){$\pi_2(f)$} (O2Y)
+%%   (O2F) edge[->] node [below] (f){$\pi_2(p_1)$} (O2X);
+%% \end{tikzpicture}}
+%%     \end{column}
+%%     \begin{column}{.45\textwidth}%
+%%       \visible<4->{%
+%%       How do we formulate this?\nn
+%%       The obvious thing is to have a sequence $Z : \N \to \UU$ and maps $f_n : Z_{n+1}\to Z_n$.\nn
+%%       \textbf{Problem}: $Z_{3n}=\pi_n(Y)$ doesn't hold definitionally, hence $f_{3n}=\pi_n(f)$ isn't even well-typed.
+%%       }
+%%     \end{column}
+%%   \end{columns}
+
+%% \end{frame}
+
+%% %------------------------------------------------
+
+%% \begin{frame}[fragile]
+%% \frametitle{LES of homotopy groups}
+%% \textbf{Better}: Take $Z : \N \times 3 \to \UU$, we can define $Z$ by
+%% \begin{align*}Z_{(n,0)}=\pi_n(Y)&&Z_{(n,1)}=\pi_n(X)&&Z_{(n,2)}=\pi_n(F).\end{align*}
+%% Then we can define the maps $f_x : Z_{succ(x)}\to Z_x$, where $succ$ is the successor function for $\N\times3$.\nn
+%% \visible<2->{We define chain complexes over an arbitrary type with a successor operation.}
+
+%% \end{frame}
+
+%% %------------------------------------------------
+
+%% \begin{frame}[fragile]
+%% \frametitle{LES of homotopy groups}
+%% \begin{lstlisting}[gobble=2]
+%%   definition homotopy_groups : +3ℕ → Set*
+%%   | (n, fin.mk 0 H) := π*[n] Y
+%%   | (n, fin.mk 1 H) := π*[n] X
+%%   | (n, fin.mk k H) := π*[n] (pfiber f)
+
+%%   definition homotopy_groups_fun : Π(n : +3ℕ),
+%%     homotopy_groups (S n) →* homotopy_groups n
+%%   | (n, fin.mk 0 H) := π→*[n] f
+%%   | (n, fin.mk 1 H) := π→*[n] (ppoint f)
+%%   | (n, fin.mk 2 H) := π→*[n] boundary_map ∘*
+%%       pcast (ap (ptrunc 0) (loop_space_succ_eq_in Y n))
+%%   | (n, fin.mk (k+3) H) := begin exfalso,
+%%       apply lt_le_antisymm H, apply le_add_left end
+%% \end{lstlisting}
+%% \end{frame}
+
+%% %------------------------------------------------
+
+%% \begin{frame}[fragile]
+%% \frametitle{LES of homotopy groups}
+%% Then we prove:
+%% \begin{itemize}
+%% \item These maps form a chain complex
+%% \item This chain complex is exact
+%% \item \lstinline{homotopy_groups (n + 2, k)} are commutative groups.
+%% \item \lstinline{homotopy_groups (1, k)} are groups.
+%% \item \lstinline{homotopy_groups_fun (n + 1, k)} are group homomorphisms.
+%% \end{itemize}
+%% \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+  \frametitle{LES of homotopy groups}
+  Given a pointed map $f : X \to Y$. Then the following is a long exact sequence:
+  {\footnotesize (the image of any map is exactly the kernel of the next map)}\nn
+      \makebox[\textwidth][c]{
+\begin{tikzpicture}[>=stealth',auto,node distance=3cm,
+    thick,main node/.style={font=\sffamily\Large\bfseries},text height=1.5ex, node distance=12mm]
+  \node (Y)     at (0,0) {$\pi_0(Y)$};
+  \node[left = of Y] (X) {$\pi_0(X)$};
+  \node[left = of X] (F) {$\pi_0(F)$};
+  \node[above = of Y] (OY) {$\pi_1(Y)$};
+  \node[above = of X] (OX) {$\pi_1(X)$};
+  \node[above = of F] (OF) {$\pi_1(F)$};
+  \node[above = of OY] (O2Y) {$\pi_2(Y)$};
+  \node[above = of OX] (O2X) {$\pi_2(X)$};
+  \node[above = of OF] (O2F) {$\pi_2(F)$};
+  \node[above = 4mm of O2X] (O3X) {$\vdots$};
+  \path[every node/.style={font=\sffamily\small}]
+  (X) edge[->] node [above] (f){$\pi_0(f)$} (Y)
+  (F) edge[->] node [below] (f){$\pi_0(p_1)$} (X)
+  (OY) edge[->] node [left] (f){$\pi_0(\delta)\quad\mbox{}$} (F)
+  (OX) edge[->] node [above] (f){$\pi_1(f)$} (OY)
+  (OF) edge[->] node [below] (f){$\pi_1(p_1)$} (OX)
+  (O2Y) edge[->] node [left] (f){$\pi_1(\delta)\quad\mbox{}$} (OF)
+  (O2X) edge[->] node [above] (f){$\pi_2(f)$} (O2Y)
+  (O2F) edge[->] node [below] (f){$\pi_2(p_1)$} (O2X);
+\end{tikzpicture}}\nb
+      $F$ is the fiber of $f$ and $p_1$ is the first projection.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{LES of homotopy groups}
+
+Corollaries:
+\begin{lstlisting}[gobble=2]
+  theorem is_equiv_π_of_is_connected {A B : Type*}
+    {n k : ℕ} (f : A →* B) [H : is_conn_fun n f]
+    (H2 : k ≤ n) : is_equiv (π→[k] f)
+\end{lstlisting}
+
+Combined with Hopf fibration:
+
+\begin{lstlisting}[gobble=2]
+  definition π2S2 : πg[1+1] (S. 2) ≃g gℤ
+  definition πnS3_eq_πnS2 (n : ℕ) :
+    πg[n+2 +1] (S. 3) ≃g πg[n+2 +1] (S. 2)
+\end{lstlisting}
+
+Combined with Freudenthal Suspension Theorem:
+
+\begin{lstlisting}[gobble=2]
+  definition πnSn (n : ℕ) : πg[n+1] (S. (succ n)) ≃g gℤ
+  definition π3S2 : πg[2+1] (S. 2) ≃g gℤ
+\end{lstlisting}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Conclusion}
+\begin{itemize}
+  \item Lean is an exciting new proof assistant.
+  \item The Lean-HoTT library is quite big and growing quickly.
+  \item The Lean-HoTT library contains a good basis for serious formalizations.
+  \item There is currently an ongoing collaboration to formalize the Serre Spectral Sequence.
+    %(j.w.w. Ulrik Buchholtz, Mike Shulman, Jeremy Avigad, Steve Awodey, Egbert Rijke, Clive Newstead)
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+  \begin{center}
+   {\huge Thank you}
+  \end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
