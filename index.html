@@ -10,7 +10,7 @@
 
 <p><i>e-mail: fpvdoorn@gmail.com</i></p>
 <p>
- Starting fall 2018 I am going to work with <a href="https://sites.google.com/site/thalespitt/">Tom Hales</a> on the formal abstracts projects at the <a href="http://www.mathematics.pitt.edu/">mathematics department</a> of the University of Pittsburgh.
+ I am a postdoc at the <a href="http://www.mathematics.pitt.edu/">mathematics department</a> of the University of Pittsburgh, working with <a href="https://sites.google.com/site/thalespitt/">Tom Hales</a> on the <a href="https://formalabstracts.github.io/">Formal Abstracts</a> projects. I am a contributor to <a href="https://leanprover-community.github.io/">mathlib</a>, the mathematical library for the <a href="https://leanprover.github.io/">Lean Theorem Prover</a> and coauthor of <a href="https://flypitch.github.io/">Flypitch</a>, a project where I formally verify the independence of the continuum hypothesis from ZFC together with <a href="https://jesse-michael-han.github.io/">Jesse Michael Han</a>.
 </p>
 
 <p>
@@ -19,7 +19,7 @@ Until summer 2018 I was a Ph.D. student at <a href="https://www.cmu.edu/index.ht
 
 <p>
 I previously studied at the <a href="https://www.uu.nl/en">Utrecht University</a> in the Netherlands
-where I received a B.Sc. in Mathematics, a B.Sc. in Physics and a M.Sc. in Mathematics.  My master
+where I received a B.Sc. in Mathematics, a B.Sc. in Physics and a M.Sc. in Mathematics. My master
 thesis is <i><a href="papers/thesis.pdf">Explicit convertibility proofs in Pure Type Systems</a></i>
 supervised by <a href="https://www.cs.ru.nl/~freek/">Freek Wiedijk</a> at
 the <a href="http://www.ru.nl/">Radboud University Nijmegen</a>. I was also trainer for the Dutch
@@ -29,27 +29,31 @@ Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 <h2>Research</h2>
 
 <p>
-  I am working on <a href="https://homotopytypetheory.org/">homotopy type theory</a>, which is a
-  connection between homotopy theory and type theory. My main interest here in this field
+  During my Ph.D. I was working on <a href="https://homotopytypetheory.org/">homotopy type theory</a>, although my work in that field has diminished since I started my postdoc.
+  Homotopy Type Theory (HoTT) is a connection between homotopy theory and type theory, interpreting the basic concepts in the logic of type theory in a geometric way, so that you can interpret many concepts of algebraic topology in it. My main interest here in this field
   is <i>synthetic homotopy theory</i>, which is the study of types as spaces in algebraic
-  topology. Since the homotopy theoretic definitions are very close to the logical foundations, it
-  is feasible to formalize complicated results in a proof assistant.
+  topology. My main contribution was to give a synthetic defintion of the Serre Spectral sequence in Lean.
+  Since the homotopy theoretic definitions are very close to the logical foundations, it
+  is feasible to formalize many of these results in a proof assistant, without being much more effort than proving these results on paper.
+  I am also interested in studying higher inductive types, where my main research question was whether it was possible to construct complicated higher inductive types from a simple one, the homotopy pushout.
 </p>
-<p>I have done this in the new
-  proof assistant <a href="https://github.com/leanprover/lean">Lean</a> which is developed
-  by <a href="http://leodemoura.github.io/">Leo de Moura</a> at Microsoft Research. I've contributed
-  to the standard library, and I'm the main contributor of
-  the <a href="https://github.com/leanprover/lean2/blob/master/hott/hott.md">HoTT library</a>. I am 
+
+<p>
+  I formalize mathematical results and develop new tools for the <a href="https://leanprover.github.io/">Lean</a> Theorem prover.
+  I am a contributor to <a href="https://leanprover-community.github.io/">mathlib</a>, and I was the main contributor of
+  the <a href="https://github.com/leanprover/lean2/blob/master/hott/hott.md">HoTT library for Lean 2</a>. I was
   also the main contributor of the <a href="https://github.com/cmu-phil/Spectral">Spectral Sequence
   project</a>, where we have formalized the (cohomological) Serre and Atiyah-Hirzebruch spectral
-  sequences. We are currently working on porting the results
-  to <a href="https://github.com/gebner/hott3">Lean 3</a>.
+  sequences. We also started a project of doing <a href="https://github.com/gebner/hott3">Homotopy Type Theory in Lean 3</a>, but since the official support for HoTT was dropped from Lean,
+  this project was not the most convenient way of doing formalization in HoTT.
 </p>
+
 <p>
-  Another topic in Homotopy type theory I am interested in is higher inductive types, trying to construct complicated higher inductive types from simple ones.
+  Related to the formal abstracts project I'm now working on a translation from a controlled natural language to Lean.
 </p>
+
 <p>
-  I am also interested in mathematical logic. I have worked more on type theory and category theory and I'm fascinated by forcing in set theory.
+  I am also interested in mathematical logic. I have worked on type theory, category theory and set theory.
 </p>
 
 <h2>Dissertation</h2>
@@ -57,15 +61,16 @@ My dissertation was titled <i><a href="papers/dissertation.pdf">On the Formaliza
 
 <h2>Publications</h2>
 <ul>
+  <li>Jesse Michael Han, Floris van Doorn. <i><a href="papers/flypitch-itp-2019.pdf">A formalization of forcing and the unprovability of the continuum hypothesis</a></i>, ITP 2019: Interactive Theorem Proving. (<a href="https://arxiv.org/abs/1904.10570">arXiv</a>, <a href="https://flypitch.github.io/">Website</a>, <a href="https://github.com/flypitch/flypitch">Formalization (Github)</a>)
   <li>Ulrik Buchholtz, Floris van Doorn, Egbert Rijke. <i><a href="papers/higher-groups.pdf">Higher Groups in Homotopy Type Theory</a></i>, Logic in Computer Science (LICS) 2018. (<a href="https://arxiv.org/abs/1802.04315">arXiv</a>, <a href="talks/lics18slides.pdf">slides</a>, <a href="https://github.com/cmu-phil/Spectral/blob/master/higher_groups.hlean">Formalization (Github)</a>)
   <li>Floris van Doorn, Jakob von Raumer, Ulrik Buchholtz. <i><a href="papers/leanhott.pdf">Homotopy
   Type Theory in Lean</a></i>, 8th International Conference on Interactive Theorem Proving (ITP),
-  2017. (<a href="https://arxiv.org/abs/1704.06781">arXiv</a>, <a href="talks/HoTTLeanITP.pdf">slides</a>, 
+  2017. (<a href="https://arxiv.org/abs/1704.06781">arXiv</a>, <a href="talks/HoTTLeanITP.pdf">slides</a>,
   <a href="https://github.com/leanprover/lean2/blob/master/hott/hott.md">Lean-HoTT library
   (Github)</a>, <a href="https://github.com/cmu-phil/Spectral">Spectral repository (Github)</a>)
   <li>Floris van Doorn. <i><a href="papers/proptrunc.pdf">Constructing the Propositional Truncation
   using Non-recursive HITs</a></i>, Certified Proofs and Programs (CPP),
-  2016. (<a href="https://arxiv.org/abs/1512.02274">arXiv</a>, <a href="talks/CPP2016.pdf">slides</a>, 
+  2016. (<a href="https://arxiv.org/abs/1512.02274">arXiv</a>, <a href="talks/CPP2016.pdf">slides</a>,
   <a href="https://github.com/fpvandoorn/leansnippets/blob/master/cpp.hlean">Lean source (Github)</a>)
   <li>Leonardo de Moura, Soonho Kong, Jeremy Avigad, Floris van Doorn, Jakob von
   Raumer. <i><a href="papers/lean_description.pdf">The Lean Theorem Prover (system
@@ -99,6 +104,8 @@ My dissertation was titled <i><a href="papers/dissertation.pdf">On the Formaliza
 Talks corresponding to one of my papers are listed under <i>Publications</i>.
 </p>
 <ul>
+  <!-- Hanoi 2019 talks left out -->
+  <li>A Formal Abstract of the Classication of Finite Simple Groups, June 2019. Vietnam -- USA Joint Mathematical meeting 2019. <a href="talks/JMM2019formalabstracts.pdf">slides</a></li>
   <li>Formal Abstracts, August 2018. Types, Dagstuhl seminar: Formalization of Mathematics in Type Theory. <a href="talks/formalabstracts2018.pdf">slides</a>.
   <li>Spectral Sequences in Homotopy Type Theory, June 2018. Workshop: Types, Homotopy Type theory, and Verification, Hausdorff Research Institute for Mathematics, Bonn. <a href="talks/Bonn2018spectralsequences.pdf">slides</a>.
   <!-- MURI 2018 talk left out -->
@@ -127,6 +134,11 @@ Talks corresponding to one of my papers are listed under <i>Publications</i>.
 </ul>
 
 <h2>Teaching</h2>
+
+<b>UPiTT</b>
+<ul>
+  <li> Spring 2019: Main instructor for Calculus I (<a href="http://calculus.math.pitt.edu/syllabi/0220syllabus.html">Math 0220</a>).
+</ul>
 
 <b>CMU</b>
 <ul>
