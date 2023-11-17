@@ -47,4 +47,4 @@ To apply, please send your application to `vdoorn@math.uni-bonn.de` with the fol
 * A (brief) research statement
 * Ask 1 or 2 references to send an recommendation letter to the same address by the deadline.
 
-The application deadline is 15 december 2024.
+The application deadline is 15 december 2023.
