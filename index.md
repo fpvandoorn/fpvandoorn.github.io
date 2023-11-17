@@ -25,6 +25,11 @@ the <a href="http://www.ru.nl/">Radboud University Nijmegen</a>. I was also trai
 Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 </p> -->
 
+<!-- ## News -->
+
+* *November 2023*: I offer a [postdoc position](/postdoc)!
+<!-- * *October 2023*: I started my professor position in Bonn! -->
+
 ## Research
 
 I formalize mathematical results and develop new tools for the [Lean](https://leanprover.github.io/) Theorem prover. I am a contributor and maintainer of [mathlib](https://leanprover-community.github.io/). I have formalized results from many areas of mathematics, including measure theory, set theory, model theory, and combinatorics. Together with [Jesse Michael Han](https://jesse-michael-han.github.io/), I formalized the independence of the continuum hypothesis in the [Flypitch project](https://flypitch.github.io/), which was one of the few remaining unformalized problems on [Freek Wiedijk's list](https://www.cs.ru.nl/~freek/100/). The proof required formalizing an internal model of set theory in Lean and formalizing a notion of forcing. We used Boolean-valued forcing for our proof.
