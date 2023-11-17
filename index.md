@@ -1,6 +1,3 @@
----
-layout: default
----
 <img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="357" align="right">
 
 # Floris van Doorn
