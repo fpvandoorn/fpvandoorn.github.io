@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # Test page
 
 How does a small markdown page render
