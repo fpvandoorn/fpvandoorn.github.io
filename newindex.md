@@ -1,4 +1,4 @@
-<img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="476" height="714" align="right">
+<img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="357" align="right">
 
 # Floris van Doorn
 
