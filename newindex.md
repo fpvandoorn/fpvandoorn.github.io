@@ -1,4 +1,5 @@
-<img src="files/Floris.jpg" alt="Floris van Doorn" width="476" height="714" align="right">
+<img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="476" height="714" align="right">
+
 # Floris van Doorn
 
 `e-mail: fpvdoorn@gmail.com`
@@ -155,6 +156,3 @@ Here's the provided HTML converted into Markdown:
 
 - Spring 2012: TA for Discrete Mathematics with [Han Hoogeveen](http://www.staff.science.uu.nl/~hooge109/).
 - Fall 2011: TA for Foundations of Mathematics with [Jaap van Oosten](http://www.staff.science.uu.nl/~ooste110/).
-
-</body>
-</html>
