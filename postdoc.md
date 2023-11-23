@@ -10,7 +10,7 @@ The initial appointment will be for two (2) years with a possible two
 
 ## Qualifications:
 
-* You should have a PhD in mathematics before the starting date of the postdoc.
+* You should have a PhD in mathematics or computer science before the starting date of the postdoc.
 * Solid experience in the formalization of mathematics.
 * A working proficiency in English. Knowledge of German is not necessary.
 
