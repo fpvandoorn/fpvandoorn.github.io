@@ -37,8 +37,6 @@ I am interested in [Homotopy Type Theory](https://homotopytypetheory.org/) (HoTT
 
 I have also studied the research question of which higher inductive types can be constructed from ordinary inductive types and one simple higher inductive type, the homotopy pushout.
 
-Here's the provided HTML converted into Markdown:
-
 ## Publications
 
 - Patrick Massot, Floris van Doorn, Oliver Nash. *["Formalising the *h*-principle and sphere eversion"](papers/sphere_eversion.pdf)*, CPP 2023: Certified Programs and Proofs. ([ACM](https://dl.acm.org/doi/10.1145/3573105.3575688), [arXiv](https://arxiv.org/abs/2210.07746), [website](https://leanprover-community.github.io/sphere-eversion/), [slides](talks/sphere_eversion_CPP.pdf))
@@ -83,8 +81,6 @@ Talks corresponding to one of my papers are listed under *Publications*.
 - *Reducing Higher Inductive Types to Quotients*, May 2016, [HoTT Workshop in Toronto](http://www.fields.utoronto.ca/activities/15-16/homotopy-type). ([slides](talks/Toronto2016hits.pdf), [video](http://www.fields.utoronto.ca/talks/reducing-hits-quotients))
 - *The Lean Theorem Prover and Homotopy Type Theory*, May 2016 (with Jeremy Avigad), [HoTT Workshop in Toronto](http://www.fields.utoronto.ca/activities/15-16/homotopy-type). ([slides](talks/Toronto2016lean.pdf), [video](http://www.fields.utoronto.ca/talks/homotopy-type-theory-lean))
 - *Eilenberg-MacLane Spaces in Homotopy Type Theory*, March 2016, [ASL 2017 North American meeting](http://asl2017.boisestate.edu/). ([slides](talks/boise.pdf))
-
-Here's the provided HTML converted into Markdown:
 
 ## Unpublished Work
 <!-- TODO: fix layout -->
