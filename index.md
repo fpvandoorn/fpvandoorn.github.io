@@ -3,6 +3,16 @@
 # Floris van Doorn
 
 `e-mail: fpvdoorn@gmail.com`
+`office: 1.035`
+<!-- ```
+address:
+Universität Bonn
+Mathematisches Institut
+Endenicher Allee 60
+D-53115 Bonn
+Germany
+``` -->
+<!-- office phone: +49-228-73-2951 -->
 
 I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) since October 2023. I am working on formalized mathematics in the [Lean Theorem Prover](https://leanprover.github.io/). I am a maintainer of its mathematical library [mathlib](https://leanprover-community.github.io/), and my latest project was the [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/). In this project, we formalized an important result in differential topology, namely Gromov's h-principle for first-order differential relations using a technique called *convex integration*.
 
