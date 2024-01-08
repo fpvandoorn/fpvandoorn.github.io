@@ -1,5 +1,7 @@
 # Postdoc position on Formalized Mathematics in Bonn
 
+**The application deadline for this postdoc has passed, and this page is left here only for informational purposes.**
+
 The University of Bonn looks forward to filling a postdoc position in the framework of the newly founded Interdisciplinary Research Unit on Formalized Mathematics and Computer-Assisted Proof within the Cluster of Excellence Hausdorff Center for Mathematics. The postdoc will be hosted at the Mathematical Institute and led by [Floris van Doorn](https://florisvandoorn.com/).
 
 The scope of the position is the formalization of mathematics and the development of automated reasoning tools to aid in formalization. More specifically, the applicant will help in the formalization of cutting-edge analysis research and develop Lean's mathematical library in the direction of analysis. There is also room to work in other areas of mathematics.
