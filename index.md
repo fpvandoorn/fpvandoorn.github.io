@@ -34,7 +34,8 @@ Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 
 <!-- ## News -->
 
-* *November 2023*: I offer a [postdoc position](/postdoc)!
+* *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/).
+* *November 2023*: I offered a [postdoc position](/postdoc)!
 <!-- * *October 2023*: I started my professor position in Bonn! -->
 
 ## Research
