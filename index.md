@@ -2,8 +2,10 @@
 
 # Floris van Doorn
 
-`e-mail: fpvdoorn@gmail.com`
-`office: 1.035`
+```
+e-mail: fpvdoorn@gmail.com
+office: 1.035
+```
 <!-- ```
 address:
 Universität Bonn
