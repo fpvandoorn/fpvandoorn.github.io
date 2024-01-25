@@ -20,7 +20,7 @@ I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) 
 
 To try Lean, I recommend the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). Or check out [these other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-  <!-- To try Lean, I recommend the <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">Natural Number Game</a> by Kevin Buzzard and Mohammad Pedramfar. -->
+<!-- To try Lean, I recommend the <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">Natural Number Game</a> by Kevin Buzzard and Mohammad Pedramfar. -->
 
 Until September 2023, I was a postdoc at the [mathematics department](https://www.imo.universite-paris-saclay.fr/en/) of the [University of Paris-Saclay](https://www.universite-paris-saclay.fr/en), working with [Patrick Massot](https://www.imo.universite-paris-saclay.fr/~pmassot/en/). Before that, I was a postdoc at the [mathematics department](http://www.mathematics.pitt.edu/) of the University of Pittsburgh, working with [Tom Hales](https://sites.google.com/site/thalespitt/) on the [Formal Abstracts](https://formalabstracts.github.io/) and [Flypitch](https://flypitch.github.io/) projects. I did my PhD at [Carnegie Mellon University](https://www.cmu.edu/index.html) under the supervision of [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/) and [Steve Awodey](https://www.andrew.cmu.edu/user/awodey/). My **dissertation** is titled *["On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory"](papers/dissertation.pdf)*. [Full CV (pdf)](files/cv.pdf).
 
@@ -72,9 +72,13 @@ I have also studied the research question of which higher inductive types can be
 
 Talks corresponding to one of my papers are listed under *Publications*.
 
-  <!-- talk Lorentz, LFTCM 2023, Hausdorff School, Rome, CIRM, Hausdorff trimester -->
+<!-- Future: CIRM, Hausdorff trimester -->
+- *The internals of Lean*, Computer-verified proofs: 48 hours in Rome, January 2024. ([slides](talks/LeanInternals.pdf), [workshop repository](https://github.com/fpvandoorn/LeanInRome/))
+- *Mathematics in Lean*, Hausdorff School, Bonn, Germany, September 2023. ([slides](talks/math_in_lean.pdf), [school repository](https://github.com/fpvandoorn/HausdorffSchoolLean/))
+- *The Independence of the Continuum Hypothesis in Lean*, Lean for the Curious Mathematician Colloquium, Düsseldorf, Germany, September 2023. ([slides](talks/independenceCH.pdf))
+<!-- not included: Lorentz Center, Leiden -->
 - *Formalizing sphere eversion using Lean's mathematical library*, special session on Machine-checked mathematics, CALCO 2023 & MFPS XXXIX, Bloomington, Indiana, USA. ([slides](talks/sphere_eversion_specialsession.pdf))
-- *Tutorial on interactive theorem proving in Lean*, Logic Colloquium, Milan. ([slides](talks/LC23.pdf), [Github](https://github.com/fpvandoorn/LogicColloquiumTutorial/))
+- *Tutorial on interactive theorem proving in Lean*, Logic Colloquium, Milan. ([slides](talks/LC23.pdf), [repository](https://github.com/fpvandoorn/LogicColloquiumTutorial/))
 - *What can we learn from formalizations in homotopy type theory?*, May 2023. [Formalization of Cohomology Theories](http://www.birs.ca/events/2023/5-day-workshops/23w5124), Banff International Research Station. ([slides](talks/birs23.pdf))
 - *Lessons Learned from Formalizing Local Convex Integration*, May 2022. [Lean in Lyon](https://www.univ-st-etienne.fr/fr/icj/actualites-icj/actualites-2021-2022/lean-in-lyon.html). ([slides](talks/sphere_eversion22.pdf))
 - *Formalizing mathematics in Lean*, November 2021. [Laboratoire Méthodes Formelles](https://lmf.cnrs.fr/Seminar/). ([slides](talks/LMF21lean.pdf))
