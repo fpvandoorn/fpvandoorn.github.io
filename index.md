@@ -36,8 +36,12 @@ Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 
 <!-- ## News -->
 
+* *Summer 24*: I'm teaching a seminar [Collaborative Formalization in Analysis (pdf)](/files/seminar24notes.pdf)
 * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/).
 * *November 2023*: I offered a [postdoc position](/postdoc)!
+* *Winter 23/24*: I'm teaching [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
+
+
 <!-- * *October 2023*: I started my professor position in Bonn! -->
 
 ## Research
@@ -111,11 +115,7 @@ Talks corresponding to one of my papers are listed under *Publications*.
 - *Propositional Calculus in Coq*, Floris van Doorn. ([arXiv:1503.08744](https://arxiv.org/abs/1503.08744)), May 2014.
 - *Explicit Convertibility Proofs in Pure Type Systems*, Floris van Doorn. Master thesis. Advisor: [Freek Wiedijk](https://www.cs.ru.nl/~freek/)
 
-## Teaching
-
-### University of Bonn
-
-- Winter 2023: [Formalized Mathematics in Lean](wi23formalization.html)
+## Past Teaching
 
 ### University of Pittsburgh
 
