@@ -77,6 +77,8 @@ I have also studied the research question of which higher inductive types can be
 Talks corresponding to one of my papers are listed under *Publications*.
 
 <!-- Future: CIRM, Hausdorff trimester -->
+- *Instances and Classes*, [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), March 2024, CIRM.
+- *The Sobolev inequality in Lean*, Informal Formalization Seminar, Amsterdam, March 2024. ([slides](talks/Informal2024Sobolev.pdf))
 - *The internals of Lean*, Computer-verified proofs: 48 hours in Rome, January 2024. ([slides](talks/LeanInternals.pdf), [workshop repository](https://github.com/fpvandoorn/LeanInRome/))
 - *Mathematics in Lean*, Hausdorff School, Bonn, Germany, September 2023. ([slides](talks/math_in_lean.pdf), [school repository](https://github.com/fpvandoorn/HausdorffSchoolLean/))
 - *The Independence of the Continuum Hypothesis in Lean*, Lean for the Curious Mathematician Colloquium, Düsseldorf, Germany, September 2023. ([slides](talks/independenceCH.pdf))
