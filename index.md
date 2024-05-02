@@ -77,14 +77,14 @@ I have also studied the research question of which higher inductive types can be
 Talks corresponding to one of my papers are listed under *Publications*.
 
 <!-- Future: CIRM, Hausdorff trimester -->
-- *Instances and Classes*, [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), March 2024, CIRM.
-- *The Sobolev inequality in Lean*, Informal Formalization Seminar, Amsterdam, March 2024. ([slides](talks/Informal2024Sobolev.pdf))
-- *The internals of Lean*, Computer-verified proofs: 48 hours in Rome, January 2024. ([slides](talks/LeanInternals.pdf), [workshop repository](https://github.com/fpvandoorn/LeanInRome/))
-- *Mathematics in Lean*, Hausdorff School, Bonn, Germany, September 2023. ([slides](talks/math_in_lean.pdf), [school repository](https://github.com/fpvandoorn/HausdorffSchoolLean/))
-- *The Independence of the Continuum Hypothesis in Lean*, Lean for the Curious Mathematician Colloquium, Düsseldorf, Germany, September 2023. ([slides](talks/independenceCH.pdf))
+- *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM.
+- *The Sobolev inequality in Lean*, March 2024. [Informal Formalization Seminar](https://jcommelin.github.io/informal-formalization-seminar/), Amsterdam. ([slides](talks/Informal2024Sobolev.pdf))
+- *The internals of Lean*, January 2024. [Computer-verified proofs: 48 hours in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). ([slides](talks/LeanInternals.pdf), [workshop repository](https://github.com/fpvandoorn/LeanInRome/))
+- *Mathematics in Lean*, [Hausdorff School](https://www.mathematics.uni-bonn.de/hsm/hsm-hausdorff-schools/hs_2023_09_18), Bonn, Germany, September 2023. ([slides](talks/math_in_lean.pdf), [school repository](https://github.com/fpvandoorn/HausdorffSchoolLean/))
+- *The Independence of the Continuum Hypothesis in Lean*, September 2023. [Lean for the Curious Mathematician Colloquium](https://lftcm2023.github.io/), Düsseldorf, Germany. ([slides](talks/independenceCH.pdf))
 <!-- not included: Lorentz Center, Leiden -->
-- *Formalizing sphere eversion using Lean's mathematical library*, special session on Machine-checked mathematics, CALCO 2023 & MFPS XXXIX, Bloomington, Indiana, USA. ([slides](talks/sphere_eversion_specialsession.pdf))
-- *Tutorial on interactive theorem proving in Lean*, Logic Colloquium, Milan. ([slides](talks/LC23.pdf), [repository](https://github.com/fpvandoorn/LogicColloquiumTutorial/))
+- *Formalizing sphere eversion using Lean's mathematical library*, June 2023. Special session on Machine-checked mathematics, [CALCO 2023 & MFPS XXXIX](https://coalg.org/calco-mfps-2023/mfps/), Bloomington, Indiana, USA. ([slides](talks/sphere_eversion_specialsession.pdf))
+- *Tutorial on interactive theorem proving in Lean*, June 2023. [Logic Colloquium](https://lc2023.unimi.it/), Milan. ([slides](talks/LC23.pdf), [repository](https://github.com/fpvandoorn/LogicColloquiumTutorial/))
 - *What can we learn from formalizations in homotopy type theory?*, May 2023. [Formalization of Cohomology Theories](http://www.birs.ca/events/2023/5-day-workshops/23w5124), Banff International Research Station. ([slides](talks/birs23.pdf))
 - *Lessons Learned from Formalizing Local Convex Integration*, May 2022. [Lean in Lyon](https://www.univ-st-etienne.fr/fr/icj/actualites-icj/actualites-2021-2022/lean-in-lyon.html). ([slides](talks/sphere_eversion22.pdf))
 - *Formalizing mathematics in Lean*, November 2021. [Laboratoire Méthodes Formelles](https://lmf.cnrs.fr/Seminar/). ([slides](talks/LMF21lean.pdf))
