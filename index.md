@@ -36,10 +36,10 @@ Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 
 <!-- ## News -->
 
-* *Summer 24*: I'm teaching a seminar [Collaborative Formalization in Analysis (pdf)](/files/seminar24notes.pdf)
-* *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/).
-* *November 2023*: I offered a [postdoc position](/postdoc)!
-* *Winter 23/24*: I'm teaching [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
+* *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/))
+<!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
+<!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
+* *Winter 23/24*: I'm taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
 
 
 <!-- * *October 2023*: I started my professor position in Bonn! -->
@@ -55,7 +55,7 @@ I am interested in [Homotopy Type Theory](https://homotopytypetheory.org/) (HoTT
 I have also studied the research question of which higher inductive types can be constructed from ordinary inductive types and one simple higher inductive type, the homotopy pushout.
 
 ## Publications
-
+- Floris van Doorn, Heather Macbeth. *Integrals Within Integrals: A Formalization of the Gagliardo-Nirenberg-Sobolev Inequality*, to appear at ITP 2024.
 - Patrick Massot, Floris van Doorn, Oliver Nash. *["Formalising the *h*-principle and sphere eversion"](papers/sphere_eversion.pdf)*, CPP 2023: Certified Programs and Proofs. ([ACM](https://dl.acm.org/doi/10.1145/3573105.3575688), [arXiv](https://arxiv.org/abs/2210.07746), [website](https://leanprover-community.github.io/sphere-eversion/), [slides](talks/sphere_eversion_CPP.pdf))
 - Jeremy Avigad, Floris van Doorn. *["Progress on a Perimeter Surveillance Problem"](papers/perimeter.pdf)*, ICAS 2021: International Conference on Autonomous Systems. ([arXiv](https://arxiv.org/abs/2008.04262), [proceedings](https://2021.ieee-icas.org/wp-content/uploads/sites/53/2021/08/ICAS2021_Proceedings-compressed.pdf))
 - Floris van Doorn. *["Formalized Haar Measure"](papers/haar.pdf)*, ITP 2021: Interactive Theorem Proving. ([arXiv](https://arxiv.org/abs/2102.07636), Formalization is part of [mathlib](https://github.com/leanprover-community/mathlib/))
@@ -76,8 +76,9 @@ I have also studied the research question of which higher inductive types can be
 
 Talks corresponding to one of my papers are listed under *Publications*.
 
-<!-- Future: CIRM, Hausdorff trimester -->
-- *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM.
+<!-- Future: Hausdorff trimester: Carleson -->
+- *Primes, Proofs and Computers*, inaugural lecture, May 2024. ([slides](talks/antritt.pdf), [Lean demo](talks/AntrittDemo.lean))
+<!-- - *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM. -->
 - *The Sobolev inequality in Lean*, March 2024. [Informal Formalization Seminar](https://jcommelin.github.io/informal-formalization-seminar/), Amsterdam. ([slides](talks/Informal2024Sobolev.pdf))
 - *The internals of Lean*, January 2024. [Computer-verified proofs: 48 hours in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). ([slides](talks/LeanInternals.pdf), [workshop repository](https://github.com/fpvandoorn/LeanInRome/))
 - *Mathematics in Lean*, [Hausdorff School](https://www.mathematics.uni-bonn.de/hsm/hsm-hausdorff-schools/hs_2023_09_18), Bonn, Germany, September 2023. ([slides](talks/math_in_lean.pdf), [school repository](https://github.com/fpvandoorn/HausdorffSchoolLean/))
