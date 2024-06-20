@@ -77,7 +77,7 @@ I have also studied the research question of which higher inductive types can be
 Talks corresponding to one of my papers are listed under *Publications*.
 
 <!-- Future: Hausdorff trimester: Carleson -->
-- *Towards a formalized proof of Carleson’s theorem*, June 2024. Workshop: Formalization of Mathematics, Bonn ([slides](talks/carleson2406.pdf), [webpage](https://florisvandoorn.com/carleson/))
+- *Towards a formalized proof of Carleson’s theorem*, June 2024. Workshop: Formalization of Mathematics, Bonn ([slides](talks/carleson2406.pdf), [recording](https://www.youtube.com/watch?v=PNaOSAPtvv0), [webpage](https://florisvandoorn.com/carleson/))
 - *Primes, Proofs and Computers*, inaugural lecture, May 2024. ([slides](talks/antritt.pdf), [Lean demo](talks/AntrittDemo.lean))
 <!-- - *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM. -->
 - *The Sobolev inequality in Lean*, March 2024. [Informal Formalization Seminar](https://jcommelin.github.io/informal-formalization-seminar/), Amsterdam. ([slides](talks/Informal2024Sobolev.pdf))
