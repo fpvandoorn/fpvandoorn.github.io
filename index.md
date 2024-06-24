@@ -16,15 +16,17 @@ Germany
 ``` -->
 <!-- office phone: +49-228-73-2951 -->
 
-I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) since October 2023. I am working on formalized mathematics in the [Lean Theorem Prover](https://leanprover.github.io/). I am a maintainer of its mathematical library [mathlib](https://leanprover-community.github.io/), and my latest project was the [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/). In this project, we formalized an important result in differential topology, namely Gromov's h-principle for first-order differential relations using a technique called *convex integration*.
+I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the workgroup Formal Mathematics. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great details.
 
-To try Lean, I recommend the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). Or check out [these other ways of learning Lean](https://leanprover-community.github.io/learn.html).
+I am mainly working using the [Lean Theorem Prover](https://leanprover.github.io/), and I am a maintainer of its mathematical library [mathlib](https://leanprover-community.github.io/). Projects that I've done include:
+* The [Carleson project](https://florisvandoorn.com/carleson/), proving [Carleson's theorem](https://en.wikipedia.org/wiki/Carleson%27s_theorem) generalized to doubling metric measure spaces.
+* The [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/), formalizing Gromov's h-principle and concluding the existence of an eversion of a sphere.
+* The [Flypitch project](https://flypitch.github.io/), formalizing the independence of the continuum hypothesis.
+* The [Spectral sequences project](https://github.com/cmu-phil/Spectral), formalizing the (cohomological) Serre spectral sequence using synthetic homotopy theory. This was written on top of [the HoTT library for Lean 2](https://github.com/leanprover/lean2/blob/master/hott/hott.md).
 
-<!-- To try Lean, I recommend the <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">Natural Number Game</a> by Kevin Buzzard and Mohammad Pedramfar. -->
+To get a feel for Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-Until September 2023, I was a postdoc at the [mathematics department](https://www.imo.universite-paris-saclay.fr/en/) of the [University of Paris-Saclay](https://www.universite-paris-saclay.fr/en), working with [Patrick Massot](https://www.imo.universite-paris-saclay.fr/~pmassot/en/). Before that, I was a postdoc at the [mathematics department](http://www.mathematics.pitt.edu/) of the University of Pittsburgh, working with [Tom Hales](https://sites.google.com/site/thalespitt/) on the [Formal Abstracts](https://formalabstracts.github.io/) and [Flypitch](https://flypitch.github.io/) projects. I did my PhD at [Carnegie Mellon University](https://www.cmu.edu/index.html) under the supervision of [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/) and [Steve Awodey](https://www.andrew.cmu.edu/user/awodey/). My **dissertation** is titled *["On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory"](papers/dissertation.pdf)*. [Full CV (pdf)](files/cv.pdf).
-
-
+I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory.
 <!-- <p>
 I previously studied at the <a href="https://www.uu.nl/en"><a href="files/cv.pdf">Full CV (pdf)</a>.Utrecht University</a> in the Netherlands
 where I received a B.Sc. in Mathematics, a B.Sc. in Physics and a M.Sc. in Mathematics. My master
@@ -34,8 +36,9 @@ the <a href="http://www.ru.nl/">Radboud University Nijmegen</a>. I was also trai
 Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 </p> -->
 
-<!-- ## News -->
+## News
 
+* *June 24*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project.
 * *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/))
 <!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
 <!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
@@ -44,15 +47,22 @@ Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
 
 <!-- * *October 2023*: I started my professor position in Bonn! -->
 
-## Research
+## Short CV
 
-I formalize mathematical results and develop new tools for the [Lean](https://leanprover.github.io/) Theorem prover. I am a contributor and maintainer of [mathlib](https://leanprover-community.github.io/). I have formalized results from many areas of mathematics, including measure theory, set theory, model theory, and combinatorics. Together with [Jesse Michael Han](https://jesse-michael-han.github.io/), I formalized the independence of the continuum hypothesis in the [Flypitch project](https://flypitch.github.io/), which was one of the few remaining unformalized problems on [Freek Wiedijk's list](https://www.cs.ru.nl/~freek/100/). The proof required formalizing an internal model of set theory in Lean and formalizing a notion of forcing. We used Boolean-valued forcing for our proof.
+* October 2023 - present: Professor at the University of Bonn
+* 2021 - 2023: Postdoc at the [mathematics department](https://www.imo.universite-paris-saclay.fr/en/) of the [University of Paris-Saclay](https://www.universite-paris-saclay.fr/en), working with [Patrick Massot](https://www.imo.universite-paris-saclay.fr/~pmassot/en/).
+* 2018 - 2021: Postdoc at the [mathematics department](http://www.mathematics.pitt.edu/) of the University of Pittsburgh, working with [Tom Hales](https://sites.google.com/site/thalespitt/) on the [Formal Abstracts](https://formalabstracts.github.io/) and [Flypitch](https://flypitch.github.io/) projects.
+* 2013-2018: PhD at [Carnegie Mellon University](https://www.cmu.edu/index.html) under the supervision of [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/) and [Steve Awodey](https://www.andrew.cmu.edu/user/awodey/). My **dissertation** is titled *["On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory"](papers/dissertation.pdf)*.
+
+See also my [full CV (pdf)](files/cv.pdf).
+
+<!-- I formalize mathematical results and develop new tools for the [Lean](https://leanprover.github.io/) Theorem prover. I am a contributor and maintainer of [mathlib](https://leanprover-community.github.io/). I have formalized results from many areas of mathematics, including measure theory, set theory, model theory, and combinatorics. Together with [Jesse Michael Han](https://jesse-michael-han.github.io/), I formalized the independence of the continuum hypothesis in the [Flypitch project](https://flypitch.github.io/), which was one of the few remaining unformalized problems on [Freek Wiedijk's list](https://www.cs.ru.nl/~freek/100/). The proof required formalizing an internal model of set theory in Lean and formalizing a notion of forcing. We used Boolean-valued forcing for our proof.
 
 I also formalized another problem on Wiedijk's list, proving that it is impossible to partition a cube into finitely many smaller cubes. Recently, I have formalized quite some measure theory, including the Haar measure and Fubini's theorem for the Bochner integral. I have furthermore worked on various tactics, tools, and programs to aid formalization in Lean.
 
 I am interested in [Homotopy Type Theory](https://homotopytypetheory.org/) (HoTT), which is a connection between homotopy theory and type theory, where one interprets the basic concepts in the logic of type theory in a geometric way. Using this interpretation, you can define many concepts of algebraic topology, like homotopy and (co)homology groups synthetically into the type theory. Since the homotopy theoretic definitions are very close to the logical foundations, it is feasible to formalize many of these results in a proof assistant, without being much more effort than proving these results on paper. I have formalized a lot of Homotopy Type Theory in [the HoTT library for Lean 2](https://github.com/leanprover/lean2/blob/master/hott/hott.md) and in the [Spectral Sequence project](https://github.com/cmu-phil/Spectral), where I was the main author of both. My main interest in this field is *synthetic homotopy theory*, which is the study of types as spaces in algebraic topology. My main contribution was to give a synthetic definition of the (cohomological) Serre and Atiyah-Hirzebruch Spectral sequences in Lean.
 
-I have also studied the research question of which higher inductive types can be constructed from ordinary inductive types and one simple higher inductive type, the homotopy pushout.
+I have also studied the research question of which higher inductive types can be constructed from ordinary inductive types and one simple higher inductive type, the homotopy pushout. -->
 
 ## Publications
 - Floris van Doorn, Heather Macbeth. *Integrals Within Integrals: A Formalization of the Gagliardo-Nirenberg-Sobolev Inequality*, to appear at ITP 2024.
@@ -76,7 +86,6 @@ I have also studied the research question of which higher inductive types can be
 
 Talks corresponding to one of my papers are listed under *Publications*.
 
-<!-- Future: Hausdorff trimester: Carleson -->
 - *Towards a formalized proof of Carleson’s theorem*, June 2024. Workshop: Formalization of Mathematics, Bonn ([slides](talks/carleson2406.pdf), [recording](https://www.youtube.com/watch?v=PNaOSAPtvv0), [webpage](https://florisvandoorn.com/carleson/))
 - *Primes, Proofs and Computers*, inaugural lecture, May 2024. ([slides](talks/antritt.pdf), [Lean demo](talks/AntrittDemo.lean))
 <!-- - *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM. -->
