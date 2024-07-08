@@ -119,6 +119,7 @@ Talks corresponding to one of my papers are listed under *Publications*.
 ## Unpublished Work
 <!-- TODO: fix layout -->
 
+- *Carleson Operators on Doubling Metric Measure Spaces*, Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele. Preprint and blueprint for Lean formalization ([arXiv](https://arxiv.org/abs/2405.06423), [Github](https://github.com/fpvandoorn/carleson))
 - *Designing a general library for convolutions*, Floris van Doorn. Preprint ([arXiv](https://arxiv.org/abs/2210.07693))
 - *On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory*, Floris van Doorn. Dissertation. Committee: Jeremy Avigad, Steve Awodey, Ulrik Buchholtz, and Mike Shulman.
 - *Logic and Proof*, Jeremy Avigad, Robert Y. Lewis, Floris van Doorn. Lecture notes for the course Logic and Mathematical Inquiry ([Interactive version](http://avigad.github.io/logic_and_proof/logic_and_proof.pdf))
