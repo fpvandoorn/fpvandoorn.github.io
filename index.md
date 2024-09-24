@@ -4,7 +4,7 @@
 
 ```
 e-mail: fpvdoorn@gmail.com
-office: 1.035
+office: Endenicher Allee 62 (the building next to the Math department), room 1.002
 ```
 <!-- ```
 address:
@@ -16,38 +16,47 @@ Germany
 ``` -->
 <!-- office phone: +49-228-73-2951 -->
 
+## News
+
+* *September 24*: We are halfway done with the [Carleson's project](http://florisvandoorn.com/carleson/)! This is by counting the number of lemmas formalized. We are probably not quite halfway done with the total work, since some of the harder parts still need to be doing
+<!-- (on the other hand, some preliminaries not in the blueprint are not counted towards our progress.) -->
+* *June 24*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project.
+<!-- * *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/)) -->
+<!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
+<!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
+<!-- * *Winter 23/24*: I'm taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/) -->
+<!-- * *October 2023*: I started my professor position in Bonn! -->
+
+## Team
+
+* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc)
+* [Michael Rothgang](https://www2.mathematik.hu-berlin.de/~rothganm/) (postdoc) <!-- link needs updating soon? -->
+* Arend Mellendijk (PhD student)
+
+## Teaching
+
+* WiSe 24/25: Formalized Mathematics in Lean <!-- todo: link -->
+* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
+* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
+
+See also [Past Teaching](#past-teaching) below.
+
+## About me
+
 I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the workgroup Formal Mathematics. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great details.
 
 I am mainly working using the [Lean Theorem Prover](https://leanprover.github.io/), and I am a maintainer of its mathematical library [mathlib](https://leanprover-community.github.io/). Projects that I've done include:
 * The [Carleson project](https://florisvandoorn.com/carleson/), proving [Carleson's theorem](https://en.wikipedia.org/wiki/Carleson%27s_theorem) generalized to doubling metric measure spaces.
+* I contributed to the [formalization of the Polynomial Freiman-Ruzsa Conjecture](https://teorth.github.io/pfr/).
 * The [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/), formalizing Gromov's h-principle and concluding the existence of an eversion of a sphere.
 * The [Flypitch project](https://flypitch.github.io/), formalizing the independence of the continuum hypothesis.
 * The [Spectral sequences project](https://github.com/cmu-phil/Spectral), formalizing the (cohomological) Serre spectral sequence using synthetic homotopy theory. This was written on top of [the HoTT library for Lean 2](https://github.com/leanprover/lean2/blob/master/hott/hott.md).
 
-To get a feel for Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
+To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory.
-<!-- <p>
-I previously studied at the <a href="https://www.uu.nl/en"><a href="files/cv.pdf">Full CV (pdf)</a>.Utrecht University</a> in the Netherlands
-where I received a B.Sc. in Mathematics, a B.Sc. in Physics and a M.Sc. in Mathematics. My master
-thesis is <i><a href="papers/thesis.pdf">Explicit convertibility proofs in Pure Type Systems</a></i>
-supervised by <a href="https://www.cs.ru.nl/~freek/">Freek Wiedijk</a> at
-the <a href="http://www.ru.nl/">Radboud University Nijmegen</a>. I was also trainer for the Dutch
-Mathematical Olympiad. <a href="files/cv.pdf">Full CV (pdf)</a>.
-</p> -->
+I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games.
 
-## News
-
-* *June 24*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project.
-* *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/))
-<!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
-<!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
-* *Winter 23/24*: I'm taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
-
-
-<!-- * *October 2023*: I started my professor position in Bonn! -->
-
-## Short CV
+### Short CV
 
 * October 2023 - present: Professor at the University of Bonn
 * 2021 - 2023: Postdoc at the [mathematics department](https://www.imo.universite-paris-saclay.fr/en/) of the [University of Paris-Saclay](https://www.universite-paris-saclay.fr/en), working with [Patrick Massot](https://www.imo.universite-paris-saclay.fr/~pmassot/en/).
