@@ -35,7 +35,7 @@ Germany
 
 ## Teaching
 
-* WiSe 24/25: Formalized Mathematics in Lean <!-- todo: link -->
+* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
 * SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
 * WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
 
