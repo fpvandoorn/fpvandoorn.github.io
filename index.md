@@ -30,7 +30,7 @@ Germany
 ## Team
 
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc)
-* [Michael Rothgang](https://www2.mathematik.hu-berlin.de/~rothganm/) (postdoc) <!-- link needs updating soon? -->
+* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc)
 * Arend Mellendijk (PhD student)
 
 ## Teaching
