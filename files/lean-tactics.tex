@@ -113,7 +113,7 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   % is this obsolete by split?
     \hline
   % (stronger than \lean{simp [*] at *})
-  & \\ % nicer page break
+  \newpage
   &\textbf{Reasoning with equalities, inequalities, and other relations}\\
   % the technical difference is that the previous category can be applied to any subterm anywhere,
   % while the tactics below require that the goal is an (in)equality
@@ -166,8 +166,7 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \makecell[lt]{\lean{ring} / \lean{noncomm\_ring} / \lean{module} \\ \lean{field\_simp} / \lean{abel} / \lean{group}} & prove the goal by using the axioms of a commutative ring / ring / module / field / abelian group / group. \\
   \lean{aesop} & simplify the goal, and use various techniques to prove the goal. \\
   \lean{tauto} & prove logical tautologies. \\
-  \lean{decide} & run a decision procedure. \\
-  \lean{fun\_prop} & prove that a function satisfies a property (continuity, measurability, \ldots). \\
+  \lean{decide} & run a decision procedure to prove the goal (if it is decidable). \\
   % \lean{slim\_check} & try to find a counterexample to the current goal.\\
   \hline
   % &\textbf{Goal manipulation}\\
@@ -179,8 +178,7 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \lean{try} \tactic & apply \tactic only if it succeeds. \\
   \textcolor{red}{\lean{sorry}} & admit the current goal.\\
   \hline
-  & \\ % nicer page break
-  & \\ % nicer page break
+  \newpage
   &\textbf{Domain-specific tactics}\\
   % finiteness
   \lean{fin\_cases h} & split a hypothesis \lean{h} into finitely many cases. \\
@@ -189,6 +187,7 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \lean{compute\_degree} & prove (in)equalities about the degree of a polynomial \\
   \lean{monicity} & prove that a polynomial is monic \\
   % topology/analysis
+  \lean{fun\_prop} & prove that a function satisfies a property (continuity, measurability, \ldots). \\
   \lean{measurability} & prove that a set or function is measurable. \\
   \lean{filter\_upwards [h1, h2]} & Show that an \lean{Eventually} goal follows from the given hypotheses. \\
   % continuity intentionally left out
