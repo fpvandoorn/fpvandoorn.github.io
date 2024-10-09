@@ -58,7 +58,7 @@ I am interested in formalized mathematics, tools and automation for formalizatio
 
 ### Short CV
 
-* October 2023 - present: Professor at the University of Bonn
+* 2023 - present: Professor at the University of Bonn
 * 2021 - 2023: Postdoc at the [mathematics department](https://www.imo.universite-paris-saclay.fr/en/) of the [University of Paris-Saclay](https://www.universite-paris-saclay.fr/en), working with [Patrick Massot](https://www.imo.universite-paris-saclay.fr/~pmassot/en/).
 * 2018 - 2021: Postdoc at the [mathematics department](http://www.mathematics.pitt.edu/) of the University of Pittsburgh, working with [Tom Hales](https://sites.google.com/site/thalespitt/) on the [Formal Abstracts](https://formalabstracts.github.io/) and [Flypitch](https://flypitch.github.io/) projects.
 * 2013-2018: PhD at [Carnegie Mellon University](https://www.cmu.edu/index.html) under the supervision of [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/) and [Steve Awodey](https://www.andrew.cmu.edu/user/awodey/). My **dissertation** is titled *["On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory"](papers/dissertation.pdf)*.
