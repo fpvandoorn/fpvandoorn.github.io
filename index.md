@@ -18,7 +18,7 @@ Germany
 
 ## News
 
-* *October 2024*: There is an almost weekly seminar on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below.
+* *October 2024*: There is an almost weekly [seminar](https://github.com/fpvandoorn/BonnLeanSeminar) on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below.
 * *October 2024*: This semester I'm organizing a weekly Lean hacking session on Wednesdays 18:15-20:00 in seminar room 0.006. Feel free to join. There will be cookies!
 * *October 2024*: Maria, Michael and Arend joined the formalization group in Bonn.
 * *September 2024*: We are halfway done with the [Carleson's project](http://florisvandoorn.com/carleson/)! This is by counting the number of lemmas formalized. We are probably not quite halfway done with the total work, since some of the harder parts still need to be doing
@@ -45,6 +45,8 @@ Germany
 See also [Past Teaching](#past-teaching) below.
 
 ## Seminar Schedule
+
+[Seminar repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 
 * 18.10 Arend Mellendijk on monadic programming in Lean
 * 25.10 Floris van Doorn on metaprogramming in Lean
