@@ -21,7 +21,8 @@ Germany
 * *October 2024*: There is an almost weekly [seminar](https://github.com/fpvandoorn/BonnLeanSeminar) on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below.
 * *October 2024*: This semester I'm organizing a weekly Lean hacking session on Wednesdays 18:15-20:00 in seminar room 0.006. Feel free to join. There will be cookies!
 * *October 2024*: Maria, Michael and Arend joined the formalization group in Bonn.
-* *September 2024*: We are halfway done with the [Carleson's project](http://florisvandoorn.com/carleson/)! This is by counting the number of lemmas formalized. We are probably not quite halfway done with the total work, since some of the harder parts still need to be doing
+* *September 2024*: We are halfway done with the [Carleson's project](http://florisvandoorn.com/carleson/)! This is by counting the number of lemmas formalized.
+<!-- We are probably not quite halfway done with the total work, since some of the harder parts still need to be done. -->
 <!-- (on the other hand, some preliminaries not in the blueprint are not counted towards our progress.) -->
 * *June 2024*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project.
 <!-- * *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/)) -->
