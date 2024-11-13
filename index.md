@@ -53,8 +53,8 @@ See also [Past Teaching](#past-teaching) below.
 * 25.10 Floris van Doorn on metaprogramming in Lean
 * 01.11 No seminar
 * 08.11 Floris van Doorn on metaprogramming in Lean
-* 15.11 TBA
-* 22.11 TBA
+* 15.11 Floris van Doorn on metaprogramming in Lean and exercises
+* 22.11 Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
 * 29.11 TBA
 * 15.11 TBA
 * 06.12 TBA
@@ -120,6 +120,7 @@ I have also studied the research question of which higher inductive types can be
 Talks corresponding to one of my papers are listed under *Publications*.
 
 - *Formalizing a proof of Carleson’s theorem*, Oct 2024. Homotopy Type Theory Electronic Seminar Talks, online. ([slides](talks/HoTTEST2024.pdf), [recording](https://www.youtube.com/watch?v=vMEGU8fL1xM))
+<!-- Jun 2024 & \emph{Carleson operators on doubling metric measure spaces}, joint with Christoph Thiele, Special Topic School: \href{https://www.mathematics.uni-bonn.de/hsm-school/programs/schools/hsm-special-topic-schools/sts_maximal-operators-and-applications}{Maximal Operators and Applications}, Bonn, Germany.\\ -->
 - *Towards a formalized proof of Carleson’s theorem*, June 2024. Workshop: Formalization of Mathematics, Bonn ([slides](talks/carleson2406.pdf), [recording](https://www.youtube.com/watch?v=PNaOSAPtvv0), [webpage](https://florisvandoorn.com/carleson/))
 - *Primes, Proofs and Computers*, inaugural lecture, May 2024. ([slides](talks/antritt.pdf), [Lean demo](talks/AntrittDemo.lean))
 <!-- - *Instances and Classes*, March 2024. [Lean for the curious mathematician](https://conferences.cirm-math.fr/2970.html), CIRM. -->
