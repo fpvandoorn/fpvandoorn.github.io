@@ -3,7 +3,7 @@
 # Floris van Doorn
 
 ```
-e-mail: fpvdoorn@gmail.com
+e-mail: vdoorn@math.uni-bonn.de
 office: Endenicher Allee 62 (the building next to the Math department), room 1.002
 ```
 <!-- ```
