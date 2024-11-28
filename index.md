@@ -55,9 +55,8 @@ See also [Past Teaching](#past-teaching) below.
 * 08.11 Floris van Doorn on metaprogramming in Lean
 * 15.11 Floris van Doorn on metaprogramming in Lean and exercises
 * 22.11 Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
-* 29.11 TBA
-* 15.11 TBA
-* 06.12 TBA
+* 29.11 No seminar
+* 06.12 No seminar
 * 13.12 TBA
 * 20.12 TBA
 * 10.01 TBA
