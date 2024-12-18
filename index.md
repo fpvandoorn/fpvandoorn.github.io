@@ -57,8 +57,8 @@ See also [Past Teaching](#past-teaching) below.
 * 22.11 Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
 * 29.11 No seminar
 * 06.12 No seminar
-* 13.12 TBA
-* 20.12 TBA
+* 13.12 No seminar
+* 20.12 No seminar
 * 10.01 TBA
 * 17.01 TBA
 * 24.01 TBA
@@ -161,7 +161,7 @@ Talks corresponding to one of my papers are listed under *Publications*.
 - *Constructing the Propositional Truncation using Nonrecursive HITs*, Floris van Doorn. Blog post of the [HoTT Blog](http://homotopytypetheory.org/blog/), July 2015. ([Link](http://homotopytypetheory.org/2015/07/28/constructing-the-propositional-truncation-using-nonrecursive-hits/))
 - Short notes on the *Applications of the Serre Spectral Sequence*, November 2015.
 - *Propositional Calculus in Coq*, Floris van Doorn. ([arXiv:1503.08744](https://arxiv.org/abs/1503.08744)), May 2014.
-- *Explicit Convertibility Proofs in Pure Type Systems*, Floris van Doorn. Master thesis. Advisor: [Freek Wiedijk](https://www.cs.ru.nl/~freek/)
+- *Explicit Convertibility Proofs in Pure Type Systems*, Floris van Doorn. Master thesis ([pdf](papers/thesis.pdf), [Coq formalization](ptsf/index.html)). Advisor: [Freek Wiedijk](https://www.cs.ru.nl/~freek/)
 
 ## Past Teaching
 
