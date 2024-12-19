@@ -77,7 +77,7 @@ I am mainly working using the [Lean Theorem Prover](https://leanprover.github.io
 
 To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games.
+I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games. I have some [tips](files/BonnPC.md) on configuring some things for the office computers in Bonn.
 
 ### Short CV
 
