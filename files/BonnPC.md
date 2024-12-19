@@ -3,7 +3,7 @@
 The office computers (as of December 2024) run Debian GNU/Linux 11 (bullseye), with GUI LXQt.
 Here are some tips for setting up the computer.
 
-# Language
+## Language
 
 * You need to login with your `@math.uni-bonn.de` username and password.
 * The keyboard layout for the login screen is German. This cannot be changed. 
@@ -13,7 +13,7 @@ Here are some tips for setting up the computer.
 export LANG=en_GB.UTF-8
 ```
 
-# Lean
+## Lean
 
 * VSCodium is installed on some office computers, but not others. If you don't have it, you can contact the IT department with your computer name to ask them to install it. You can find your computer name by opening a shell (e.g. LXTerminal) 
 * **important** Everything related to Lean should be done in your `/local/<Username>` folder (in the Filesystem root). Lean + Mathlib cache should already be configured correctly to put the `.elan` and `.cache` folders in that directory.
@@ -22,9 +22,9 @@ When I installed Lean, `elan` was not added to the `$PATH` environment variable 
 If not, edit `~/.bashrc` by adding the line `export PATH="${PATH}:/local/<userName>/.elan/bin"` and inserting your username.
 
 Minor:
-# `Go Forward` should be bound to `Alt+RightArrow`.
+* `Go Forward` should be bound to `Alt+RightArrow`.
 
-# Mouse & Keyboard
+## Mouse & Keyboard
 
 * I personally dislike (non-flat) mouse acceleration in any form, which is enabled by default, and I didn't see an option in the GUI to fix it.
 I fixed it by creating a file `startup.sh` in my HOME directory with the following contents:
@@ -44,7 +44,7 @@ I didn't find a way to automatically run this when logging in (neither `.profile
 * In Firefox, consider enabling `Settings > autoscrolling` to enable scrolling with Middle mouse-button
 * In `Preferences > Window Manager > Keyboard` consider adding more convenient keyboard shortcuts for `Maximise window` and `Tile window to the left/right`.
 
-# Terminal and Git
+## Terminal and Git
 
 * Consider changing your bash prompt. Download [this script](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh) and add the following to `.bashrc`:
 ```
@@ -157,11 +157,11 @@ alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
 	default = current
 ```
 
-# Note to self:
+## Note to self:
 * Shift-insert in LXTerminal does not paste, ctrl+shift+V does.
 
-# Annoyances
+## Annoyances
 * `ctrl` closes the start menu, making the search-box near useless. (this is fixed in LXQt in 2022, but not in the old version we have.)
 * Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable.
 * `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script?
-* USB-C port doesn't seem to be able to connect to a screen.
+* USB-C port doesn't seem to be able to connect to a monitor.
