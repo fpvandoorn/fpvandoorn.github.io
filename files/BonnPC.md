@@ -72,7 +72,7 @@ alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
 * Some Git configuration options are useful. You can modify `.gitconfig` (also with `git config --global --edit`). This is my current setup (I don't use all aliases, but a few are very useful, especially `git l` and `git la`):
 ```
 [core]
-	editor = code --wait
+	editor = codium
 	autocrlf = input
 	compression = -1
 [pull]
