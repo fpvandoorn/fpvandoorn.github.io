@@ -17,12 +17,10 @@ export LANG=en_GB.UTF-8
 
 * VSCodium is installed on some office computers, but not others. If you don't have it, you can contact the IT department with your computer name to ask them to install it. You can find your computer name by opening a shell (e.g. LXTerminal) 
 * **important** Everything related to Lean should be done in your `/local/<Username>` folder (in the Filesystem root). Lean + Mathlib cache should already be configured correctly to put the `.elan` and `.cache` folders in that directory.
-* If you have trouble installing Lean, run the `elan` installation script manually from a shell. Since the `.profile` script is not run on startup 
-When I installed Lean, `elan` was not added to the `$PATH` environment variable correctly during installation. 
-If not, edit `~/.bashrc` by adding the line `export PATH="${PATH}:/local/<userName>/.elan/bin"` and inserting your username.
+* If you have trouble installing Lean, run the `elan` installation script manually from a shell. Since the `.profile` script is not run on startup, Lean might not be added to your PATH correctly during installation. If this happens to you, edit `~/.bashrc` manually by adding the line `export PATH="${PATH}:/local/<userName>/.elan/bin"` and inserting your username (and then restarting your terminal).
 
 Minor:
-* `Go Forward` should be bound to `Alt+RightArrow`.
+* In VSCode, you might want to edit the Keyboard Shortcuts and bind `Go Forward` to `Alt+RightArrow`.
 
 ## Mouse & Keyboard
 
