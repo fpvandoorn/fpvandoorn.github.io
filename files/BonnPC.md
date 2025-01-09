@@ -6,7 +6,7 @@ Here are some tips for setting up the computer.
 ## Language
 
 * You need to login with your `@math.uni-bonn.de` username and password.
-* The keyboard layout for the login screen is German. This cannot be changed. 
+* The keyboard layout for the login screen is German. This cannot be changed. (This does *not* apply to entering your password after locking the screen: there, there you have the option to change the keyboard language.)
 * The OS language and keyboard layout are German by default, and can be changed. 
 * If you want to change the OS language to English then create a file called ".locale" in your home directory with the following content:
 ```
@@ -36,7 +36,7 @@ You can run `xinput` and `xinput list-props` to find the name and properties of 
 libinput Accel Speed (300)
 libinput Accel Profile Enabled (303)
 ```
-The `0.7` can be modified to change the sentivity of the mouse linearly.
+The `0.7` can be modified to change the sensivity of the mouse linearly.
 I didn't find a way to automatically run this when logging in (neither `.profile`, nor autostart (via GUI or directly editing a config file) seems to work). So I just run this command from `.bashrc` and then it gets executed when I open a shell for the first time.
 
 * In Firefox, consider enabling `Settings > autoscrolling` to enable scrolling with Middle mouse-button
