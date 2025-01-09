@@ -59,10 +59,10 @@ See also [Past Teaching](#past-teaching) below.
 * 06.12 No seminar
 * 13.12 No seminar
 * 20.12 No seminar
-* 10.01 TBA
-* 17.01 TBA
-* 24.01 TBA
-* 31.01 TBA
+* 10.01 No seminar
+* 17.01 No seminar
+* 24.01 Seminar TBA
+* 31.01 Seminar TBA
 
 ## About me
 
