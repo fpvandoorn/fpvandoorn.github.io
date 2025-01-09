@@ -6,7 +6,7 @@ Here are some tips for setting up the computer.
 ## Language
 
 * You need to login with your `@math.uni-bonn.de` username and password.
-* The keyboard layout for the login screen is German. This cannot be changed. (This applies both to the first login after booting the computer, and to later log-ins after locking the screen.)
+* The keyboard layout for the login screen is German. This cannot be changed. (This does *not* apply to entering your password after locking the screen: there, there you have the option to change the keyboard language.)
 * The OS language and keyboard layout are German by default, and can be changed. 
 * If you want to change the OS language to English then create a file called ".locale" in your home directory with the following content:
 ```
