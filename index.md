@@ -119,6 +119,7 @@ I have also studied the research question of which higher inductive types can be
 
 Talks corresponding to one of my papers are listed under *Publications*.
 
+- *Progress report on the Carleson Project*, Jan 2025. Lean Together, online ([slides](talks/LT25carleson.pdf), [recording](https://www.youtube.com/watch?v=w29spLdOFrY))
 - *Formalizing a proof of Carleson’s theorem*, Oct 2024. Homotopy Type Theory Electronic Seminar Talks, online. ([slides](talks/HoTTEST2024.pdf), [recording](https://www.youtube.com/watch?v=vMEGU8fL1xM))
 <!-- Jun 2024 & \emph{Carleson operators on doubling metric measure spaces}, joint with Christoph Thiele, Special Topic School: \href{https://www.mathematics.uni-bonn.de/hsm-school/programs/schools/hsm-special-topic-schools/sts_maximal-operators-and-applications}{Maximal Operators and Applications}, Bonn, Germany.\\ -->
 - *Towards a formalized proof of Carleson’s theorem*, June 2024. Workshop: Formalization of Mathematics, Bonn ([slides](talks/carleson2406.pdf), [recording](https://www.youtube.com/watch?v=PNaOSAPtvv0), [webpage](https://florisvandoorn.com/carleson/))
