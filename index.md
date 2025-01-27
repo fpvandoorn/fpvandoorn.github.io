@@ -64,6 +64,7 @@ See also [Past Teaching](#past-teaching) below.
 * 24.01 No seminar
 * 31.01 Kunhong presentation: Formalization of type theory
 * 07.02 Kunhong master thesis defense: On the Formalization of the Simplicial Model of HoTT
+* 14.02 **unusual time and place:** 12:00 in the CS Building (room TBD). Henri Nikoleit on FunSearch
 
 ## About me
 
