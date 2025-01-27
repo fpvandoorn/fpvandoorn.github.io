@@ -61,7 +61,7 @@ See also [Past Teaching](#past-teaching) below.
 * 20.12 No seminar
 * 10.01 No seminar
 * 17.01 No seminar
-* 24.01 Probably no seminar
+* 24.01 No seminar
 * 31.01 Kunhong presentation: Formalization of type theory
 * 07.02 Kunhong master thesis defense: On the Formalization of the Simplicial Model of HoTT
 
