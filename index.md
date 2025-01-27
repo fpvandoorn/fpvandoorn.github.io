@@ -47,6 +47,8 @@ See also [Past Teaching](#past-teaching) below.
 
 ## Seminar Schedule
 
+Usual time: Fridays 14:15-16:00 in room N0.003.
+
 [Seminar repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 
 * 18.10 Arend Mellendijk on monadic programming in Lean
