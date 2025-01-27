@@ -15,9 +15,9 @@
 \newcommand{\lean}[1]{{\tt #1}}
 % \newcommand{\nv}{\textit{new\_name}\xspace}
 % \newcommand{\nom}{\textit{name}\xspace}
-\newcommand{\expr}{\textit{expr}\xspace}
-\newcommand{\proposition}{\textit{proposition}\xspace}
-\newcommand{\tactic}{\textit{tac}\xspace} % also used for tactic sequences
+\newcommand{\expr}[1][]{\textit{expr#1}\xspace}
+\newcommand{\proposition}{\textit{prop}\xspace}
+\newcommand{\tactic}[1][]{\textit{tac#1}\xspace} % also used for tactic sequences
 \newcommand{\type}{\textit{type}\xspace}
 \newcommand{\hyp}{\textit{hyp}\xspace}
 \newcommand{\light}{\faLightbulbO\xspace}
@@ -35,7 +35,9 @@
 \begin{document}
 \pagestyle{empty}
 \begin{center}
- \large\textsc{Lean 4 Cheatsheet}
+ {\large\textsc{Lean 4 tactic cheatsheet}}
+
+ {\scriptsize Last updated: \today}
 \end{center}
 
 \begin{center}
@@ -78,12 +80,13 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \hline
   &\textbf{Context manipulation}\\
   \lean{have h :} \proposition\ \lean{:=} \expr & add a new hypothesis \lean{h} of type \proposition. \warning \textbf{Do not use for data!} \\
-  \lean{have h :} \proposition\ \lean{:= by} & add hypothesis \lean{h} after proving it using tactics. \warning \textbf{Do not use for data!} \\
+  \lean{have h :} \proposition\ \lean{:= by} \tactic & add hypothesis \lean{h} after proving it using tactics. \warning \textbf{Do not use for data!} \\
   \lean{set x :} \type\ \lean{:=} \expr & add an abbreviation \lean{x} with value \expr. \\
   % let could be useful, but mostly superseded by set. let' allows underscores, but seems to niche to mention
   \lean{clear h} & remove hypothesis \lean{h} from the context.\\
   \lean{rename\_i x h} & rename the last inaccessible names with the given names.\\
-  \lean{show} \expr & Replaces the goal by \expr, if they are equal by definition.\\
+  \lean{show} \expr & replaces the goal by \expr, if they are equal by definition.\\
+  \lean{generalize\_proofs} & add all proofs occurring in the goal to the local context.\\
   % rename, replace, revert
   \hline
   &\textbf{Rewriting and simplifying}\\
@@ -97,7 +100,7 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \lean{simp [*, }\expr\lean{]} & $\ldots$ also simplify with all hypotheses and \expr. \\
   \lean{simp only [}\expr\lean{]}& $\ldots$ only simplify with \expr and basic reductions (not with simp-lemmas). \\
   \lean{simp?}& $\ldots$ let Lean speed up \lean{simp} by specifying which lemmas were used. \\
-  \lean{simp\_rw [}\textit{expr1}\lean{, }\ldots\lean{]} & like \lean{rw}, but uses \lean{simp only} at each step. \\
+  \lean{simp\_rw [}\expr[1]\lean{, }\ldots\lean{]} & like \lean{rw}, but uses \lean{simp only} at each step. \\
   \lean{simp\_all} & repeatedly simplify the goal and all hypothesis using all hypotheses.\\
   % dsimp left out
   \lean{norm\_num} & simplify numerical expressions by calculating. \\
@@ -108,12 +111,12 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
     \makecell[lt]{apply rewrite rules to only part of the goal.
     Use \lean{congr}, \lean{skip}, \lean{ext}, \\ \lean{lhs}, \lean{rhs}, \ldots to navigate to the desired subexpression.
     See \href{https://docs.lean-lang.org/theorem_proving_in_lean4/conv.html}{TPIL}.}\\
-  % \lean{change}
+  \lean{change} \expr & change the current goal to \expr, if they are equal by definition. \\
   \lean{split\_ifs} & case split on every occurrence of \lean{if} \textit{h} \lean{then} \expr\ \lean{else} \expr in the goal. \\
   % is this obsolete by split?
     \hline
   % (stronger than \lean{simp [*] at *})
-  \newpage
+  % \newpage
   &\textbf{Reasoning with equalities, inequalities, and other relations}\\
   % the technical difference is that the previous category can be applied to any subterm anywhere,
   % while the tactics below require that the goal is an (in)equality
@@ -146,11 +149,11 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   %; e.g.~change $\neg\;\forall$ \lean{x, P x} to $\exists$ \lean{x,} $\neg\;$\lean{P x}.
   \\
   \lean{by\_cases h :} \proposition & case-split on \proposition. \\
+  \makecell[lt]{\lean{induction n with }\\ \lean{| zero      =>} \tactic \\ \lean{| succ n ih =>} \tactic} &
+  \makecell[lt]{prove a goal by induction on \lean{n}.\\ \\ \light after writing ``\lean{induction n}'' Lean can generate the cases for you.} \\
   \lean{choose f h using} \expr & extract a function from a forall-exists statement \expr.\\
   \lean{lift n to} \type\ \lean{using h} & lifts a variable to \type (e.g. $\mathbb{N}$) using side-condition \lean{h}.\\
   \lean{zify} / \lean{qify} / \lean{rify} & shift an (in)equality to $\mathbb{Z}$ / $\mathbb{Q}$ / $\mathbb{R}$. \\
-  \makecell[lt]{\lean{induction n with }\\ \lean{| zero      => } \tactic \\ \lean{| succ n ih => }\tactic} &
-  \makecell[lt]{prove a goal by induction on \lean{n}.\\ \\ \light after writing ``\lean{induction n}'' Lean can generate the cases for you.} \\
   %maybe: classical
   % contrapose, absurd intentionally left out
   \hline
@@ -171,14 +174,15 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \hline
   % &\textbf{Goal manipulation}\\
   % \hline
-  &\textbf{Misc}\\
+  &\textbf{Operations on goals/tactics}\\
   \lean{swap} & swap the first two goals. \\
   \lean{pick\_goal} \nat & move goal \nat to the front. \\
-  \lean{all\_goals} \tactic & apply \tactic to all goals. \\
-  \lean{try} \tactic & apply \tactic only if it succeeds. \\
+  \lean{all\_goals} \tactic & run \tactic to all goals. \\
+  \lean{try} \tactic & run \tactic only if it succeeds. \\
+  \tactic[1]\lean{;} \tactic[2] & run \tactic[1] and then \tactic[2] (same as putting them on separate lines). \\
+  \tactic[1] \lean{<;>} \tactic[2] & run \tactic[1] and then \tactic[2] on all goals generated by \tactic[1]. \\
   \textcolor{red}{\lean{sorry}} & admit the current goal.\\
   \hline
-  \newpage
   &\textbf{Domain-specific tactics}\\
   % finiteness
   \lean{fin\_cases h} & split a hypothesis \lean{h} into finitely many cases. \\
@@ -190,6 +194,8 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
   \lean{fun\_prop} & prove that a function satisfies a property (continuity, measurability, \ldots). \\
   \lean{measurability} & prove that a set or function is measurable. \\
   \lean{filter\_upwards [h1, h2]} & Show that an \lean{Eventually} goal follows from the given hypotheses. \\
+  \lean{slice\_lhs}, \lean{slice\_rhs} & Focus on a part of a composition in a category.\\
+    & See \href{https://github.com/leanprover-community/mathlib4/tree/master/Mathlib/Tactic/CategoryTheory}{the source code} for some other category theory tactics. \\
   % continuity intentionally left out
   % maybe mention bicategory, monoidal, mod_cases, reduce_mod_char
   % low-level control tactics intentionally left out: beta, delta,
@@ -199,30 +205,33 @@ If a tactic is not recognized, write \lean{import Mathlib.Tactic} at the top of 
 % maybe: generalize_proofs, infer_instance, inhabit, nontriviality, peel, move_add
 % honourable mentions: \lean{zify}, qify,
 \end{center}
-\textbf{Legend}\\
-\begin{tabular}{ll}
-\light & describes a code action for this tactic.\\
-\internet & requires internet access.\\
-\end{tabular}
-\bigskip
 
 \textbf{Usage note}
 
-This is a quick overview of the most common tactics in Lean with only a short description. To learn more about a tactic or learn its precise syntax or variants, consult its docstring. You can use \lean{\#help tactic} \tactic\ to find the full syntax, variants and more information about \tactic. Use \lean{\#help tactic} to list all imported tactics.
+This is a quick overview of the most common tactics in Lean with only a short description. To learn more about a tactic and to learn its precise syntax or variants, consult its docstring or use \lean{\#help tactic} \tactic.
+
+This list is not complete, and various tactics are intentionally left out.
 \bigskip
 
-\textbf{Some useful commands}
+\textbf{Some useful commands} (Some of these also work as tactics)
 
-Some commands also work as tactics!
 \begin{longtable}{@{}lp{113mm}@{}}
 \lean{\#loogle} \textit{query} & \internet use \href{https://loogle.lean-lang.org/}{Loogle!} to find declarations. \\
 \lean{\#leansearch "}\textit{query}\lean{."} & \internet use \href{https://leansearch.net}{LeanSearch} to find declarations. \\
 \lean{\#exit} & don't compile code after this command.\\
 \lean{\#lint} & run linters to find common mistakes in the code \emph{above} this command.\\
 \lean{\#where} & print current opened namespaces, universes, variables and options.\\
+\lean{\#min\_imports} & print the minimal imports needed for what you've done so far.\\
 \lean{\#help tactic} \tactic & find information about \tactic.\\
 \lean{\#help} \textit{category} & list all tactics/commands/attributes/options/notations.\\
 \end{longtable}
+
+\textbf{Legend}\\
+\begin{tabular}{ll}
+\light & describes a code action for this tactic.\\
+\internet & requires internet access.\\
+\end{tabular}
+\bigskip
 
 % Do we want a list of commands?
 % Very common commands: import, open, variable, namespace, def, theorem, example,
