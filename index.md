@@ -68,6 +68,7 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 * 07.02 Kunhong presentation: Formalization of type theory
 * 14.02 **unusual time and place:** 12:00 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
 * 14.02 (usual time of 14:15 in room N0.003) Kunhong master thesis defense: On the Formalization of the Simplicial Model of HoTT
+* 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense (formalization of model theory in Lean)
 
 ## About me
 
