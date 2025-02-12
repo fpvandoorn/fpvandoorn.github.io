@@ -45,16 +45,16 @@ There is also a *Lean hacking session* which is currently scheduled Wednesdays 1
 Students supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
-* Gabin Kolly (2025); [Github](https://github.com/GabinKolly)<!--, [thesis](theses/GabinKolly.pdf)-->
-* Kunhong Du (2025); [Github](https://github.com/KunhongDu/HoTT-Model)<!--, [thesis](theses/KunhongDu.pdf)--> <!-- PhD with Nicolai Kraus? -->
-* Tim Lichtnau† (2024; main supervisor: [Hugo Moeneclaey](https://www.hugomoeneclaey.com/)); [Github](https://github.com/timlichtnau/)
-* Óscar Álvarez Sánchez (2024; main supervisor: [Catharina Stroppel](https://www.math.uni-bonn.de/ag/stroppel/)); [Github](https://github.com/bolito2/DemazureOperatorsLean), [thesis](theses/OscarAlvarez.pdf)
-* Theofanis Chatzidiamantis Christofo (master, 2024; main supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [Github](https://github.com/thchatzidiamantis/sHoTT)<!--, [thesis](theses/TheofanisChristofo.pdf)--> <!-- PhD in London, Western Ontario -->
+* Gabin Kolly, *Fraïssé limits in Lean* (2025); [Github](https://github.com/GabinKolly)<!--, [thesis](theses/GabinKolly.pdf)-->
+* Kunhong Du, *On the Formalization of the Simplicial Model of HoTT* (2025); [Github](https://github.com/KunhongDu/HoTT-Model)<!--, [thesis](theses/KunhongDu.pdf)--> <!-- PhD with Nicolai Kraus? -->
+* Tim Lichtnau†, *Stacks in Synthetic Algebraic Geometry* (2024; main supervisor: [Hugo Moeneclaey](https://www.hugomoeneclaey.com/)); [Github](https://github.com/timlichtnau/)
+* Óscar Álvarez Sánchez, *Demazure operators and Lean* (2024; main supervisor: [Catharina Stroppel](https://www.math.uni-bonn.de/ag/stroppel/)); [Github](https://github.com/bolito2/DemazureOperatorsLean), [thesis](theses/OscarAlvarez.pdf)
+* Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; main supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [Github](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
-* Hannah Scholz (2024); [Github](https://github.com/scholzhannah/CWComplexes/), <!--[thesis](theses/HannahScholz.pdf)-->
-* Ludwig Monnerjahn (2024); [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) <!--, [thesis](theses/LudwigMonnerjahn.pdf)-->
-* Leo Diedering (2024); [Github](https://github.com/ldiedering)<!--, [thesis](theses/LeoDiedering.pdf)-->
+* Ludwig Monnerjahn, *Formalisation of constructable numbers* (2024); [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) <!--, [thesis](theses/LudwigMonnerjahn.pdf)-->
+* Hannah Scholz, *Formalisation of CW-complexes* (2024); [Github](https://github.com/scholzhannah/CWComplexes/), <!--[thesis](theses/HannahScholz.pdf)-->
+* Leo Diedering, *Contributing to the Formalization of Carleson's Theorem* (2024); [Github](https://github.com/ldiedering)<!--, [thesis](theses/LeoDiedering.pdf)-->
 
 
 ## Past courses
