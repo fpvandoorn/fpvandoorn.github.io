@@ -1,5 +1,5 @@
-title: "Bonn Formalized Mathematics group"
-<!-- <img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="357" align="right"> -->
+<!-- title: "Bonn Formalized Mathematics group" -->
+<!-- todo: add picture -->
 
 # Bonn Formalized Mathematics
 

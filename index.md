@@ -18,6 +18,7 @@ Germany
 
 ## News
 
+* *February 2025*: I've created a [dedicated page](formalized-mathematics) for the formalized mathematics group in Bonn.
 * *October 2024*: There is an almost weekly [seminar](https://github.com/fpvandoorn/BonnLeanSeminar) on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below.
 * *October 2024*: This semester I'm organizing a weekly Lean hacking session on Wednesdays 18:15-20:00 in seminar room 0.006. Feel free to join. There will be cookies!
 * *October 2024*: Maria, Michael and Arend joined the formalization group in Bonn.
@@ -28,44 +29,16 @@ Germany
 <!-- * *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/)) -->
 <!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
 <!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
-<!-- * *Winter 23/24*: I'm taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/) -->
+<!-- * *Winter 23/24*: I've taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/) -->
 <!-- * *October 2023*: I started my professor position in Bonn! -->
 
 ## Teaching
 
-<!-- To be deleted -->
-<!-- * SuSe 25: [Logic of Proof Assistants](https://github.com/fpvandoorn/BonnAnalysis/) -->
-* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
-* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
-* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
-
-See also [Past Teaching](#past-teaching) below.
+For the current courses I'm teaching, see [the group page](formalized-mathematics#ongoing-courses). See also [Past Teaching](#past-teaching) below.
 
 ## Seminar Schedule
 
-Usual time: Fridays 14:15-16:00 in room N0.003.
-
-[Seminar repository](https://github.com/fpvandoorn/BonnLeanSeminar)
-
-<!-- To be deleted -->
-* 18.10 Arend Mellendijk on monadic programming in Lean
-* 25.10 Floris van Doorn on metaprogramming in Lean
-* 01.11 No seminar
-* 08.11 Floris van Doorn on metaprogramming in Lean
-* 15.11 Floris van Doorn on metaprogramming in Lean and exercises
-* 22.11 Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
-* 29.11 No seminar
-* 06.12 No seminar
-* 13.12 No seminar
-* 20.12 No seminar
-* 10.01 No seminar
-* 17.01 No seminar
-* 24.01 No seminar
-* 31.01 Canceled
-* 07.02 Kunhong Du: Formalization of type theory
-* 14.02 **unusual time and place:** 12:15 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
-* 14.02 (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
-* 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
+For the seminar schedule, see [the group page](formalized-mathematics#ongoing-seminar).
 
 ## About me
 
@@ -171,20 +144,28 @@ Talks corresponding to one of my papers are listed under *Publications*.
 
 ## Past Teaching
 
+### University of Bonn
+
+* SuSe 25: Logic of Proof Assistants
+* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
+* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
+* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
+
+
 ### University of Pittsburgh
 
-- Spring 2021: Abstract Algebra (Math 1250).
-- Spring 2020: Topics in Geometry (Math 1290).
-- Spring 2019: Calculus I ([Math 0220](http://calculus.math.pitt.edu/syllabi/0220syllabus.html)).
+* Spring 2021: Abstract Algebra (Math 1250).
+* Spring 2020: Topics in Geometry (Math 1290).
+* Spring 2019: Calculus I ([Math 0220](http://calculus.math.pitt.edu/syllabi/0220syllabus.html)).
 
 ### Carnegie Mellon University
 
-- Fall 2016: TA for Differential and Integral Calculus (21-120) with [Russ Walker](http://www.math.cmu.edu/~rw1k/).
-- Fall 2015: TA for Logic and Mathematical Inquiry (80-211) with [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/). Also co-author of the [lecture notes](http://avigad.github.io/logic_and_proof/) together with Jeremy Avigad and Rob Lewis.
-- Spring 2015: TA for Game Theory (80-405/80-705) with [Adam Bjorndahl](http://www.andrew.cmu.edu/user/abjorn/Site/Home.html).
-- Fall 2014: TA for Formal Logic ([80-310/80-610](http://www.andrew.cmu.edu/course/80-310-610/index.html)) with [Steve Awodey](http://www.andrew.cmu.edu/user/awodey/).
+* Fall 2016: TA for Differential and Integral Calculus (21-120) with [Russ Walker](http://www.math.cmu.edu/~rw1k/).
+* Fall 2015: TA for Logic and Mathematical Inquiry (80-211) with [Jeremy Avigad](http://www.andrew.cmu.edu/user/avigad/). Also co-author of the [lecture notes](http://avigad.github.io/logic_and_proof/) together with Jeremy Avigad and Rob Lewis.
+* Spring 2015: TA for Game Theory (80-405/80-705) with [Adam Bjorndahl](http://www.andrew.cmu.edu/user/abjorn/Site/Home.html).
+* Fall 2014: TA for Formal Logic ([80-310/80-610](http://www.andrew.cmu.edu/course/80-310-610/index.html)) with [Steve Awodey](http://www.andrew.cmu.edu/user/awodey/).
 
 ### Utrecht University
 
-- Spring 2012: TA for Discrete Mathematics with [Han Hoogeveen](http://www.staff.science.uu.nl/~hooge109/).
-- Fall 2011: TA for Foundations of Mathematics with [Jaap van Oosten](http://www.staff.science.uu.nl/~ooste110/).
+* Spring 2012: TA for Discrete Mathematics with [Han Hoogeveen](http://www.staff.science.uu.nl/~hooge109/).
+* Fall 2011: TA for Foundations of Mathematics with [Jaap van Oosten](http://www.staff.science.uu.nl/~ooste110/).
