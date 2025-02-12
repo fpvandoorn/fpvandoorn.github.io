@@ -8,7 +8,7 @@ offices: Endenicher Allee 62 (the building next to the Math department), rooms 1
 
 This is the webpage for the group on formalized mathematics at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de). We use the [Lean Theorem Prover](https://lean-lang.org/) and its [mathematical library](https://leanprover-community.github.io/) to prove current mathematical research, see e.g. the [Carleson project](https://florisvandoorn.com/carleson/).
 
-To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
+To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4), read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) or work through [my course repository](https://github.com/fpvandoorn/LeanCourse24/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
 ## Team
 
@@ -41,17 +41,19 @@ There is also a *Lean hacking session* which is currently scheduled Wednesdays 1
 
 ## Past students
 
-Students supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses are the degree and end date.
+Students supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
-* Gabin Kolly (master, 2025) [Github](https://github.com/GabinKolly)<!--, [thesis](theses/GabinKolly.pdf)-->
-* Kunhong Du (master, 2025) [Github](https://github.com/KunhongDu/HoTT-Model)<!--, [thesis](theses/KunhongDu.pdf)--> <!-- PhD with Nicolai Kraus? -->
-* Tim Lichtnau† (master, 2024; main supervisor: [Hugo Moeneclaey](https://www.hugomoeneclaey.com/)) [Github](https://github.com/timlichtnau/)
-* Óscar Álvarez Sánchez (master, 2024; main supervisor: [Catharina Stroppel](https://www.math.uni-bonn.de/ag/stroppel/)) [Github](https://github.com/bolito2/DemazureOperatorsLean), [thesis](theses/OscarAlvarez.pdf)
-* Theofanis Chatzidiamantis Christofo (master, 2024; main supervisor: [Nima Rasekh](https://nimarasekh.github.io/)) [Github](https://github.com/thchatzidiamantis/sHoTT)<!--, [thesis](theses/TheofanisChristofo.pdf)--> <!-- PhD in London, Western Ontario -->
+Master students:
+* Gabin Kolly (2025); [Github](https://github.com/GabinKolly)<!--, [thesis](theses/GabinKolly.pdf)-->
+* Kunhong Du (2025); [Github](https://github.com/KunhongDu/HoTT-Model)<!--, [thesis](theses/KunhongDu.pdf)--> <!-- PhD with Nicolai Kraus? -->
+* Tim Lichtnau† (2024; main supervisor: [Hugo Moeneclaey](https://www.hugomoeneclaey.com/)); [Github](https://github.com/timlichtnau/)
+* Óscar Álvarez Sánchez (2024; main supervisor: [Catharina Stroppel](https://www.math.uni-bonn.de/ag/stroppel/)); [Github](https://github.com/bolito2/DemazureOperatorsLean), [thesis](theses/OscarAlvarez.pdf)
+* Theofanis Chatzidiamantis Christofo (master, 2024; main supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [Github](https://github.com/thchatzidiamantis/sHoTT)<!--, [thesis](theses/TheofanisChristofo.pdf)--> <!-- PhD in London, Western Ontario -->
 
-* Hannah Scholz (bachelor, 2024) [Github](https://github.com/scholzhannah/CWComplexes/), <!--[thesis](theses/HannahScholz.pdf)-->
-* Ludwig Monnerjahn (bachelor, 2024) [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) <!--, [thesis](theses/LudwigMonnerjahn.pdf)-->
-* Leo Diedering (bachelor, 2024) [Github](https://github.com/ldiedering)<!--, [thesis](theses/LeoDiedering.pdf)-->
+Bachelor students:
+* Hannah Scholz (2024); [Github](https://github.com/scholzhannah/CWComplexes/), <!--[thesis](theses/HannahScholz.pdf)-->
+* Ludwig Monnerjahn (2024); [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) <!--, [thesis](theses/LudwigMonnerjahn.pdf)-->
+* Leo Diedering (2024); [Github](https://github.com/ldiedering)<!--, [thesis](theses/LeoDiedering.pdf)-->
 
 
 ## Past courses
@@ -61,7 +63,7 @@ Students supervised within the formalized mathematics group or theses that inclu
 * WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
 
 
-## Past seminar schedule
+## Past seminar sessions
 
 Usual time: Fridays 14:15-16:00 in room N0.003.
 
