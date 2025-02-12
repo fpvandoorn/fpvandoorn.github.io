@@ -31,14 +31,10 @@ Germany
 <!-- * *Winter 23/24*: I'm taught [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/) -->
 <!-- * *October 2023*: I started my professor position in Bonn! -->
 
-## Team
-
-* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc)
-* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc)
-* Arend Mellendijk (PhD student)
-
 ## Teaching
 
+<!-- To be deleted -->
+<!-- * SuSe 25: [Logic of Proof Assistants](https://github.com/fpvandoorn/BonnAnalysis/) -->
 * WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
 * SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
 * WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
@@ -51,6 +47,7 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 
 [Seminar repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 
+<!-- To be deleted -->
 * 18.10 Arend Mellendijk on monadic programming in Lean
 * 25.10 Floris van Doorn on metaprogramming in Lean
 * 01.11 No seminar
@@ -72,9 +69,9 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 
 ## About me
 
-I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the workgroup Formal Mathematics. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great details.
+I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the Formalized Mathematics workgroup. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great details.
 
-I am mainly working using the [Lean Theorem Prover](https://leanprover.github.io/), and I am a maintainer of its mathematical library [mathlib](https://leanprover-community.github.io/). Projects that I've done include:
+I am mainly working using the [Lean Theorem Prover](https://lean-lang.org/), and I am a maintainer of its [mathematical library](https://leanprover-community.github.io/). Projects that I've done include:
 * The [Carleson project](https://florisvandoorn.com/carleson/), proving [Carleson's theorem](https://en.wikipedia.org/wiki/Carleson%27s_theorem) generalized to doubling metric measure spaces.
 * I contributed to the [formalization of the Polynomial Freiman-Ruzsa Conjecture](https://teorth.github.io/pfr/).
 * The [sphere eversion project](https://leanprover-community.github.io/sphere-eversion/), formalizing Gromov's h-principle and concluding the existence of an eversion of a sphere.
@@ -83,7 +80,9 @@ I am mainly working using the [Lean Theorem Prover](https://leanprover.github.io
 
 To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games. I have some [tips](files/BonnPC.md) on configuring some things for the office computers in Bonn.
+I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games. 
+
+<!-- I have some configuration [tips](files/BonnPC.md) on configuring some things for the office computers in Bonn. -->
 
 ### Short CV
 
