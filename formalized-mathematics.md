@@ -18,6 +18,8 @@ To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hh
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; main area: simplectic geometry)
 * [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; main area: analytic number theory)
 
+<!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors? -->
+
 ## Students
 
 Students supervised within the formalized mathematics group or doing a Lean formalization.
@@ -40,6 +42,13 @@ There is also a *Lean hacking session* which is currently scheduled Wednesdays 1
 * 14.02 **unusual time and place:** 12:15 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
 * 14.02 (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
 * 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
+
+## Papers/preprints
+
+**incomplete**
+
+* Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
+* Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele, *Carleson Operators on Doubling Metric Measure Spaces*, 2024. [arXiv](https://arxiv.org/abs/2405.06423)
 
 ## Past students
 
