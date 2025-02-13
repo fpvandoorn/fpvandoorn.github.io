@@ -24,8 +24,9 @@ Students supervised within the formalized mathematics group or doing a Lean form
 
 * Hannah Scholz (master)
 * Izabela Mandla (master, main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html))
+* Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Felix Pernegger (bachelor)
-* Wenrong Zou (master)
+* Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 
 ## Ongoing courses
 
