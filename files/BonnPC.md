@@ -163,3 +163,4 @@ alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
 * Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable.
 * `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script?
 * USB-C port doesn't seem to be able to connect to a monitor.
+* autocomplete doesn't work for git commands in LXTerminal (maybe [this](https://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion) is useful?)
