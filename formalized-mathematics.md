@@ -11,6 +11,8 @@ This is the webpage for the group on formalized mathematics at the [mathematical
 
 To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4), read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) or work through [my course repository](https://github.com/fpvandoorn/LeanCourse24/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
+Some communication happens within a private channel on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
+
 ## Team
 
 * [Floris van Doorn](index.md)
@@ -31,16 +33,16 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 * Felix Pernegger (bachelor)
 * Johannes Folttmann (bachelor)
 
-## Ongoing courses
-
-* SuSe 25: The Logic of Proof Assistants (webpage TBD)
-
 ## Ongoing seminar
 
 The usual seminar time is Fridays 14:15-16:00 in room N0.003. 
 There is also a *Lean hacking session* which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies!
 
 * 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
+
+## Ongoing courses
+
+* SuSe 25: The Logic of Proof Assistants (webpage TBD)
 
 ## Papers/preprints
 
@@ -65,12 +67,6 @@ Bachelor students:
 * Hannah Scholz, *Formalisation of CW-complexes* (2024); [Github](https://github.com/scholzhannah/CWComplexes/), [thesis](theses/HannahScholz.pdf)
 * Leo Diedering, *Contributing to the Formalization of Carleson's Theorem* (2024); [Github](https://github.com/ldiedering), [thesis](theses/LeoDiedering.pdf)
 
-
-## Past courses
-
-* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
-* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
-* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
 
 
 ## Past seminar sessions
@@ -99,3 +95,8 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 [Metaprogramming repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 [HoTT repository](https://github.com/thchatzidiamantis/BonnHoTTSeminar)
 
+## Past courses
+
+* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
+* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
+* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
