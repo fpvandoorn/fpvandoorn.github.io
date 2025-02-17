@@ -22,13 +22,14 @@ To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hh
 
 ## Students
 
-Students supervised within the formalized mathematics group or doing a Lean formalization.
+Students supervised within the formalized mathematics group or doing a Lean project.
 
 * Hannah Scholz (master)
 * Izabela Mandla (master, main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html))
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
-* Felix Pernegger (bachelor)
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
+* Felix Pernegger (bachelor)
+<!-- * Johannes Folttmann (bachelor) -->
 
 ## Ongoing courses
 
@@ -39,8 +40,6 @@ Students supervised within the formalized mathematics group or doing a Lean form
 The usual seminar time is Fridays 14:15-16:00 in room N0.003. 
 There is also a *Lean hacking session* which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies!
 
-* 14.02 **unusual time and place:** 12:15 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
-* 14.02 (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
 * 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
 
 ## Papers/preprints
@@ -63,8 +62,8 @@ Master students:
 
 Bachelor students:
 * Ludwig Monnerjahn, *Formalisation of constructable numbers* (2024); [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) , [thesis](theses/LudwigMonnerjahn.pdf)
-* Hannah Scholz, *Formalisation of CW-complexes* (2024); [Github](https://github.com/scholzhannah/CWComplexes/), <!--[thesis](theses/HannahScholz.pdf)-->
-* Leo Diedering, *Contributing to the Formalization of Carleson's Theorem* (2024); [Github](https://github.com/ldiedering)<!--, [thesis](theses/LeoDiedering.pdf)-->
+* Hannah Scholz, *Formalisation of CW-complexes* (2024); [Github](https://github.com/scholzhannah/CWComplexes/), [thesis](theses/HannahScholz.pdf)
+* Leo Diedering, *Contributing to the Formalization of Carleson's Theorem* (2024); [Github](https://github.com/ldiedering), [thesis](theses/LeoDiedering.pdf)
 
 
 ## Past courses
