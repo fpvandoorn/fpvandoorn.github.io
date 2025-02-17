@@ -29,7 +29,7 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 * Felix Pernegger (bachelor)
-<!-- * Johannes Folttmann (bachelor) -->
+* Johannes Folttmann (bachelor)
 
 ## Ongoing courses
 
