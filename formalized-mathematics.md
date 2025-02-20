@@ -33,16 +33,18 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 * Felix Pernegger (bachelor)
 * Johannes Folttmann (bachelor)
 
-## Ongoing seminar
+## Seminar
 
-The usual seminar time is Fridays 14:15-16:00 in room N0.003. 
-There is also a *Lean hacking session* which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies!
+During the semester break, any seminars are on Friday 14:15-16:00 in room **N0.007** (not N0.003 like during the last semester). There are currently no sessions planned
 
-* 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
+In SuSe 25 the seminar will be Mondays 10-12 in room 0.003.
 
-## Ongoing courses
+The *Lean hacking session* is canceled during the semester break, but will continue in the summer semester.
+ <!-- which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies! -->
 
-* SuSe 25: The Logic of Proof Assistants (webpage TBD)
+## Courses
+
+* SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011) (webpage TBD)
 
 ## Papers/preprints
 
