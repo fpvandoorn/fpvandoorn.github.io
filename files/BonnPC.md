@@ -37,7 +37,7 @@ You can run `xinput` and `xinput list-props` to find the name and properties of 
 libinput Accel Speed (300)
 libinput Accel Profile Enabled (303)
 ```
-The `0.7` can be modified to change the sensivity of the mouse linearly.
+The `0.7` can be modified to change the sensitivity of the mouse linearly.
 I didn't find a way to automatically run this when logging in (neither `.profile`, nor autostart (via GUI or directly editing a config file) seems to work). So I just run this command from `.bashrc` and then it gets executed when I open a shell for the first time.
 
 * In Firefox, consider enabling `Settings > autoscrolling` to enable scrolling with Middle mouse-button
@@ -166,6 +166,6 @@ alias cdp='cd /local/vdoorn/projects'
 ## Annoyances
 * `ctrl` closes the start menu, making the search-box near useless. (this is fixed in LXQt in 2022, but not in the old version we have.)
 * Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable.
-* `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script?
+* `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script properly?
 <!-- * USB-C port doesn't seem to be able to connect to a monitor. -->
 * Is it possible to configure keyboard shortcuts for "move window to display to the left/right"?

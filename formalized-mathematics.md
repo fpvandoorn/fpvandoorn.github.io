@@ -20,7 +20,8 @@ Some communication happens within a private channel on [Lean's Zulip Chat](https
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; main area: simplectic geometry)
 * [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; main area: analytic number theory)
 
-<!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors? -->
+<!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
+This should be done on a different IRU webpage. -->
 
 ## Students
 
