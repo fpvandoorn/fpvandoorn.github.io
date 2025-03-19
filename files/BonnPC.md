@@ -18,6 +18,7 @@ export LANG=en_GB.UTF-8
 * VSCodium is installed on some office computers, but not others. If you don't have it, you can contact the IT department with your computer name to ask them to install it. You can find your computer name by opening a shell (e.g. LXTerminal) 
 * **important** Everything related to Lean should be done in your `/local/<Username>` folder (in the Filesystem root). Lean + Mathlib cache should already be configured correctly to put the `.elan` and `.cache` folders in that directory.
 * If you have trouble installing Lean, run the `elan` installation script manually from a shell. Since the `.profile` script is not run on startup, Lean might not be added to your PATH correctly during installation. If this happens to you, edit `~/.bashrc` manually by adding the line `export PATH="${PATH}:/local/<userName>/.elan/bin"` and inserting your username (and then restarting your terminal).
+* `lake` builds using all 12(?) threads, which sometimes slows/lags the rest of the OS. You can use e.g. `export LEAN_NUM_THREADS=10 && lake build` to not use all threads.
 
 Minor:
 * In VSCode, you might want to edit the Keyboard Shortcuts and bind `Go Forward` to `Alt+RightArrow`.
@@ -49,10 +50,12 @@ I didn't find a way to automatically run this when logging in (neither `.profile
 source /home/<userName>/git-prompt.sh
 PS1="\[\033[32m\]\u@\h\[\033[37m\]:\[\033[33m\]\w\[\033[36m\]\$(__git_ps1 ' (%s)')\[\033[00m\]\$ "
 ```
+* To get `git` autocomplete, add `source /usr/share/bash-completion/completions/git` to your `.bashrc`.
 * I like some aliases of commonly-used commands, e.g.
 ```
 alias lc="lake exe cache get"
-alias lb="lake build"
+alias lb="export LEAN_NUM_THREADS=10 && lake build"
+alias lu="lake exe unpack!"
 alias cm="git checkout origin/master"
 alias clm="git checkout master"
 alias gp="git push"
@@ -66,6 +69,7 @@ alias gmm="gm origin/master"
 alias gmc="git add -u && gm --continue"
 alias grc="git add -u && git -c core.editor=true rebase --continue"
 alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
+alias cdp='cd /local/vdoorn/projects'
 ```
 * Some Git configuration options are useful. You can modify `.gitconfig` (also with `git config --global --edit`). This is my current setup (I don't use all aliases, but a few are very useful, especially `git l` and `git la`):
 ```
@@ -154,13 +158,14 @@ alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
 [push]
 	default = current
 ```
+* Sometimes it's useful to locally have multiple copies of a repository. A convenient way to do that is using `git worktree`, since then they share the git history. Add a new worktree using `git worktree add ../<myNewFolder>`
 
 ## Note to self:
-* Shift-insert in LXTerminal does not paste, ctrl+shift+V does.
+* `Shift-insert` in LXTerminal does not paste, `ctrl+shift+V` does.
 
 ## Annoyances
 * `ctrl` closes the start menu, making the search-box near useless. (this is fixed in LXQt in 2022, but not in the old version we have.)
 * Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable.
 * `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script?
-* USB-C port doesn't seem to be able to connect to a monitor.
-* autocomplete doesn't work for git commands in LXTerminal (maybe [this](https://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion) is useful?)
+<!-- * USB-C port doesn't seem to be able to connect to a monitor. -->
+* Is it possible to configure keyboard shortcuts for "move window to display to the left/right"?
