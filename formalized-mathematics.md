@@ -17,7 +17,7 @@ Some communication happens within a private channel on [Lean's Zulip Chat](https
 
 * [Floris van Doorn](index.md)
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; main area: algebraic number theory)
-* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; main area: simplectic geometry)
+* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; main area: symplectic geometry)
 * [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; main area: analytic number theory)
 
 <!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
@@ -36,12 +36,28 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 
 ## Seminar
 
-During the semester break, any seminars are on Friday 14:15-16:00 in room **N0.007** (not N0.003 like during the last semester). There are currently no sessions planned
-
 In SuSe 25 the seminar will be Mondays 10-12 in room 0.003.
 
-The *Lean hacking session* is canceled during the semester break, but will continue in the summer semester.
+The *Lean hacking session* is also planned in the summer semester.
  <!-- which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies! -->
+
+Schedule:
+* 07.4. No seminar
+* 14.4. TBD
+* 21.4. No seminar (Easter Monday)
+* 28.4. TBD
+* 05.5. TBD
+* 12.5. TBD
+* 19.5. TBD
+* 26.5. TBD
+* 02.6. TBD
+* 09.6. No seminar (Pentecost break)
+* 16.6. No seminar
+* 23.6. TBD
+* 30.6. TBD
+* 07.7. TBD
+* 14.7. TBD
+
 
 ## Courses
 
@@ -76,24 +92,24 @@ Bachelor students:
 
 Usual time: Fridays 14:15-16:00 in room N0.003.
 
-* 18.10 Arend Mellendijk on monadic programming in Lean
-* 25.10 Floris van Doorn on metaprogramming in Lean
-* 01.11 No seminar
-* 08.11 Floris van Doorn on metaprogramming in Lean
-* 15.11 Floris van Doorn on metaprogramming in Lean and exercises
-* 22.11 Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
-* 29.11 No seminar
-* 06.12 No seminar
-* 13.12 No seminar
-* 20.12 No seminar
-* 10.01 No seminar
-* 17.01 No seminar
-* 24.01 No seminar
-* 31.01 Canceled
-* 07.02 Kunhong Du: Formalization of type theory
-* 14.02 **unusual time and place:** 12:15 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
-* 14.02 (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
-* 18.02 (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
+* 18.10. Arend Mellendijk on monadic programming in Lean
+* 25.10. Floris van Doorn on metaprogramming in Lean
+* 01.11. No seminar
+* 08.11. Floris van Doorn on metaprogramming in Lean
+* 15.11. Floris van Doorn on metaprogramming in Lean and exercises
+* 22.11. Jiang Jiedong: Formalizing the Fontaine-Wintenberger theorem
+* 29.11. No seminar
+* 06.12. No seminar
+* 13.12. No seminar
+* 20.12. No seminar
+* 10.01. No seminar
+* 17.01. No seminar
+* 24.01. No seminar
+* 31.01. Canceled
+* 07.02. Kunhong Du: Formalization of type theory
+* 14.02. **unusual time and place:** 12:15 in the CS Building (room 2.050). Henri Nikoleit on FunSearch
+* 14.02. (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
+* 18.02. (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
 
 [Metaprogramming repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 [HoTT repository](https://github.com/thchatzidiamantis/BonnHoTTSeminar)
