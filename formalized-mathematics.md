@@ -15,10 +15,10 @@ Some communication happens within a private channel on [Lean's Zulip Chat](https
 
 ## Team
 
-* [Floris van Doorn](index.md)
-* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; main area: algebraic number theory)
-* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; main area: symplectic geometry)
-* [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; main area: analytic number theory)
+* [Floris van Doorn](index.md) (professor; area: formalization, analysis and logic)
+* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; area: formalization and algebraic number theory)
+* [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; area: formalization and symplectic geometry)
+* [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; area: formalization and analytic number theory)
 
 <!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
 This should be done on a different IRU webpage. -->
@@ -31,6 +31,7 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 * Izabela Mandla (master, main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html))
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
+* Max Gießler (master, main supervisor: Michael Rothgang)
 * Felix Pernegger (bachelor)
 * Johannes Folttmann (bachelor)
 
