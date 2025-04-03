@@ -28,7 +28,7 @@ This should be done on a different IRU webpage. -->
 Students supervised within the formalized mathematics group or doing a Lean project.
 
 * Hannah Scholz (master)
-* Izabela Mandla (master, main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html))
+* Izabela Mandla (master) <!-- main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html) -->
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 * Max Gießler (master, main supervisor: Michael Rothgang)
