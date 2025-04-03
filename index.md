@@ -94,7 +94,7 @@ I have also studied the research question of which higher inductive types can be
 
 ## Selected Talks
 
-Talks corresponding to one of my papers are listed under *Publications*.
+Talks presenting a published paper at a conference are listed under *Publications*.
 
 - *Progress report on the Carleson Project*, Jan 2025. Lean Together, online ([slides](talks/LT25carleson.pdf), [recording](https://www.youtube.com/watch?v=w29spLdOFrY))
 - *Formalizing a proof of Carleson’s theorem*, Oct 2024. Homotopy Type Theory Electronic Seminar Talks, online. ([slides](talks/HoTTEST2024.pdf), [recording](https://www.youtube.com/watch?v=vMEGU8fL1xM))
