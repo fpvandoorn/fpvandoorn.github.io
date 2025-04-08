@@ -96,6 +96,7 @@ I have also studied the research question of which higher inductive types can be
 
 Talks presenting a published paper at a conference are listed under *Publications*.
 
+- *The Carleson Project: Collaboration using Formalization*, Apr 2025. [Simons Institute for the Theory of Computing and SLMath Joint Workshop: AI for Mathematics and Theoretical Computer Science](https://simons.berkeley.edu/workshops/simons-institute-theory-computing-slmath-joint-workshop-ai-mathematics-theoretical) ([slides](talks/carleson2504.pdf))
 - *Progress report on the Carleson Project*, Jan 2025. Lean Together, online ([slides](talks/LT25carleson.pdf), [recording](https://www.youtube.com/watch?v=w29spLdOFrY))
 - *Formalizing a proof of Carleson’s theorem*, Oct 2024. Homotopy Type Theory Electronic Seminar Talks, online. ([slides](talks/HoTTEST2024.pdf), [recording](https://www.youtube.com/watch?v=vMEGU8fL1xM))
 <!-- Jun 2024 & \emph{Carleson operators on doubling metric measure spaces}, joint with Christoph Thiele, Special Topic School: \href{https://www.mathematics.uni-bonn.de/hsm-school/programs/schools/hsm-special-topic-schools/sts_maximal-operators-and-applications}{Maximal Operators and Applications}, Bonn, Germany.\\ -->
