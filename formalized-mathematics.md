@@ -48,13 +48,13 @@ Schedule:
 * 21.4. No seminar (Easter Monday)
 * 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library
 * 05.5. TBD
-* 12.5. Wenrong Zou: TBD
+* 12.5. Wenrong Zou: TBD and Izabela Mandla: TBD
 * 19.5. TBD
 * 26.5. TBD
 * 02.6. TBD
 * 09.6. No seminar (Pentecost break)
 * 16.6. No seminar
-* 23.6. Wenrong Zou: TBD
+* 23.6. Wenrong Zou: TBD and Izabela Mandla: TBD
 * 30.6. TBD
 * 07.7. TBD
 * 14.7. TBD
