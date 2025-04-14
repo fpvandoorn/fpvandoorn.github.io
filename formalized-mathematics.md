@@ -37,10 +37,9 @@ Students supervised within the formalized mathematics group or doing a Lean proj
 
 ## Seminar
 
-In SuSe 25 the seminar will be Mondays 10-12 in room 0.003.
+The *Lean hacking session* is weekly on Fridays 14:15-16:00 in seminar room 0.006. There will be cookies! You are welcome to join, independent of your experience with Lean.
 
-The *Lean hacking session* is also planned in the summer semester.
- <!-- which is currently scheduled Wednesdays 18:15-20:00 in seminar room 0.006. There will be cookies! -->
+In SuSe 25 the seminar will be Mondays 10:15-12:00 in seminar room 0.003.
 
 Schedule:
 * 07.4. No seminar
