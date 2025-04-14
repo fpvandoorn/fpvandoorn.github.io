@@ -45,7 +45,7 @@ Schedule:
 * 07.4. No seminar
 * 14.4. Hannah Scholz: Formalizing CW Complexes
 * 21.4. No seminar (Easter Monday)
-* 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library
+* 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library *and* Johannes Folttmann: internal language of a topos.
 * 05.5. TBD
 * 12.5. Wenrong Zou: TBD and Izabela Mandla: TBD
 * 19.5. TBD
