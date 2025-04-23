@@ -25,15 +25,19 @@ This should be done on a different IRU webpage. -->
 
 ## Students
 
-Students supervised within the formalized mathematics group or doing a Lean project.
+Students supervised within the formalized mathematics group:
 
-* Hannah Scholz (master)
 * Izabela Mandla (master) <!-- main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html) -->
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 * Max Gießler (master, main supervisor: Michael Rothgang)
 * Felix Pernegger (bachelor)
 * Johannes Folttmann (bachelor)
+
+Student research assistants:
+* Leo Diedering (master)
+* Hannah Scholz (master)
+
 
 ## Seminar
 
@@ -59,13 +63,13 @@ Schedule:
 * 14.7. TBD
 
 
-## Courses
+## Ongoing Course
 
-* SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011) (webpage TBD)
+* SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011). See eCampus for more information.
 
 ## Papers/preprints
 
-**incomplete**
+<!-- Maria's divided powers paper; Michael's scaling Mathlib paper -->
 
 * Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
 * Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele, *Carleson Operators on Doubling Metric Measure Spaces*, 2024. [arXiv](https://arxiv.org/abs/2405.06423)
@@ -85,7 +89,6 @@ Bachelor students:
 * Ludwig Monnerjahn, *Formalisation of constructable numbers* (2024); [Github](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers) , [thesis](theses/LudwigMonnerjahn.pdf)
 * Hannah Scholz, *Formalisation of CW-complexes* (2024); [Github](https://github.com/scholzhannah/CWComplexes/), [thesis](theses/HannahScholz.pdf)
 * Leo Diedering, *Contributing to the Formalization of Carleson's Theorem* (2024); [Github](https://github.com/ldiedering), [thesis](theses/LeoDiedering.pdf)
-
 
 
 ## Past seminar sessions
