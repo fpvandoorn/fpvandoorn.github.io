@@ -50,7 +50,7 @@ Schedule:
 * 14.4. Hannah Scholz: Formalizing CW Complexes
 * 21.4. No seminar (Easter Monday)
 * 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library *and* Johannes Folttmann: internal language of a topos.
-* 05.5. Jim Portegies (Eindhoven University of Technology): TBA
+* 05.5. Jim Portegies (Eindhoven University of Technology): The real interpolation theorem for the Carleson project
 * 12.5. Wenrong Zou: TBD and Izabela Mandla: TBD
 * 19.5. TBD
 * 26.5. TBD
