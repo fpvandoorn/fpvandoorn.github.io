@@ -30,7 +30,6 @@ Students supervised within the formalized mathematics group:
 * Izabela Mandla (master) <!-- main supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html) -->
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
-* Max Gießler (master, main supervisor: Michael Rothgang)
 * Felix Pernegger (bachelor)
 * Johannes Folttmann (bachelor)
 
