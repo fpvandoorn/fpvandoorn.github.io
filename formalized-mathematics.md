@@ -56,10 +56,10 @@ Schedule:
 * 02.6. Sam Lindauer (Utrecht University): TBA
 * 09.6. No seminar (Pentecost break)
 * 16.6. No seminar
-* 23.6. Wenrong Zou: TBD and Izabela Mandla: TBD
+* 23.6. Izabela Mandla: TBD
 * 30.6. TBD
 * 07.7. TBD
-* 14.7. TBD
+* 14.7. Wenrong Zou: TBD
 
 
 ## Ongoing Course
