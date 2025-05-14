@@ -40,8 +40,6 @@ Student research assistants:
 
 ## Seminar
 
-The *Lean hacking session* is weekly on Fridays 14:15-16:00 in seminar room 0.006. There will be cookies! You are welcome to join, independent of your experience with Lean.
-
 In SuSe 25 the seminar will be Mondays 10:15-12:00 in seminar room 0.003.
 
 Schedule:
@@ -61,6 +59,11 @@ Schedule:
 * 07.7. TBD
 * 14.7. Wenrong Zou: TBD
 
+## Lean hacking session
+
+The *Lean hacking session* is a weekly informal meeting on Fridays 14:15-16:00 in seminar room 0.006. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a difficult formalization.
+
+* There will be no hacking session on 13.6.
 
 ## Ongoing Course
 

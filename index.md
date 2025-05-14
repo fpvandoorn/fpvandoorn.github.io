@@ -53,7 +53,7 @@ I am mainly working using the [Lean Theorem Prover](https://lean-lang.org/), and
 
 To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4) or read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games. 
+I am interested in formalized mathematics, tools and automation for formalization and (homotopy) type theory. I also enjoy thinking about [combinatorial problems](https://github.com/fpvandoorn/Dagstuhl-tables/), solving puzzles and playing board games and video games.
 
 <!-- I have some configuration [tips](files/BonnPC.md) on configuring some things for the office computers in Bonn. -->
 
@@ -87,7 +87,7 @@ I have also studied the research question of which higher inductive types can be
 - Ulrik Buchholtz, Floris van Doorn, Egbert Rijke. *["Higher Groups in Homotopy Type Theory"](papers/higher-groups.pdf)*, Logic in Computer Science (LICS) 2018. ([arXiv](https://arxiv.org/abs/1802.04315), [slides](talks/lics18slides.pdf), [Formalization (Github)](https://github.com/cmu-phil/Spectral/blob/master/higher_groups.hlean))
 - Floris van Doorn, Jakob von Raumer, Ulrik Buchholtz. *["Homotopy Type Theory in Lean"](papers/leanhott.pdf)*, 8th International Conference on Interactive Theorem Proving (ITP), 2017. ([arXiv](https://arxiv.org/abs/1704.06781), [slides](talks/HoTTLeanITP.pdf), [Lean-HoTT library (Github)](https://github.com/leanprover/lean2/blob/master/hott/hott.md), [Spectral repository (Github)](https://github.com/cmu-phil/Spectral))
 - Floris van Doorn. *["Constructing the Propositional Truncation using Non-recursive HITs"](papers/proptrunc.pdf)*, Certified Proofs and Programs (CPP), 2016. ([arXiv](https://arxiv.org/abs/1512.02274), [slides](talks/CPP2016.pdf), [Lean source (Github)](https://github.com/fpvandoorn/leansnippets/blob/master/cpp.hlean))
-- Leonardo de Moura, Soonho Kong, Jeremy Avigad, Floris van Doorn, Jakob von Raumer. *["The Lean Theorem Prover (System Description)"](papers/lean_description.pdf)*, International Conference on Automated Deduction (CADE-25), 2015.
+- Leonardo de Moura, Soonho Kong, Jeremy Avigad, Floris van Doorn, Jakob von Raumer. *["The Lean Theorem Prover (System Description)"](papers/lean_description.pdf)*, International Conference on Automated Deduction (CADE-25), 2015. <!-- To add: Received a [Skolem award](https://cadeinc.org/Skolem-Award) in 2025 for the paper that has passed the test of time, by being a most influential paper in the field. -->
 - Cody Roux and Floris van Doorn. *["The Structural Theory of Pure Type Systems"](papers/struct_pts.pdf)*, Types and Lambda Calculi and Applications (TLCA), 2014. ([slides](talks/TLCA2014.pdf))
 - Floris van Doorn, Herman Geuvers, Freek Wiedijk. *["Explicit Convertibility Proofs in Pure Type Systems"](papers/explicitPTS.pdf)*, Logical Frameworks and Meta-Languages: Theory and Practice (LFMTP), 2013. ([slides](talks/LFMTP2013.pdf), [Coq formalization](ptsf/index.html))
 
