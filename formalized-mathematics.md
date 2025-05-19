@@ -59,15 +59,22 @@ Schedule:
 * 07.7. TBD
 * 14.7. Wenrong Zou: TBD
 
+<!-- The seminar will be Tue 10-12 in WiSe 25/26. -->
+
 ## Lean hacking session
 
 The *Lean hacking session* is a weekly informal meeting on Fridays 14:15-16:00 in seminar room 0.006. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a difficult formalization.
 
 * There will be no hacking session on 13.6.
 
-## Ongoing Course
+## Courses
 
+<!-- * WiSe 25/26: Formalisierte Mathematik in Lean (Tue 16-18, Thu 10-12) -->
 * SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011). See eCampus for more information.
+* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
+* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
+* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
+
 
 ## Papers/preprints
 
@@ -118,9 +125,3 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 
 [Metaprogramming repository](https://github.com/fpvandoorn/BonnLeanSeminar)
 [HoTT repository](https://github.com/thchatzidiamantis/BonnHoTTSeminar)
-
-## Past courses
-
-* WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
-* SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
-* WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
