@@ -50,7 +50,7 @@ Schedule:
 * 05.5. Jim Portegies (Eindhoven University of Technology): The real interpolation theorem for the Carleson project
 * 12.5. Wenrong Zou: Formalizing one-dimensional formal group laws *and* Izabela Mandla: Formalization of Walsh-Fourier series' analogue of Carleson's theorem
 * 19.5. María Inés de Frutos Fernández: The Carleson project *and* Felix Pernegger: Formalization of the Calderón Transference principle
-* 26.5. TBD
+* 26.5. No seminar
 * 02.6. Sam Lindauer (Utrecht University): TBA
 * 09.6. No seminar (Pentecost break)
 * 16.6. No seminar
