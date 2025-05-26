@@ -123,5 +123,4 @@ Usual time: Fridays 14:15-16:00 in room N0.003.
 * 14.02. (usual time of 14:15 in room N0.003) Kunhong Du master thesis defense: On the Formalization of the Simplicial Model of HoTT
 * 18.02. (**part of the logic seminar**, 11:00 in room N0.003) Gabin Kolly master thesis defense: Fraïssé limits in Lean
 
-[Metaprogramming repository](https://github.com/fpvandoorn/BonnLeanSeminar)
-[HoTT repository](https://github.com/thchatzidiamantis/BonnHoTTSeminar)
+[Metaprogramming repository](https://github.com/fpvandoorn/BonnLeanSeminar) • [HoTT repository](https://github.com/thchatzidiamantis/BonnHoTTSeminar)
