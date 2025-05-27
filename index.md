@@ -1,4 +1,7 @@
-<img style="float: right;" src="files/Floris.jpg" alt="Floris van Doorn" width="357" align="right">
+<figure style="float: right; text-align: right;">
+  <img src="files/Floris.jpg" alt="Floris van Doorn" width="357">
+  <figcaption><span style="font-size: 0.8rem; color:lightgray">photo by Dick van Doorn</span></figcaption>
+</figure>
 
 # Floris van Doorn
 
