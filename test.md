@@ -30,3 +30,7 @@ more text
 ### Small header
 
 foo
+
+<span style="color:blue">some *blue* text</span>.
+<span style="color:lightgray">some *light gray* text</span>.
+<span style="font-size: .5rem">small text?</span>
