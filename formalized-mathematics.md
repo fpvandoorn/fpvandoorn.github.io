@@ -54,8 +54,8 @@ Schedule:
 * 02.6. Sam Lindauer (Utrecht University): The Formalisation of Differential Forms
 * 09.6. No seminar (Pentecost break)
 * 16.6. No seminar
-* 23.6. TBD
-* 30.6. TBD
+* 23.6. No seminar
+* 30.6. Henri Nikoleit: TBD (starts 11:15)
 * 07.7. TBD
 * 14.7. Wenrong Zou: TBD
 
