@@ -55,7 +55,7 @@ Schedule:
 * 09.6. No seminar (Pentecost break)
 * 16.6. No seminar
 * 23.6. No seminar
-* 30.6. Henri Nikoleit: TBD (starts 11:15)
+* 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
 * 07.7. TBD
 * 14.7. Wenrong Zou: TBD
 
