@@ -56,7 +56,7 @@ Schedule:
 * 16.6. No seminar
 * 23.6. No seminar
 * 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
-* 07.7. TBD
+* 07.7. No seminar
 * 14.7. Wenrong Zou: TBD *and* Johannes Folttmann: TBD
 
 <!-- The seminar will be Tue 10-12 in WiSe 25/26. -->
