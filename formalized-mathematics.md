@@ -58,7 +58,7 @@ Schedule:
 * 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
 * 07.7. No seminar
 * 14.7. Wenrong Zou: TBD *and* Johannes Folttmann: TBD
-* 28.7. (tentative) **14:15-16:00** (room TBD). Izabela Mandala: TBD *and* Felix Pernegger: TBD
+* 28.7. (tentative) **14:15-16:00** (room TBD). Izabela Mandla: TBD *and* Felix Pernegger: TBD
 
 <!-- The seminar will be Tue 10-12 in WiSe 25/26. -->
 
