@@ -80,7 +80,7 @@ The *Lean hacking session* is a weekly informal meeting on Fridays 14:15-16:00 i
 ## Papers/preprints
 
 <!-- Maria's divided powers paper; Michael's scaling Mathlib paper -->
-
+* Antoine Chambert-Loir, María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. Accepted to 16th International Conference on Interactive Theorem Proving (ITP '25). [arXiv](https://arxiv.org/abs/2507.05327)
 * Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
 * Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele, *Carleson Operators on Doubling Metric Measure Spaces*, 2024. [arXiv](https://arxiv.org/abs/2405.06423)
 
