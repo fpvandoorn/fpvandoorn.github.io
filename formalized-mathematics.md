@@ -57,9 +57,9 @@ Schedule:
 * 23.6. No seminar
 * 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
 * 07.7. No seminar
-* 14.7. Wenrong Zou: TBD *and* Johannes Folttmann: TBD
+* 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann: TBD
 * 21.7. No seminar
-* 28.7. **14:15-16:00** (room TBD). Izabela Mandla: TBD *and* Felix Pernegger: TBD
+* 28.7. **14:15-16:00** (room TBD). Izabela Mandla: TBD *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
 * (no regular seminar after this during the summer break. Sporadic thesis defenses will be announced here.)
 
 <!-- The seminar will be Tue 10-12 in WiSe 25/26. -->
