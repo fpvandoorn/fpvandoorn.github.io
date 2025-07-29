@@ -62,7 +62,7 @@ Schedule:
 * 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
 * (no regular seminar after this during the summer break. Sporadic thesis defenses will be announced here.)
 
-<!-- The seminar will be Tue 10-12 in WiSe 25/26. -->
+The seminar will be on Tuesdays 10:00-12:00 during WiSe 25/26.
 
 ## Lean hacking session
 
@@ -70,7 +70,7 @@ The *Lean hacking session* is a weekly informal meeting on Fridays 14:15-16:00 i
 
 * There will be no hacking session on 13.6.
 
-There will be a hacking session on 25.7. and 1.8. (if there is interest). After that we will likely start the summer break.
+There will be a hacking session on 25.7. and 1.8. After that we will start the summer break, and continue at the start of WiSe 25/26.
 
 ## Courses
 
