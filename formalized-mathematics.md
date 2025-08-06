@@ -60,7 +60,7 @@ Schedule:
 * 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann: TBD
 * 21.7. No seminar
 * 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
-* 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)  <!-- second supervisor: Philipp; room to be confirmed -->
+* 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)  <!-- second supervisor: Philipp -->
 * 17.9. **15:15-16:00** Thesis defense Felix Pernegger (in room 0.003 as usual)  <!-- second supervisor: Asgar -->
 
 
