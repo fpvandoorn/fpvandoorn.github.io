@@ -22,6 +22,8 @@ Germany
 
 ## News
 
+* *Aug 2025*: [An article](https://www.spektrum.de/news/so-veraendern-computer-ki-und-beweispruefer-die-mathematik/2280992) was written about the Carleson project in the German magazine *Spectrum der Wissenschaft* (behind paywall).
+* *July 2025*: We finished the [Carleson project](http://florisvandoorn.com/carleson/)!
 * *May 2025*: Together with Leonardo de Moura, Soonho Kong, Jeremy Avigad and Jakob von Raumer I received the [Skolem award](https://cadeinc.org/Skolem-Award) for the paper [*The Lean Theorem Prover (System Description)*](https://link.springer.com/chapter/10.1007/978-3-319-21401-6_26). The Skolem award is awarded to the paper that has passed the test of time, by being a most influential paper in the field.
 <!-- * *February 2025*: I've created a [dedicated page](formalized-mathematics) for the formalized mathematics group in Bonn. -->
 <!-- * *October 2024*: There is an almost weekly [seminar](https://github.com/fpvandoorn/BonnLeanSeminar) on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below. -->
