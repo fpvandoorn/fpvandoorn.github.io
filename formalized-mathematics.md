@@ -88,7 +88,7 @@ There will be a hacking session on 25.7. and 1.8. After that we will start the s
 ## Papers/preprints
 
 <!-- Maria's second divided powers paper -->
-* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. To appear in the 18th Conference on Intelligent Computer Mathematics (CICM '25). [arXiv](TODO! add link)
+* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. To appear in the 18th Conference on Intelligent Computer Mathematics (CICM '25). [arXiv](https://arxiv.org/abs/2508.21593)
 * Antoine Chambert-Loir, María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. Accepted to 16th International Conference on Interactive Theorem Proving (ITP '25). [arXiv](https://arxiv.org/abs/2507.05327)
 * Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
 * Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele, *Carleson Operators on Doubling Metric Measure Spaces*, 2024. [arXiv](https://arxiv.org/abs/2405.06423)
