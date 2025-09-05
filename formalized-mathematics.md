@@ -60,6 +60,7 @@ Schedule:
 * 21.7. No seminar
 * 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
 * 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)  <!-- second supervisor: Philipp -->
+* 15.9. **16:00-17:00** Thesis defense Izabela Mandla (in room 0.003 as usual)  <!-- second supervisor: Michel -->
 * 17.9. **15:15-16:00** Thesis defense Felix Pernegger (in room 0.003 as usual)  <!-- second supervisor: Asgar -->
 
 
