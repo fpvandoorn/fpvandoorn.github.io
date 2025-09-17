@@ -9,9 +9,10 @@ offices: Endenicher Allee 62 (the building next to the Math department), rooms 1
 
 This is the webpage for the group on formalized mathematics at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de). We use the [Lean Theorem Prover](https://lean-lang.org/) and its [mathematical library](https://leanprover-community.github.io/) to prove current mathematical research, see e.g. the [Carleson project](https://florisvandoorn.com/carleson/).
 
-To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4), read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) or work through [my course repository](https://github.com/fpvandoorn/LeanCourse24/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
+To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4), read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) or work through [the course repository](https://github.com/fpvandoorn/LeanCourse24/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-Some communication happens within a private channel on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
+If you would like to get information about the activities of the formalization group, including the seminar, you can subscribe to our **mailing list** [here](https://listen.uni-bonn.de/wws/info/formal-math).
+There is also a low-traffic private channel on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
 
 ## Team
 
@@ -68,7 +69,7 @@ Schedule:
 
 * (no regular seminar after this during the summer break. Sporadic thesis defenses will be announced here.)
 
-The seminar will be on Tuesdays 10:00-12:00 during WiSe 25/26.
+The seminar will be on Tuesdays 10:00-12:00 in seminar room 0.007 during WiSe 25/26.
 
 ## Lean hacking session
 
@@ -78,7 +79,7 @@ Hacking sessions will resume at the start of WiSe 25/26.
 
 ## Courses
 
-<!-- * WiSe 25/26: Formalisierte Mathematik in Lean (Tue 16-18, Thu 10-12) -->
+* WiSe 25/26: Formalized Mathematics in Lean (lectures: Tue 16-18 and Thu 10-12, exercises Mo 8-12)
 * SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011). See eCampus for more information.
 * WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
 * SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
