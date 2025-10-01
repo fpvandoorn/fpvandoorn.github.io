@@ -40,36 +40,25 @@ Student research assistants:
 
 ## Seminar
 
-In SuSe 25 the seminar will be Mondays 10:15-12:00 in seminar room 0.003. Feel free to join, even if you're not part of the formalization group!
+In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Feel free to join, even if you're not part of the formalization group!
+
+* 14.10. Michael Rothgang: *Growing mathlib: fostering the growth of a large formalised mathematics library*
+* 21.10. TBA
+* 28.10. TBA
+* 04.11. TBA
+* 11.11. TBA
+* 18.11. TBA
+* 25.11. TBA
+* 02.12. TBA
+* 09.12. TBA
+* 16.12. TBA
+* 23.12. TBA
+* 13.01. TBA
+* 20.01. TBA
+* 27.01. TBA
+* 03.02. TBA
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
-
-Schedule:
-* 07.4. No seminar
-* 14.4. Hannah Scholz: Formalizing CW Complexes
-* 21.4. No seminar (Easter Monday)
-* 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library *and* Johannes Folttmann: internal language of a topos
-* 05.5. Jim Portegies (Eindhoven University of Technology): The real interpolation theorem for the Carleson project
-* 12.5. Wenrong Zou: Formalizing one-dimensional formal group laws *and* Izabela Mandla: Formalization of Walsh-Fourier series' analogue of Carleson's theorem
-* 19.5. María Inés de Frutos Fernández: The Carleson project *and* Felix Pernegger: Formalization of the Calderón Transference principle
-* 26.5. No seminar
-* 02.6. Sam Lindauer (Utrecht University): The Formalisation of Differential Forms
-* 09.6. No seminar (Pentecost break)
-* 16.6. No seminar
-* 23.6. No seminar
-* 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
-* 07.7. No seminar
-* 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann: TBD
-* 21.7. No seminar
-* 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
-* 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)<!-- second supervisor: Philipp -->
-* 15.9. **16:00-17:00** Thesis defense Izabela Mandla (in room 0.003 as usual)<!-- second supervisor: Michel -->
-* 17.9. **15:15-16:15** Thesis defense Felix Pernegger (in room 0.003 as usual)<!-- second supervisor: Asgar -->
-
-
-* (no regular seminar after this during the summer break. Sporadic thesis defenses will be announced here.)
-
-The seminar will be on Tuesdays 10:00-12:00 in seminar room 0.007 during WiSe 25/26.
 
 ## Lean hacking session
 
@@ -114,7 +103,34 @@ Bachelor students:
 
 ## Past seminar sessions
 
-Usual time: Fridays 14:15-16:00 in room N0.003.
+### SuSe 25
+
+Time: Mondays 10:15-12:00 in seminar room 0.003.
+
+* 07.4. No seminar
+* 14.4. Hannah Scholz: Formalizing CW Complexes
+* 21.4. No seminar (Easter Monday)
+* 28.4. Michael Rothgang: Formalising bordism theory: a test of mathlib's differential geometry library *and* Johannes Folttmann: internal language of a topos
+* 05.5. Jim Portegies (Eindhoven University of Technology): The real interpolation theorem for the Carleson project
+* 12.5. Wenrong Zou: Formalizing one-dimensional formal group laws *and* Izabela Mandla: Formalization of Walsh-Fourier series' analogue of Carleson's theorem
+* 19.5. María Inés de Frutos Fernández: The Carleson project *and* Felix Pernegger: Formalization of the Calderón Transference principle
+* 26.5. No seminar
+* 02.6. Sam Lindauer (Utrecht University): The Formalisation of Differential Forms
+* 09.6. No seminar (Pentecost break)
+* 16.6. No seminar
+* 23.6. No seminar
+* 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
+* 07.7. No seminar
+* 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann: TBD
+* 21.7. No seminar
+* 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
+* 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)<!-- second supervisor: Philipp -->
+* 15.9. **16:00-17:00** Thesis defense Izabela Mandla (in room 0.003 as usual)<!-- second supervisor: Michel -->
+* 17.9. **15:15-16:15** Thesis defense Felix Pernegger (in room 0.003 as usual)<!-- second supervisor: Asgar -->
+
+### WiSe 24/25
+
+Time: Fridays 14:15-16:00 in room N0.003.
 
 * 18.10. Arend Mellendijk on monadic programming in Lean
 * 25.10. Floris van Doorn on metaprogramming in Lean
