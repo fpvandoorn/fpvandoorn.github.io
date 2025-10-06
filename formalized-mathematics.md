@@ -95,7 +95,7 @@ Master students:
 * Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; main supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [GitHub](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
-* Felix Pernegger, *Formalisation of the Calderón Transference Principle in Ergodic Theory* [GitHub](https://github.com/felixpernegger/ErgodicAverages), [thesis](theses/FelixPernegger.pdf)
+* Felix Pernegger, *Formalisation of the Calderón Transference Principle in Ergodic Theory* (2025) [GitHub](https://github.com/felixpernegger/ErgodicAverages), [thesis](theses/FelixPernegger.pdf)
 * Johannes Folttmann, *Formalization of the Internal Language of a Topos* (2025); [GitHub](https://github.com/johannesfoltt/topos), [thesis](theses/JohannesFolttmann.pdf)
 * Ludwig Monnerjahn, *Formalisation of constructable numbers* (2024); [GitHub](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers), [thesis](theses/LudwigMonnerjahn.pdf)
 * Hannah Scholz, *Formalisation of CW-complexes* (2024); [GitHub](https://github.com/scholzhannah/CWComplexes/), [thesis](theses/HannahScholz.pdf)
