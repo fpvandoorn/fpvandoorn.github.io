@@ -77,8 +77,8 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 ## Papers/preprints
 
 <!-- Maria's second divided powers paper -->
-* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. To appear in the 18th Conference on Intelligent Computer Mathematics (CICM '25). [arXiv](https://arxiv.org/abs/2508.21593)
-* Antoine Chambert-Loir, María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. Accepted to 16th International Conference on Interactive Theorem Proving (ITP '25). [arXiv](https://arxiv.org/abs/2507.05327)
+* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. 18th Conference on Intelligent Computer Mathematics (CICM '25). [journal version](https://link.springer.com/chapter/10.1007/978-3-032-07021-0_4), [arXiv](https://arxiv.org/abs/2508.21593)
+* Antoine Chambert-Loir, María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. 16th International Conference on Interactive Theorem Proving (ITP '25). [conference proceedints](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2025.4), [arXiv](https://arxiv.org/abs/2507.05327)
 * Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
 * Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Asgar Jamneshan, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, Rajula Srivastava, James Sundstrom, Jeremy Tan, Christoph Thiele, *A blueprint for the formalization of Carleson's theorem on convergence of Fourier series*, 2025. [arXiv](https://arxiv.org/abs/2405.06423)
 
