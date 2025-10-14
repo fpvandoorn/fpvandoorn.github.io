@@ -87,7 +87,7 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 Students supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
-* Izabela Mandla, *Formalisation of the Walsh-Carleson Theorem* (2025); [GitHub](https://github.com/izamandla/carleson/tree/master/Carleson/Project) <!-- missing thesis pdf --> <!-- original supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html) -->
+* Izabela Mandla, *Formalisation of the Walsh-Carleson Theorem* (2025; co-supervisor: [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html)); [GitHub](https://github.com/izamandla/carleson/tree/master/Carleson/Project), [thesis](theses/IzabelaMandla.pdf)
 * Gabin Kolly, *Fraïssé limits in Lean* (2025; main supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/GabinKolly), [thesis](theses/GabinKolly.pdf)
 * Kunhong Du, *On the Formalization of the Simplicial Model of HoTT* (2025); [GitHub](https://github.com/KunhongDu/HoTT-Model), [thesis](theses/KunhongDu.pdf) <!-- PhD with Nicolai Kraus -->
 * Tim Lichtnau†, *Stacks in Synthetic Algebraic Geometry* (2024; main supervisor: [Hugo Moeneclaey](https://www.hugomoeneclaey.com/)); [GitHub](https://github.com/timlichtnau/)
