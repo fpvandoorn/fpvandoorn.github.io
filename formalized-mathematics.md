@@ -44,7 +44,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Fe
 * 14.10. Michael Rothgang: *Growing mathlib: fostering the growth of a large formalised mathematics library*
 * 21.10. TBA
 * 28.10. TBA
-* 04.11. TBA
+* 04.11. Henri Nikoleit master thesis defense
 * 11.11. TBA <!-- Maybe Jovan Gerbscheid -->
 * 18.11. TBA
 * 25.11. TBA
