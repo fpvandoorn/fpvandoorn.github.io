@@ -137,23 +137,24 @@ Talks presenting a published paper at a conference are listed under *Publication
 - *The Lean Theorem Prover and Homotopy Type Theory*, May 2016 (with Jeremy Avigad), [HoTT Workshop in Toronto](http://www.fields.utoronto.ca/activities/15-16/homotopy-type). ([slides](talks/Toronto2016lean.pdf), [video](http://www.fields.utoronto.ca/talks/homotopy-type-theory-lean))
 - *Eilenberg-MacLane Spaces in Homotopy Type Theory*, March 2016, [ASL 2017 North American meeting](http://asl2017.boisestate.edu/). ([slides](talks/boise.pdf))
 
-## Unpublished Work
-<!-- TODO: fix layout -->
+## Preprints and Unpublished Work
 
-- *Carleson Operators on Doubling Metric Measure Spaces*, Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele. Preprint and blueprint for Lean formalization ([arXiv](https://arxiv.org/abs/2405.06423), [Github](https://github.com/fpvandoorn/carleson))
-- *Designing a general library for convolutions*, Floris van Doorn. Preprint ([arXiv](https://arxiv.org/abs/2210.07693))
+- *Carleson operators on doubling metric measure spaces*, Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele. Preprint ([arXiv](https://arxiv.org/abs/2508.05563)).
+- *A blueprint for the formalization of Carleson's theorem on convergence of Fourier series*, Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Asgar Jamneshan, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, Rajula Srivastava, James Sundstrom, Jeremy Tan, Christoph Thiele. Blueprint for a Lean formalization ([arXiv](https://arxiv.org/abs/2405.06423), [Github](https://github.com/fpvandoorn/carleson)).
+- *Designing a general library for convolutions*, Floris van Doorn. Preprint ([arXiv](https://arxiv.org/abs/2210.07693)).
 - *On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory*, Floris van Doorn. Dissertation. Committee: Jeremy Avigad, Steve Awodey, Ulrik Buchholtz, and Mike Shulman.
-- *Logic and Proof*, Jeremy Avigad, Robert Y. Lewis, Floris van Doorn. Lecture notes for the course Logic and Mathematical Inquiry ([Interactive version](http://avigad.github.io/logic_and_proof/logic_and_proof.pdf))
-- *The Lean Theorem Prover*, Floris van Doorn. Blog post of the [HoTT Blog](http://homotopytypetheory.org/blog/), December 2015. ([Link](http://homotopytypetheory.org/2015/12/02/the-proof-assistant-lean/))
-- *Constructing the Propositional Truncation using Nonrecursive HITs*, Floris van Doorn. Blog post of the [HoTT Blog](http://homotopytypetheory.org/blog/), July 2015. ([Link](http://homotopytypetheory.org/2015/07/28/constructing-the-propositional-truncation-using-nonrecursive-hits/))
+- *Logic and Proof*, Jeremy Avigad, Robert Y. Lewis, Floris van Doorn. Lecture notes for the course Logic and Mathematical Inquiry ([Interactive version](http://avigad.github.io/logic_and_proof/logic_and_proof.pdf)).
+- *The Lean Theorem Prover*, Floris van Doorn. Blog post of the [HoTT Blog](http://homotopytypetheory.org/blog/), December 2015. ([Link](http://homotopytypetheory.org/2015/12/02/the-proof-assistant-lean/)).
+- *Constructing the Propositional Truncation using Nonrecursive HITs*, Floris van Doorn. Blog post of the [HoTT Blog](http://homotopytypetheory.org/blog/), July 2015. ([Link](http://homotopytypetheory.org/2015/07/28/constructing-the-propositional-truncation-using-nonrecursive-hits/)).
 - Short notes on the *Applications of the Serre Spectral Sequence*, November 2015.
 - *Propositional Calculus in Coq*, Floris van Doorn. ([arXiv:1503.08744](https://arxiv.org/abs/1503.08744)), May 2014.
-- *Explicit Convertibility Proofs in Pure Type Systems*, Floris van Doorn. Master thesis ([pdf](papers/thesis.pdf), [Coq formalization](ptsf/index.html)). Advisor: [Freek Wiedijk](https://www.cs.ru.nl/~freek/)
+- *Explicit Convertibility Proofs in Pure Type Systems*, Floris van Doorn. Master thesis ([pdf](papers/thesis.pdf), [Coq formalization](ptsf/index.html)). Advisor: [Freek Wiedijk](https://www.cs.ru.nl/~freek/).
 
 ## Past Teaching
 
 ### University of Bonn
 
+* WiSe 25/26: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse25/)
 * SuSe 25: Logic of Proof Assistants
 * WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
 * SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)

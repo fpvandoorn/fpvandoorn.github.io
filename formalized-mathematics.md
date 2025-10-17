@@ -32,9 +32,10 @@ Students supervised within the formalized mathematics group:
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 
 Student research assistants:
+* Pan Lin
 * Felix Pernegger
 * Leo Diedering
-* Hannah Scholz
+<!-- * Hannah Scholz -->
 
 
 ## Seminar
@@ -63,12 +64,12 @@ If you would like to get reminders about the seminar and other activities of the
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (so in the annex building) during WiSe 25/26.
+Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (in the annex building) during WiSe 25/26.
 
 ## Courses
 
-* WiSe 25/26: Formalized Mathematics in Lean (lectures: Tue 16-18 and Thu 10-12, exercises Mo 8-12)
-* SuSe 25: The Logic of Proof Assistants (Thu 10-12 in room 0.011). See eCampus for more information.
+* WiSe 25/26: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse25/)
+* SuSe 25: The Logic of Proof Assistants. [Lecture notes](https://github.com/scholzhannah/LogicOfProofAssistants/blob/main/script.pdf) written up by Hannah Scholz.
 * WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
 * SuSe 24: [Collaborative Formalization in Analysis](https://github.com/fpvandoorn/BonnAnalysis/)
 * WiSe 23/24: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse23/)
