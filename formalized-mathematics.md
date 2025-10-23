@@ -50,7 +50,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Fe
 * 18.11. Evgenia Karunus: TBA (tentative)
 * 25.11. TBA
 * 02.12. Filippo Nuccio: TBA
-* 09.12. TBA
+* 09.12. Moritz Firsching: TBA
 * 16.12. TBA
 * 23.12. TBA
 * 13.01. TBA
