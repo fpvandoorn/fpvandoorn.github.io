@@ -47,7 +47,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Fe
 * 28.10. TBA
 * 04.11. Henri Nikoleit master thesis defense
 * 11.11. Jovan Gerbscheid: TBA
-* 18.11. TBA
+* 18.11. Evgenia Karunus: TBA (tentative)
 * 25.11. TBA
 * 02.12. Filippo Nuccio: TBA
 * 09.12. TBA
