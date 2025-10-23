@@ -53,10 +53,10 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Fe
 * 09.12. TBA
 * 16.12. TBA
 * 23.12. TBA
-* 13.01. Christian Mertens: TBA
+* 13.01. TBA
 * 20.01. TBA
 * 27.01. Oliver Butterley: TBA
-* 03.02. TBA
+* 03.02. Christian Merten (U Utrecht): TBA
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
 
