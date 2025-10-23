@@ -46,16 +46,16 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Fe
 * 21.10. No seminar
 * 28.10. Arend Mellendijk: TBA
 * 04.11. Henri Nikoleit master thesis defense
-* 11.11. Jovan Gerbscheid: TBA
+* 11.11. Jovan Gerbscheid (Cambridge): TBA
 * 18.11. Evgenia Karunus: TBA (tentative)
 * 25.11. TBA
-* 02.12. Filippo Nuccio: TBA
-* 09.12. Moritz Firsching: TBA
+* 02.12. Filippo Nuccio (U Jean Monnet): TBA
+* 09.12. Moritz Firsching (Basel, Google): TBA
 * 16.12. TBA
 * 23.12. TBA
 * 13.01. TBA
 * 20.01. TBA
-* 27.01. Oliver Butterley: TBA
+* 27.01. Oliver Butterley (U Rome Tor Vergata): TBA
 * 03.02. Christian Merten (U Utrecht): TBA
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
