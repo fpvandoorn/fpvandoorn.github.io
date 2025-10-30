@@ -49,7 +49,7 @@ For the seminar schedule, see the [Formalized Mathematics](formalized-mathematic
 
 ## About me
 
-I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the [Formalized Mathematics](formalized-mathematics#ongoing-seminar) workgroup. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great details.
+I am a professor at the [mathematical institute](https://www.math.uni-bonn.de/) of the [university of Bonn](https://www.uni-bonn.de) and leading the [Formalized Mathematics](formalized-mathematics#ongoing-seminar) workgroup. My interest is to make it viable to formalize research mathematics in *proof assistants* that can check the correctness of such proofs for you. Currently, it still takes a lot of work to write the proof down in great detail.
 
 I am mainly working using the [Lean Theorem Prover](https://lean-lang.org/), and I am a maintainer of its [mathematical library](https://leanprover-community.github.io/). Projects that I've done include:
 * The [Carleson project](https://florisvandoorn.com/carleson/), proving [Carleson's theorem](https://en.wikipedia.org/wiki/Carleson%27s_theorem) generalized to doubling metric measure spaces.
