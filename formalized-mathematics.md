@@ -29,6 +29,7 @@ This should be done on a different IRU webpage. -->
 Students supervised within the formalized mathematics group:
 
 * Henri Nikoleit (master, main supervisor: [Heiko Röglin](http://roeglin.org/))
+* Samantha Naranjo Guevara (master, main supervisor: Michael Rothgnag
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 
 Student research assistants:
