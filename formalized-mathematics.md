@@ -41,12 +41,12 @@ Student research assistants:
 
 ## Seminar
 
-In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007. Feel free to join, even if you're not part of the formalization group!
+In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 14.10. Michael Rothgang: *Growing mathlib: fostering the growth of a large formalised mathematics library*
 * 21.10. No seminar
 * 28.10. Arend Mellendijk: *Developing a Tactic for Algebraic Normalization*
-* 04.11. Henri Nikoleit master thesis defense
+* 04.11. Henri Nikoleit: *Using LLMs to construct adversarial instances in combinatorial optimization* (master thesis defense)
 * 11.11. Jovan Gerbscheid (Cambridge): TBA
 * 18.11. Evgenia Karunus: TBA (tentative)
 * 25.11. TBA
