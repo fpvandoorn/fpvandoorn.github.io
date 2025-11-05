@@ -85,7 +85,7 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 
 ## Past students
 
-Students supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
+Students (co-)supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
 * Henri Nikoleit, *Using LLMs To Construct Adversarial Instances in Combinatorial Optimization* (2025; supervisor: [Heiko Röglin](http://roeglin.org/)); [GitHub](https://github.com/lumi-a?tab=repositories) ([1](https://github.com/lumi-a/funsearch), [2](https://github.com/lumi-a/exact-clustering), [3](https://github.com/lumi-a/py-exact-clustering)), [thesis](theses/HenriNikoleit.pdf)
