@@ -46,13 +46,13 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 21.10. No seminar
 * 28.10. Arend Mellendijk: *Developing a Tactic for Algebraic Normalization*
 * 04.11. Henri Nikoleit: *Using LLMs to construct adversarial instances in combinatorial optimization* (master thesis defense)
-* 11.11. Jovan Gerbscheid (Cambridge): TBA
+* 11.11. Jovan Gerbscheid (Cambridge): Improving Lean by metaprogramming
 * 18.11. Evgenia Karunus: TBA (tentative)
 * 25.11. TBA
 * 02.12. Filippo Nuccio (U Jean Monnet): TBA
 * 09.12. Moritz Firsching (Basel, Google): TBA
 * 16.12. TBA
-* 23.12. TBA
+* 23.12. No seminar
 * 13.01. TBA
 * 20.01. TBA
 * 27.01. Oliver Butterley (U Rome Tor Vergata): TBA
