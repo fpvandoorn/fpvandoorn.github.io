@@ -50,7 +50,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 18.11. Evgenia Karunus: *Paperproof: Visualising Mathematical Proof*
 * 25.11. TBA
 * 02.12. Filippo Nuccio (U Jean Monnet): TBA
-* 09.12. Moritz Firsching (Basel, Google): TBA
+* 09.12. TBA <!-- Moritz Firsching (Basel, Google): TBA (to be moved) -->
 * 16.12. TBA
 * 23.12. No seminar
 * 13.01. TBA
