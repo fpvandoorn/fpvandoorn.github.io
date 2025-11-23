@@ -48,7 +48,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 04.11. Henri Nikoleit: *Using LLMs to construct adversarial instances in combinatorial optimization* (master thesis defense)
 * 11.11. Jovan Gerbscheid (Cambridge): *Improving Lean by metaprogramming*
 * 18.11. Evgenia Karunus: *Paperproof: Visualising Mathematical Proof*
-* 25.11. TBA
+* 25.11. No seminar
 * 02.12. Filippo Nuccio (U Jean Monnet): TBA
 * 09.12. TBA
 * 16.12. TBA
