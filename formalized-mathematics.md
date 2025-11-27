@@ -53,8 +53,8 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 09.12. TBA
 * 16.12. TBA
 * 23.12. No seminar
-* 13.01. Moritz Firsching (Basel, Google): TBA
-* 20.01. TBA
+* 13.01. TBA
+* 20.01. Moritz Firsching (Basel, Google): TBA
 * 27.01. Oliver Butterley (U Rome Tor Vergata): TBA
 * 03.02. Christian Merten (U Utrecht): TBA
 
