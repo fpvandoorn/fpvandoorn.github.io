@@ -50,7 +50,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 18.11. Evgenia Karunus: *Paperproof: Visualising Mathematical Proof*
 * 25.11. No seminar
 * 02.12. Filippo Nuccio (U Jean Monnet): *Formalising Condensed Mathematics*
-* 09.12. **9:00-10:30 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
+* 09.12. **9:00-10:15 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
 * 16.12. TBA
 * 23.12. No seminar
 * 13.01. TBA
