@@ -76,10 +76,12 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 
 
 ## Papers/preprints
+* María Inés de Frutos-Fernández, Daniel Macias Castillo and Daniel Martínez Marqués, *The refined class number formula for Drinfeld modules*, 2025. Accepted to Compositio Mathematica. [arXiv](https://arxiv.org/abs/2309.17256)
 
-<!-- Maria's second divided powers paper -->
-* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. 18th Conference on Intelligent Computer Mathematics (CICM '25). [journal version](https://link.springer.com/chapter/10.1007/978-3-032-07021-0_4), [arXiv](https://arxiv.org/abs/2508.21593)
-* Antoine Chambert-Loir, María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. 16th International Conference on Interactive Theorem Proving (ITP '25). [conference proceedings](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2025.4), [arXiv](https://arxiv.org/abs/2507.05327)
+* Antoine Chambert-Loir and María Inés de Frutos-Fernández, *Formalizing Polynomial Laws and the Universal Divided Power Algebra*, 2025. Accepted to the 15th ACM SIGPLAN International
+Conference on Certified Programs and Proofs (CPP '26). [Online abstract](https://popl26.sigplan.org/details/CPP-2026-papers/25/Formalizing-polynomial-laws-and-the-universal-divided-power-algebra), [arXiv](https://arxiv.org/abs/2512.05750)
+* Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. 18th Conference on Intelligent Computer Mathematics (CICM '25). [Journal version](https://link.springer.com/chapter/10.1007/978-3-032-07021-0_4), [arXiv](https://arxiv.org/abs/2508.21593)
+* Antoine Chambert-Loir and María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. 16th International Conference on Interactive Theorem Proving (ITP '25). [Conference proceedings](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2025.4), [arXiv](https://arxiv.org/abs/2507.05327)
 * Sven Manthe *A formalization of Borel determinacy in Lean*, 2025. [arXiv](https://arxiv.org/abs/2502.03432)
 * Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Asgar Jamneshan, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, Rajula Srivastava, James Sundstrom, Jeremy Tan, Christoph Thiele, *A blueprint for the formalization of Carleson's theorem on convergence of Fourier series*, 2025. [arXiv](https://arxiv.org/abs/2405.06423)
 
