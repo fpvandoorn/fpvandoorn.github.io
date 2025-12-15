@@ -51,7 +51,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 25.11. No seminar
 * 02.12. Filippo Nuccio (U Jean Monnet): *Formalising Condensed Mathematics*
 * 09.12. **9:00-10:15 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
-* 16.12. TBA
+* 16.12. No seminar
 * 23.12. No seminar
 * 13.01. TBA
 * 20.01. Moritz Firsching (Basel, Google): TBA
@@ -126,7 +126,7 @@ Time: Mondays 10:15-12:00 in seminar room 0.003.
 * 23.6. No seminar
 * 30.6. Henri Nikoleit: Finding new bounds for approximation-algorithms using LLMs and evolutionary search (**starts 11:15**)
 * 07.7. No seminar
-* 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann: TBD
+* 14.7. Wenrong Zou: A functional equation lemma for formal group laws. *and* Johannes Folttmann
 * 21.7. No seminar
 * 28.7. **14:15-16:00**. Izabela Mandla: Properties of Walsh Functions in the Proof of a Carleson Theorem Analogue *and* Felix Pernegger: Layer cake overkill: Formalization of generalized independence systems
 * 1.9. **10:15-11:00** Thesis defense Johannes Folttmann (in room 0.003 as usual)<!-- second supervisor: Philipp -->
