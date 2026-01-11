@@ -53,7 +53,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 09.12. **9:00-10:15 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
 * 16.12. No seminar
 * 23.12. No seminar
-* 13.01. Hannah Scholz (TBA) and Wenrong Zou (TBA).
+* 13.01. Hannah Scholz: *CW Complexes in Lean* and Wenrong Zou: *Formalizing Formal Group Laws*.
 * 20.01. Moritz Firsching (Basel, Google): TBA
 * 27.01. Oliver Butterley (U Rome Tor Vergata): TBA
 * 03.02. Christian Merten (U Utrecht): TBA
