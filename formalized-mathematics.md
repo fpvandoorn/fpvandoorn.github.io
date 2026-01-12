@@ -54,7 +54,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 16.12. No seminar
 * 23.12. No seminar
 * 13.01. Hannah Scholz: *CW Complexes in Lean* and Wenrong Zou: *Formalizing Formal Group Laws*.
-* 20.01. Moritz Firsching (Basel, Google): TBA
+* 20.01. Moritz Firsching (Basel, Google): Formal Conjectures, Autoformalisation & AlphaProof
 * 27.01. Oliver Butterley (U Rome Tor Vergata): TBA
 * 03.02. Christian Merten (U Utrecht): TBA
 
