@@ -56,7 +56,7 @@ In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at 
 * 13.01. Hannah Scholz: *CW Complexes in Lean* and Wenrong Zou: *Formalizing Formal Group Laws*
 * 20.01. Moritz Firsching (Basel, Google): *Formal Conjectures, Autoformalisation & AlphaProof*
 * 27.01. Oliver Butterley (U Rome Tor Vergata): *Large scale verification of production cryptography code using Lean*
-* 03.02. Christian Merten (U Utrecht): TBA
+* 03.02. Christian Merten (U Utrecht): *Cohomology theories in algebraic geometry in Lean's mathematical library mathlib*
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
 
