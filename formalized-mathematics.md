@@ -68,6 +68,7 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 
 ## Courses
 
+* SuSe 26: Seminar [Advanced topics in formalised mathematics](https://github.com/grunweg/LeanSeminar26)
 * WiSe 25/26: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse25/)
 * SuSe 25: The Logic of Proof Assistants. [Lecture notes](https://github.com/scholzhannah/LogicOfProofAssistants/blob/main/script.pdf) written up by Hannah Scholz.
 * WiSe 24/25: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse24/)
