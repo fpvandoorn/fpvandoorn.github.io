@@ -10,7 +10,7 @@ e-mail: vdoorn@math.uni-bonn.de
 office: Endenicher Allee 62 (the building next to the Math department), room 1.002
 ```
 Leading the [Formalized Mathematics](formalized-mathematics) group in Bonn.
-<!-- ```
+<!--
 address:
 Universität Bonn
 Mathematisches Institut
@@ -22,17 +22,19 @@ Germany
 
 ## News
 
+* *Feb 2026*: I am looking for a PhD candidate to join my group in summer 2026. You can apply in March or April here: [BIGS](https://www.mathematics.uni-bonn.de/hsm-school/phd-admission/phd-admission)
+* *Nov 2025*: [Christoph Thiele](https://www.math.uni-bonn.de/~thiele/) and I are have been awarded an [ERC Synergy Grant](https://erc.europa.eu/apply-grant/synergy-grant)!
 * *Aug 2025*: [An article](https://www.spektrum.de/news/so-veraendern-computer-ki-und-beweispruefer-die-mathematik/2280992) was written about the Carleson project in the German magazine *Spectrum der Wissenschaft* (behind paywall).
 * *July 2025*: We finished the [Carleson project](http://florisvandoorn.com/carleson/)!
 * *May 2025*: Together with Leonardo de Moura, Soonho Kong, Jeremy Avigad and Jakob von Raumer I received the [Skolem award](https://cadeinc.org/Skolem-Award) for the paper [*The Lean Theorem Prover (System Description)*](https://link.springer.com/chapter/10.1007/978-3-319-21401-6_26). The Skolem award is awarded to the paper that has passed the test of time, by being a most influential paper in the field.
 <!-- * *February 2025*: I've created a [dedicated page](formalized-mathematics) for the formalized mathematics group in Bonn. -->
 <!-- * *October 2024*: There is an almost weekly [seminar](https://github.com/fpvandoorn/BonnLeanSeminar) on Friday at 14:15-16:00 in room N0.003 on formalization. See the [seminar schedule](#seminar-schedule) below. -->
 <!-- * *October 2024*: This semester I'm organizing a weekly Lean hacking session on Wednesdays 18:15-20:00 in seminar room 0.006. Feel free to join. There will be cookies! -->
-* *October 2024*: Maria, Michael and Arend joined the formalization group in Bonn.
+<!-- * *Oct 2024*: Maria, Michael and Arend joined the formalization group in Bonn. -->
 <!-- * *September 2024*: We are halfway done with the [Carleson's project](http://florisvandoorn.com/carleson/)! This is by counting the number of lemmas formalized. -->
 <!-- We are probably not quite halfway done with the total work, since some of the harder parts still need to be done. -->
 <!-- (on the other hand, some preliminaries not in the blueprint are not counted towards our progress.) -->
-* *June 2024*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project.
+<!-- * *Jun 2024*: I'm launching the formalization of Carleson's theorem. Take a look at [the project webpage](http://florisvandoorn.com/carleson/), or the [introductory presentation](https://www.youtube.com/watch?v=PNaOSAPtvv0). If you know some Lean, you are welcome to join the project. -->
 <!-- * *Summer 24*: I'm teaching a seminar Collaborative Formalization in Analysis ([pdf](/files/seminar24notes.pdf), [repository](https://github.com/fpvandoorn/BonnAnalysis/)) -->
 <!-- * *January 2024*: I will be giving a [Lean tutorial in Rome](https://www.mat.uniroma2.it/butterley/formalisation/). -->
 <!-- * *November 2023*: I offered a [postdoc position](/postdoc)! -->
