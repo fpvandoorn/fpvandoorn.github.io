@@ -65,6 +65,8 @@ If you would like to get reminders about the seminar and other activities of the
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
 Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (in the annex building) during WiSe 25/26.
+The hacking session will continue for 3 weeks after the semester ends **in N0.007** (last session 26.02.).
+After that we'll take a break until the start of the summer semester.
 
 ## Courses
 
@@ -78,7 +80,6 @@ Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (
 
 ## Papers/preprints
 * María Inés de Frutos-Fernández, Daniel Macias Castillo and Daniel Martínez Marqués, *The refined class number formula for Drinfeld modules*, 2025. Accepted to Compositio Mathematica. [arXiv](https://arxiv.org/abs/2309.17256)
-
 * Antoine Chambert-Loir and María Inés de Frutos-Fernández, *Formalizing Polynomial Laws and the Universal Divided Power Algebra*, 2025. Accepted to the 15th ACM SIGPLAN International
 Conference on Certified Programs and Proofs (CPP '26). [Online abstract](https://popl26.sigplan.org/details/CPP-2026-papers/25/Formalizing-polynomial-laws-and-the-universal-divided-power-algebra), [arXiv](https://arxiv.org/abs/2512.05750)
 * Anne Baanen, Matthew Robert Ballard, Bryan Gin-ge Chen, Johan Commelin, Michael Rothgang and Damiano Testa. *Growing Mathlib: maintenance of a large scale mathematical library*, 2025. 18th Conference on Intelligent Computer Mathematics (CICM '25). [Journal version](https://link.springer.com/chapter/10.1007/978-3-032-07021-0_4), [arXiv](https://arxiv.org/abs/2508.21593)
