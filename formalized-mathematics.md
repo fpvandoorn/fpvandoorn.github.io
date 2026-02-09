@@ -40,23 +40,23 @@ Student research assistants:
 
 ## Seminar
 
-In WiSe 25/26 the seminar will be Tuesdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
+In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
-* 14.10. Michael Rothgang: *Growing mathlib: fostering the growth of a large formalised mathematics library*
-* 21.10. No seminar
-* 28.10. Arend Mellendijk: *Developing a Tactic for Algebraic Normalization*
-* 04.11. Henri Nikoleit: *Using LLMs to construct adversarial instances in combinatorial optimization* (master thesis defense)
-* 11.11. Jovan Gerbscheid (Cambridge): *Improving Lean by metaprogramming*
-* 18.11. Evgenia Karunus: *Paperproof: Visualising Mathematical Proof*
-* 25.11. No seminar
-* 02.12. Filippo Nuccio (U Jean Monnet): *Formalising Condensed Mathematics*
-* 09.12. **9:00-10:15 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
-* 16.12. No seminar
-* 23.12. No seminar
-* 13.01. Hannah Scholz: *CW Complexes in Lean* and Wenrong Zou: *Formalizing Formal Group Laws*
-* 20.01. Moritz Firsching (Basel, Google): *Formal Conjectures, Autoformalisation & AlphaProof*
-* 27.01. Oliver Butterley (U Rome Tor Vergata): *Large scale verification of production cryptography code using Lean*
-* 03.02. Christian Merten (U Utrecht): *Cohomology theories in algebraic geometry in Lean's mathematical library mathlib*
+* 16.4. TBD
+* 23.4. TBD
+* 30.4. TBD
+* 07.5. TBD
+* 14.5. No seminar (Ascension day)
+* 21.5. TBD
+* 28.5. No seminar (Pentecost)
+* 04.6. No seminar (Corpus Christi)
+* 11.6. TBD
+* 18.6. TBD
+* 25.6. TBD
+* 2.7. TBD
+* 9.7. TBD
+* 16.7. TBD
+* 23.7. TBD
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
 
@@ -109,6 +109,26 @@ Bachelor students:
 
 
 ## Past seminar sessions
+
+### WiSe 25/26
+
+Time: Tuesdays 10:15-12:00 in seminar room 0.007.
+
+* 14.10. Michael Rothgang: *Growing mathlib: fostering the growth of a large formalised mathematics library*
+* 21.10. No seminar
+* 28.10. Arend Mellendijk: *Developing a Tactic for Algebraic Normalization*
+* 04.11. Henri Nikoleit: *Using LLMs to construct adversarial instances in combinatorial optimization* (master thesis defense)
+* 11.11. Jovan Gerbscheid (Cambridge): *Improving Lean by metaprogramming*
+* 18.11. Evgenia Karunus: *Paperproof: Visualising Mathematical Proof*
+* 25.11. No seminar
+* 02.12. Filippo Nuccio (U Jean Monnet): *Formalising Condensed Mathematics*
+* 09.12. **9:00-10:15 in the common room of Villa Maria** (Endenicher Allee 62) livestream of Leonardo de Moura's talk *The Making of Lean* at [ItaLean 2025](https://pitmonticone.github.io/ItaLean2025/)
+* 16.12. No seminar
+* 23.12. No seminar
+* 13.01. Hannah Scholz: *CW Complexes in Lean* and Wenrong Zou: *Formalizing Formal Group Laws*
+* 20.01. Moritz Firsching (Basel, Google): *Formal Conjectures, Autoformalisation & AlphaProof*
+* 27.01. Oliver Butterley (U Rome Tor Vergata): *Large scale verification of production cryptography code using Lean*
+* 03.02. Christian Merten (U Utrecht): *Cohomology theories in algebraic geometry in Lean's mathematical library mathlib*
 
 ### SuSe 25
 
