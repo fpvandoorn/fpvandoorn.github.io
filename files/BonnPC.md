@@ -52,10 +52,6 @@ PS1="\[\033[32m\]\u@\h\[\033[37m\]:\[\033[33m\]\w\[\033[36m\]\$(__git_ps1 ' (%s)
 ```
 alias lc="lake exe cache get"
 alias lu="lake exe unpack!"
-# checkout remote master
-alias cm='git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD)'
-# checkout local master
-alias clm='git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s|^origin/||")'
 alias gp="git push -u"
 alias gc="git commit -am"
 alias gcf="git commit -am \"fix\""
@@ -63,11 +59,22 @@ alias gcs="git commit -am \"small\""
 alias ga="git commit -a --amend --no-edit"
 alias master="git fa && cm && lc"
 alias gm="git -c core.editor=true merge"
-# merge remote master
-alias gmm="gm $(git symbolic-ref --short refs/remotes/origin/HEAD)"
 alias gmc="git add -u && gm --continue"
 alias grc="git add -u && git -c core.editor=true rebase --continue"
 alias gff='git merge --ff-only @{u}'
+
+# merge remote master
+gmm() {
+  gm "$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+}
+# checkout remote master
+cm() {
+  git checkout "$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+}
+# checkout local master
+clm() {
+  git checkout '$(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s|^origin/||")'
+}
 
 alias code='codium'
 alias lb="export LEAN_NUM_THREADS=10 && lake build"
