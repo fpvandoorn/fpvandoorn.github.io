@@ -1,7 +1,7 @@
 # Setup for Bonn office computers
 
-The office computers (as of December 2024) run Debian GNU/Linux 11 (bullseye), with GUI LXQt.
-Here are some tips for setting up the computer.
+The office computers (as of February 2026) run Debian GNU/Linux 11 (bullseye) or 13 (trixie), with GUI LXQt and window manager Xfwm4.
+Here are some tips for configuring the computer.
 
 ## Language
 
@@ -26,22 +26,19 @@ Minor:
 ## Mouse & Keyboard
 
 * I personally dislike (non-flat) mouse acceleration in any form, which is enabled by default, and I didn't see an option in the GUI to fix it.
-I fixed it by creating a file `startup.sh` in my HOME directory with the following contents:
 ```
 #!/bin/sh
-xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" 300 0.7
-xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" 303 0, 1
+xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" "libinput Accel Speed" 0.7
+xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" "libinput Accel Profile Enabled" 0, 1
 ```
-You can run `xinput` and `xinput list-props` to find the name and properties of your mouse. Here I'm modifying these properties:
-```
-libinput Accel Speed (300)
-libinput Accel Profile Enabled (303)
-```
+You can run `xinput` and `xinput list-props <id/name of mouse>` to find the name and properties of your mouse. 
 The `0.7` can be modified to change the sensitivity of the mouse linearly.
-I didn't find a way to automatically run this when logging in (neither `.profile`, nor autostart (via GUI or directly editing a config file) seems to work). So I just run this command from `.bashrc` and then it gets executed when I open a shell for the first time.
+I didn't find a way to automatically run this when logging in (neither `.profile`, nor autostart (via GUI or directly editing a config file) seems to work). So I just run these commands from `.bashrc` and then it gets executed when I open a shell for the first time.
 
 * In Firefox, consider enabling `Settings > autoscrolling` to enable scrolling with Middle mouse-button
 * In `Preferences > Window Manager > Keyboard` consider adding more convenient keyboard shortcuts for `Maximise window` and `Tile window to the left/right`.
+* Scrolling on an unfocused windows focuses that window. To change this, go to `Preferences > Window Manager Tweaks > Accessibility > *uncheck* Raise windows when any mouse button is pressed` (scrolling counts as a mouse button press).
+* In Firefox, consider adding bookmarks that can be used to search. For example, if you have a bookmark with URL `https://leanprover-community.github.io/mathlib4_docs/find/?pattern=%s#doc` and keyword `ml`, then typing `ml Nat` searches in the Mathlib docs for `Nat`. Similarly, `https://loogle.lean-lang.org/?q=%s` can be used to search with Loogle.
 
 ## Terminal and Git
 
@@ -54,22 +51,26 @@ PS1="\[\033[32m\]\u@\h\[\033[37m\]:\[\033[33m\]\w\[\033[36m\]\$(__git_ps1 ' (%s)
 * I like some aliases of commonly-used commands, e.g.
 ```
 alias lc="lake exe cache get"
-alias lb="export LEAN_NUM_THREADS=10 && lake build"
 alias lu="lake exe unpack!"
-alias cm="git checkout origin/master"
-alias clm="git checkout master"
-alias gp="git push"
+# checkout remote master
+alias cm='git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD)'
+# checkout local master
+alias clm='git checkout $(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s|^origin/||")'
+alias gp="git push -u"
 alias gc="git commit -am"
 alias gcf="git commit -am \"fix\""
 alias gcs="git commit -am \"small\""
 alias ga="git commit -a --amend --no-edit"
 alias master="git fa && cm && lc"
 alias gm="git -c core.editor=true merge"
-alias gmm="gm origin/master"
+# merge remote master
+alias gmm="gm $(git symbolic-ref --short refs/remotes/origin/HEAD)"
 alias gmc="git add -u && gm --continue"
 alias grc="git add -u && git -c core.editor=true rebase --continue"
-alias gff='git merge --ff-only origin/$(git rev-parse --abbrev-ref HEAD)'
-alias cdp='cd /local/vdoorn/projects'
+alias gff='git merge --ff-only @{u}'
+
+alias code='codium'
+alias lb="export LEAN_NUM_THREADS=10 && lake build"
 ```
 * Some Git configuration options are useful. You can modify `.gitconfig` (also with `git config --global --edit`). This is my current setup (I don't use all aliases, but a few are very useful, especially `git l` and `git la`):
 ```
@@ -164,8 +165,8 @@ alias cdp='cd /local/vdoorn/projects'
 * `Shift-insert` in LXTerminal does not paste, `ctrl+shift+V` does.
 
 ## Annoyances
-* `ctrl` closes the start menu, making the search-box near useless. (this is fixed in LXQt in 2022, but not in the old version we have.)
-* Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable.
+<!-- * `ctrl` closes the start menu, making the search-box near useless. (this is fixed in LXQt in 2022, but not in the old version we have.) (fixed in Debian 13) -->
+<!-- * Scrolling on an unfocused windows focuses that window. This doesn't seem to be configurable. -->
 * `~/.profile` doesn't seem to ever get executed (even after making it executable). How to run a startup script properly?
 <!-- * USB-C port doesn't seem to be able to connect to a monitor. -->
 * Is it possible to configure keyboard shortcuts for "move window to display to the left/right"?
