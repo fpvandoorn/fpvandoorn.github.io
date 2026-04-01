@@ -70,9 +70,7 @@ If you would like to get reminders about the seminar and other activities of the
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-Hacking sessions will are held on Thursdays 14:15-16:00 in seminar room N0.008 (in the annex building) during WiSe 25/26.
-The hacking session will continue for 3 weeks after the semester ends **in N0.007** (last session 26.02.).
-After that we'll take a break until the start of the summer semester. In the summer semester the time is tentatively Fridays 14:15-16:00 (but I cannot book a room for it yet, so it could change)
+In the summer semester the time is tentatively Fridays 14:15-16:00 (but I cannot book a room for it yet, so it could change)
 
 ## Courses
 
