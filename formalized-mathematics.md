@@ -20,6 +20,7 @@ There is also a low-traffic private channel on [Lean's Zulip Chat](https://leanp
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; area: formalization and algebraic number theory)
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; area: formalization and symplectic geometry)
 * [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; area: formalization and analytic number theory)
+* [Lua Viana Reis](https://github.com/lua-vr) (PhD student; area: formalization and ergodic theory)
 
 <!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
 This should be done on a different IRU webpage. -->
@@ -29,13 +30,18 @@ This should be done on a different IRU webpage. -->
 Students supervised within the formalized mathematics group:
 
 * Samantha Naranjo Guevara (master, main supervisor: Michael Rothgang)
+* Hannah Scholz (master, main supervisor: Michael Rothgang)
+* Mara Silge (bachelor, main supervisor: Floris van Doorn)
+* Joshua Wirtz (bachelor, main supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
+* Maša Žaucer (master, co-supervised with: [Giles Gardam](https://www.gilesgardam.com/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
+<!-- potentially: Shuhan, Max -->
 
 Student research assistants:
+* Alexander Brodbelt Lopez
+* Leo Diedering
 * Pan Lin
 * Felix Pernegger
-* Leo Diedering
-<!-- * Hannah Scholz -->
 
 
 ## Seminar
