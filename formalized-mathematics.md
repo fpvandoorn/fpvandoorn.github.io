@@ -50,16 +50,16 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 
 * 16.4. TBD
 * 23.4. TBD
-* 30.4. TBD
-* 07.5. TBD
+* 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
+* 07.5. TBD <!-- Floris is giving a job talk, which could be an official seminar replacement -->
 * 14.5. No seminar (Ascension day)
 * 21.5. TBD
 * 28.5. No seminar (Pentecost)
 * 04.6. No seminar (Corpus Christi)
 * 11.6. TBD
 * 18.6. TBD
-* 25.6. TBD
-* 2.7. TBD
+* 25.6. TBD <!-- Floris is travelling -->
+* 2.7. TBD <!-- Floris is travelling -->
 * 9.7. TBD
 * 16.7. TBD
 * 23.7. TBD
