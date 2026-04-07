@@ -49,7 +49,7 @@ Student research assistants:
 In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 16.4. TBD
-* 23.4. TBD
+* 23.4. Lua Viana Reis: *TBD*
 * 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
 * 07.5. TBD <!-- Floris is giving a job talk, which could be an official seminar replacement -->
 * 14.5. No seminar (Ascension day)
