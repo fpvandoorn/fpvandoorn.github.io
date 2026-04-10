@@ -51,16 +51,16 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 16.4. *Hacking session*
 * 23.4. Lua Viana Reis: *TBD*
 * 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
-* 07.5. TBD <!-- Floris is giving a job talk, which could be an official seminar replacement -->
+* 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room.
 * 14.5. No seminar (Ascension day)
 * 21.5. TBD
 * 28.5. No seminar (Pentecost)
 * 04.6. No seminar (Corpus Christi)
 * 11.6. TBD
 * 18.6. TBD
-* 25.6. No seminar
-* 2.7. No seminar
-* 9.7. Hannah Scholz: the `grind` tactic
+* 25.6. Probably no seminar (part of the group is traveling) <!-- Michael and Floris are traveling. -->
+* 2.7. Probably no seminar (part of the group is traveling) <!-- Michael and Floris are traveling. -->
+* 9.7. Hannah Scholz: *the `grind` tactic*
 * 16.7. TBD
 * 23.7. TBD
 
