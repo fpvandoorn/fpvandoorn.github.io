@@ -33,7 +33,7 @@ Students supervised within the formalized mathematics group:
 * Hannah Scholz (master, main supervisor: Michael Rothgang)
 * Mara Silge (bachelor, main supervisor: Floris van Doorn)
 * Joshua Wirtz (bachelor, main supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
-* Maša Žaucer (master, co-supervised with: [Giles Gardam](https://www.gilesgardam.com/))
+* Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 <!-- potentially: Shuhan, Max -->
 
@@ -48,7 +48,7 @@ Student research assistants:
 
 In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
-* 16.4. TBD
+* 16.4. *Hacking session*
 * 23.4. Lua Viana Reis: *TBD*
 * 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
 * 07.5. TBD <!-- Floris is giving a job talk, which could be an official seminar replacement -->
@@ -58,8 +58,8 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 04.6. No seminar (Corpus Christi)
 * 11.6. TBD
 * 18.6. TBD
-* 25.6. TBD <!-- Floris is travelling -->
-* 2.7. TBD <!-- Floris is travelling -->
+* 25.6. No seminar
+* 2.7. No seminar
 * 9.7. Hannah Scholz: the `grind` tactic
 * 16.7. TBD
 * 23.7. TBD
