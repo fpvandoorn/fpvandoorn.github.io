@@ -60,7 +60,7 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 18.6. TBD
 * 25.6. TBD <!-- Floris is travelling -->
 * 2.7. TBD <!-- Floris is travelling -->
-* 9.7. TBD
+* 9.7. Hannah Scholz: the `grind` tactic
 * 16.7. TBD
 * 23.7. TBD
 
