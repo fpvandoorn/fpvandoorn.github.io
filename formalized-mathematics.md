@@ -70,7 +70,7 @@ If you would like to get reminders about the seminar and other activities of the
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-In the summer semester the time is tentatively Fridays 14:15-16:00 (but I cannot book a room for it yet, so it could change)
+In the summer semester the time is tentatively Fridays 14:15-16:00 (but I cannot book a room for it yet, so it could change), starting the *second* week of the semester.
 
 ## Courses
 
