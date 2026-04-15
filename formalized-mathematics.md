@@ -35,10 +35,11 @@ Students supervised within the formalized mathematics group:
 * Samantha Naranjo Guevara (master, main supervisor: Michael Rothgang)
 * Hannah Scholz (master, main supervisor: Michael Rothgang)
 * Mara Silge (bachelor, main supervisor: Floris van Doorn)
+* Shuhan Wang (master, main supervisor: Floris van Doorn)
 * Joshua Wirtz (bachelor, main supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
-<!-- potentially: Shuhan, Max -->
+<!-- potentially: Max -->
 
 Student research assistants:
 * Alexander Brodbelt Lopez
