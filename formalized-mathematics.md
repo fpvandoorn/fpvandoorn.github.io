@@ -11,8 +11,11 @@ This is the webpage for the group on formalized mathematics at the [mathematical
 
 To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hhu-adam/NNG4), read the online book [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/) or work through [the course repository](https://github.com/fpvandoorn/LeanCourse24/). There are also [other ways of learning Lean](https://leanprover-community.github.io/learn.html).
 
-If you would like to get information about the activities of the formalization group, including the seminar, you can subscribe to our **mailing list** [here](https://listen.uni-bonn.de/wws/info/formal-math).
-There is also a low-traffic private channel on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
+## Mailing List
+
+**Subscribe to our mailing list** [here](https://listen.uni-bonn.de/wws/info/formal-math). We will send 1-2 emails per week about the activities of the formalization group, including the seminar schedule.
+
+There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
 
 ## Team
 
@@ -49,11 +52,11 @@ Student research assistants:
 In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 16.4. *Hacking session*
-* 23.4. Lua Viana Reis: *TBD*
+* 23.4. Lua Viana Reis: *An overview of Ergodic theory in Mathlib*
 * 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
 * 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room.
 * 14.5. No seminar (Ascension day)
-* 21.5. TBD
+* 21.5. Leo Diedering: *TBD*
 * 28.5. No seminar (Pentecost)
 * 04.6. No seminar (Corpus Christi)
 * 11.6. TBD
