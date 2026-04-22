@@ -53,8 +53,8 @@ Student research assistants:
 In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 16.4. *Hacking session*
-* 23.4. Lua Viana Reis: *An overview of Ergodic theory in Mathlib*
-* 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification*
+* 23.4. Seminar canceled
+* 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification* and Lua Viana Reis: *An overview of Ergodic theory in Mathlib*.
 * 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room.
 * 14.5. No seminar (Ascension day)
 * 21.5. Leo Diedering: *TBD*
@@ -62,8 +62,8 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 04.6. No seminar (Corpus Christi)
 * 11.6. Felix Pernegger: TBD
 * 18.6. TBD
-* 25.6. Probably no seminar (part of the group is traveling) <!-- Michael and Floris are traveling. -->
-* 2.7. Probably no seminar (part of the group is traveling) <!-- Michael and Floris are traveling. -->
+* 25.6. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
+* 2.7. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
 * 9.7. Hannah Scholz: *the `grind` tactic*
 * 16.7. TBD
 * 23.7. TBD
