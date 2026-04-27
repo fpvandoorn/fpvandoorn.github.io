@@ -61,7 +61,7 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 28.5. No seminar (Pentecost)
 * 04.6. No seminar (Corpus Christi)
 * 11.6. Felix Pernegger: TBD
-* 18.6. TBD
+* 18.6. Pan Lin: *the `positivity` tactic*
 * 25.6. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
 * 2.7. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
 * 9.7. Hannah Scholz: *the `grind` tactic*
