@@ -87,6 +87,7 @@ In SuSe 26 the time is Fridays 14:15-16:00 in seminar room 0.006, starting the *
 
 
 ## Papers/preprints
+* Arend Mellendijk *A Lean Tactic for Normalizing Expressions in an Algebra over a Ring*, 2026. To appear at the 17th International Conference on Interactive Theorem Proving (ITP '26).
 * Sven Manthe *A formalization of Borel determinacy in Lean*, [Annals of Formalized, Volume 2 (2026)](https://afm.episciences.org/17712). [arXiv](https://arxiv.org/abs/2502.03432)
 * María Inés de Frutos-Fernández, Daniel Macias Castillo and Daniel Martínez Marqués, *The refined class number formula for Drinfeld modules*, 2025. Accepted to Compositio Mathematica. [arXiv](https://arxiv.org/abs/2309.17256)
 * Antoine Chambert-Loir and María Inés de Frutos-Fernández, *Formalizing Polynomial Laws and the Universal Divided Power Algebra*, 2025. Accepted to the 15th ACM SIGPLAN International
