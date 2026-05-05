@@ -32,6 +32,7 @@ This should be done on a different IRU webpage. -->
 
 Students supervised within the formalized mathematics group:
 
+* Maximilian Keßler (master, main supervisor: Floris van Doorn)
 * Samantha Naranjo Guevara (master, main supervisor: Michael Rothgang)
 * Hannah Scholz (master, main supervisor: Michael Rothgang)
 * Mara Silge (bachelor, main supervisor: Floris van Doorn)
@@ -39,11 +40,11 @@ Students supervised within the formalized mathematics group:
 * Joshua Wirtz (bachelor, main supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
 * Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
-<!-- potentially: Max -->
 
 Student research assistants:
 * Alexander Brodbelt Lopez
 * Leo Diedering
+* Evgenia Karunus
 * Pan Lin
 * Felix Pernegger
 
