@@ -105,6 +105,13 @@ I have also studied the research question of which higher inductive types can be
 
 Talks presenting a published paper at a conference are listed under *Publications*.
 
+- *Towards formalizing variation estimates for commuting transformations*, May 2026. [ICERM workshop: Techniques and Tools for the Formalization of Analysis](https://icerm.brown.edu/program/topical_workshop/tw-26-ttfa) ([slides](talks/ergodic2605.pdf)
+- *Towards formalizing variation estimates for commuting transformations*, Apr 2026. [Formalisation of mathematics with interactive theorem provers](https://talks.cam.ac.uk/show/index/164015/), Cambridge
+- *Lean: Collaboration using Formalization*, Mar 2026. [Institute of Science and Technology Austria](https://ist.ac.at/en/news-events/event/?eid=5761)
+- *Lean: Collaboration using Formalization*, Mar 2026. [SMS Spring Meeting: Formalization and Proof Assistants](https://unidistance.ch/evenement/sms-spring-meeting-formalization-and-proof-assistants)
+- *Lessons from the Carleson project*, Jan 2026. [Lean Together](https://leanprover-community.github.io/lt2026/), online
+- *Lean: Collaboration using Formalization*, Oct 2025. [MaRDI Annual Meeting](https://www.math.cit.tum.de/en/math/news/article/mardi-annual-meeting-2025/), Munich
+- *The Carleson project: a collaborative formalization* (joint with María Inés de Frutos Fernández), Sep 2025. MATRIX-MFO Tandem Workshop: [Machine Learning and AI for Mathematics](https://www.mfo.de/www/activity/2539a), Oberwolfach
 - *The Carleson Project: Collaboration using Formalization*, Apr 2025. [Simons Institute for the Theory of Computing and SLMath Joint Workshop: AI for Mathematics and Theoretical Computer Science](https://simons.berkeley.edu/workshops/simons-institute-theory-computing-slmath-joint-workshop-ai-mathematics-theoretical) ([slides](talks/carleson2504.pdf))
 - *Progress report on the Carleson Project*, Jan 2025. Lean Together, online ([slides](talks/LT25carleson.pdf), [recording](https://www.youtube.com/watch?v=w29spLdOFrY))
 - *Formalizing a proof of Carleson’s theorem*, Oct 2024. Homotopy Type Theory Electronic Seminar Talks, online. ([slides](talks/HoTTEST2024.pdf), [recording](https://www.youtube.com/watch?v=vMEGU8fL1xM))
