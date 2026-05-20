@@ -58,7 +58,7 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification* and Lua Viana Reis: *An overview of Ergodic theory in Mathlib*.
 * 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room. *Collaboration using formalization in mathematics*
 * 14.5. No seminar (Ascension day)
-* 21.5. Leo Diedering: *TBD*
+* 21.5. Leo Diedering: *Finishing the proof of Carleson's theorem*
 * 28.5. No seminar (Pentecost)
 * **01.6**. Thesis defense Wenrong Zou. **16:15-18:00 in seminar room 0.006**.
 * 04.6. No seminar (Corpus Christi)
