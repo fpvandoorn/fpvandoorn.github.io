@@ -22,8 +22,8 @@ Germany
 
 ## News
 
-* *May 2026*: Mathlib [was awarded](https://epiga.episciences.org/page/session-2026) the 2026 Demailly Prize
-* *Feb 2026*: I am looking for a PhD candidate to join my group in summer 2026. You can apply in March or April here: [BIGS](https://www.mathematics.uni-bonn.de/hsm-school/phd-admission/phd-admission)
+* *May 2026*: Mathlib [was awarded](https://epiga.episciences.org/page/session-2026) the 2026 Demailly Prize.
+* *Feb 2026*: I am looking for a PhD candidate to join my group in summer 2026. You can apply in March or April here: [BIGS](https://www.mathematics.uni-bonn.de/hsm-school/phd-admission/phd-admission).
 * *Nov 2025*: [Christoph Thiele](https://www.math.uni-bonn.de/~thiele/) and I are have been awarded an [ERC Synergy Grant](https://erc.europa.eu/apply-grant/synergy-grant)!
 * *Aug 2025*: [An article](https://www.spektrum.de/news/so-veraendern-computer-ki-und-beweispruefer-die-mathematik/2280992) was written about the Carleson project in the German magazine *Spectrum der Wissenschaft* (behind paywall).
 * *July 2025*: We finished the [Carleson project](http://florisvandoorn.com/carleson/)!
