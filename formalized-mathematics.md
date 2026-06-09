@@ -62,7 +62,7 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 28.5. No seminar (Pentecost)
 * **01.6**. Thesis defense Wenrong Zou. **16:15-18:00 in seminar room 0.006**.
 * 04.6. No seminar (Corpus Christi)
-* 11.6. Felix Pernegger: *TBD* and Hannah Scholz: *TBD*
+* 11.6. Felix Pernegger: *TBD* and Hannah Scholz: *An introduction to Differental Geometry and Collar Neighbourhoods*
 * 18.6. Pan Lin: *the `positivity` tactic*
 * 25.6. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
 * 2.7. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
