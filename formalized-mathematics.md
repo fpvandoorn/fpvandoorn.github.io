@@ -32,14 +32,13 @@ This should be done on a different IRU webpage. -->
 
 Students supervised within the formalized mathematics group:
 
-* Maximilian Keßler (master, main supervisor: Floris van Doorn)
-* Samantha Naranjo Guevara (master, main supervisor: Michael Rothgang)
-* Hannah Scholz (master, main supervisor: Michael Rothgang)
-* Mara Silge (bachelor, main supervisor: Floris van Doorn)
-* Shuhan Wang (master, main supervisor: Floris van Doorn)
-* Joshua Wirtz (bachelor, main supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
+* Maximilian Keßler (master, supervisor: Floris van Doorn)
+* Samantha Naranjo Guevara (master, supervisor: Michael Rothgang)
+* Hannah Scholz (master, supervisor: Michael Rothgang)
+* Mara Silge (bachelor, supervisor: Floris van Doorn)
+* Shuhan Wang (master, supervisor: Floris van Doorn)
+* Joshua Wirtz (bachelor, supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
-* Wenrong Zou (master, main supervisor: María Inés de Frutos-Fernández)
 
 Student research assistants:
 * Alexander Brodbelt Lopez
@@ -64,8 +63,8 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 04.6. No seminar (Corpus Christi)
 * 11.6. Felix Pernegger: *Formalisation of the Topology database π-base* and Hannah Scholz: *An introduction to Differential Geometry and Collar Neighbourhoods*
 * 18.6. Pan Lin: *the `positivity` tactic*
-* 25.6. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
-* 2.7. Probably no seminar (part of the group is traveling) <!-- Michael, Maria and Floris are traveling. -->
+* 25.6. No seminar
+* 2.7. No seminar
 * 9.7. Hannah Scholz: *the `grind` tactic*
 * 16.7. Mara Silge: *TBD*
 * 23.7. Shuhan Wang: *TBD*
@@ -105,6 +104,7 @@ Conference on Certified Programs and Proofs (CPP '26). [Conference proceedings](
 Students (co-)supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
+* Wenrong Zou, *Formalization of Formal Group Laws* (2026; supervisor: [María Inés de Frutos-Fernández](https://mariainesdff.github.io/); [GitHub](https://github.com/WenrongZou/FormalGroupLaws), [thesis](theses/WenrongZou.pdf))
 * Henri Nikoleit, *Using LLMs To Construct Adversarial Instances in Combinatorial Optimization* (2025; supervisor: [Heiko Röglin](http://roeglin.org/)); [GitHub](https://github.com/lumi-a?tab=repositories) ([1](https://github.com/lumi-a/funsearch), [2](https://github.com/lumi-a/exact-clustering), [3](https://github.com/lumi-a/py-exact-clustering)), [thesis](theses/HenriNikoleit.pdf)
 * Izabela Mandla, *Formalisation of the Walsh-Carleson Theorem* (2025; supervisors: Floris van Doorn and [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html)); [GitHub](https://github.com/izamandla/carleson/tree/master/Carleson/Project), [thesis](theses/IzabelaMandla.pdf)
 * Gabin Kolly, *Fraïssé limits in Lean* (2025; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/GabinKolly), [thesis](theses/GabinKolly.pdf)
