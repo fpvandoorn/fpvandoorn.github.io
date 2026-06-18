@@ -22,6 +22,7 @@ Germany
 
 ## News
 
+* *June 2026*: The book *The Proof in the Code*, written by Kevin Hartnett, details the history of Lean and Mathlib, and is written for a general audience.
 * *May 2026*: Mathlib [was awarded](https://epiga.episciences.org/page/session-2026) the 2026 Demailly Prize.
 * *Feb 2026*: I am looking for a PhD candidate to join my group in summer 2026. You can apply in March or April here: [BIGS](https://www.mathematics.uni-bonn.de/hsm-school/phd-admission/phd-admission).
 * *Nov 2025*: [Christoph Thiele](https://www.math.uni-bonn.de/~thiele/) and I are have been awarded an [ERC Synergy Grant](https://erc.europa.eu/apply-grant/synergy-grant)!
