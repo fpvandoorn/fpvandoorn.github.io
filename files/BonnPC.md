@@ -193,7 +193,7 @@ ssh-add ~/.ssh/id_office
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_office
 ```
-* Run the following to register your SSH key with the office computer. Both commands require you to type your math account password multiple times.
+* Run the following to register your SSH key with the office computer. Both commands require you to type your math account password multiple times. After these command, if everything is configured correctly, you will not have to type this password again.
 ```
 ssh-copy-id -i .ssh/id_office.pub vdoorn@login.math.uni-bonn.de
 ssh-copy-id -i .ssh/id_office.pub office
