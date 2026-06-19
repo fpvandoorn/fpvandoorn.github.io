@@ -198,7 +198,7 @@ ssh-add ~/.ssh/id_office
 ssh-copy-id -i .ssh/id_office.pub vdoorn@login.math.uni-bonn.de
 ssh-copy-id -i .ssh/id_office.pub office
 ```
-* [Windows only] Run the following in Powershell:
+* [Windows only] Run the following in Powershell (this seems necessary for VSCode to recognize your key):
 ```
 Set-Service -Name ssh-agent -StartupType Automatic
 Start-Service ssh-agent
