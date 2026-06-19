@@ -31,7 +31,7 @@ Minor:
 xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" "libinput Accel Speed" 0.7
 xinput set-prop "Cherry GmbH CHERRY Wireless Device Mouse" "libinput Accel Profile Enabled" 0, 1
 ```
-You can run `xinput` and `xinput list-props <id/name of mouse>` to find the name and properties of your mouse. 
+You can run `xinput` and `xinput list-props <id/name of mouse>` to find the name and properties of your mouse.
 The `0.7` can be modified to change the sensitivity of the mouse linearly.
 I didn't find a way to automatically run this when logging in (neither `.profile`, nor autostart (via GUI or directly editing a config file) seems to work). So I just run these commands from `.bashrc` and then it gets executed when I open a shell for the first time.
 
@@ -166,7 +166,47 @@ alias lb="export LEAN_NUM_THREADS=10 && lake build"
 [push]
 	default = current
 ```
-* Sometimes it's useful to locally have multiple copies of a repository. A convenient way to do that is using `git worktree`, since then they share the git history. Add a new worktree using `git worktree add ../<myNewFolder>`
+* Sometimes it's useful to locally have multiple copies of a repository. A convenient way to do that is using `git worktree`, since then they share the git history. Add a
+new worktree using `git worktree add ../<myNewFolder>`
+
+## SSH
+
+* You can connect to your office computer via SSH. Here are the required steps.
+* <userName> is the user name you use to login to your office computer (i.e. your math account), <pcName> is the name of your machine (open the shell LXTerminal on your office computer to find it). Substitute these into the snippets below.
+* Add the following to the file `~/.ssh/config` (on Windows, make sure *not* to do this within WSL, and you can run the commands below in MinGW). You can use different names than `office` and `id_office`, if you wish.
+```
+Host office
+  HostName <pcName>.math.uni-bonn.de
+  User <userName>
+  ProxyJump <userName>@login.math.uni-bonn.de
+  IdentityFile ~/.ssh/id_office
+```
+* Append the contents of the file [https://www.math.uni-bonn.de/people/support/informationen/ssh-host-keys.txt] to `~/.ssh/known_hosts` (yes, this is a long list).
+* Run the following to create a new key that you use to login to your office computer
+  * You can leave the passphrase empty if you don't want to enter a password to connect to the office computer
+```
+ssh-keygen -t ed25519 -f ~/.ssh/id_office
+ssh-add ~/.ssh/id_office
+```
+* Optional but recommended: add the following to `~/.bashrc` if you want to automatically add this ssh key when you open a terminal:
+```
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_office
+```
+* Run the following to register your SSH key with the office computer. Both commands require you to type your math account password multiple times.
+```
+ssh-copy-id -i .ssh/id_office.pub vdoorn@login.math.uni-bonn.de
+ssh-copy-id -i .ssh/id_office.pub office
+```
+* [Windows only] Run the following in Powershell:
+```
+Set-Service -Name ssh-agent -StartupType Automatic
+Start-Service ssh-agent
+ssh-add $env:USERPROFILE.ssh\id_office
+```
+* Now you're all set.
+  * You can run `ssh office` to connect to your computer in a terminal.
+  * In VSCode, enable/install the extension `Remote - SSH`. You can then run `ctrl+shift+P Remote-SSH: Connect to Host...` to connect to your office computer within VSCode. If you open a project folder on the remote machine, you can reopen it later via `ctrl+R` as usual.
 
 ## Note to self:
 * `Shift-insert` in LXTerminal does not paste, `ctrl+shift+V` does.
