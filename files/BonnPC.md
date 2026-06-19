@@ -181,7 +181,7 @@ Host office
   ProxyJump <userName>@login.math.uni-bonn.de
   IdentityFile ~/.ssh/id_office
 ```
-* Append the contents of the file [https://www.math.uni-bonn.de/people/support/informationen/ssh-host-keys.txt] to `~/.ssh/known_hosts` (yes, this is a long list).
+* Append the contents of [this text file](https://www.math.uni-bonn.de/people/support/informationen/ssh-host-keys.txt) to `~/.ssh/known_hosts` (yes, this is a long list).
 * Run the following to create a new key that you use to login to your office computer
   * You can leave the passphrase empty if you don't want to enter a password to connect to the office computer
 ```
