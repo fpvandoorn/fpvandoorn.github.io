@@ -70,10 +70,11 @@ In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at En
 * 2.7. No seminar
 * 9.7. Hannah Scholz: *the `grind` tactic*
 * 16.7. Mara Silge: *Formalising the homotopy extension property*, Maximilian Keßler: *Formalisation of Complexity theory: Building towards the Cook-Levin theorem*
-* 23.7. Maša Žaucer: *TBD*, Shuhan Wang: *Formalization of Hardy Spaces*
+* 23.7. Maša Žaucer: *Formalization of the Knuth–Bendix completion algorithm*, Shuhan Wang: *Formalization of Hardy Spaces*
 
 During the semester break, we will not have regular seminars, but there will be irregular theses defenses.
 
+* **10.08. 10:15-11:15** (in SR 0.007 as usual) Joshua Wirtz bachelor thesis defense.
 * **18.09. 9:30-10:30** (in SR 0.007 as usual) Mara Silge bachelor thesis defense.
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
