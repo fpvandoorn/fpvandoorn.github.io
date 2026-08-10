@@ -38,7 +38,6 @@ Students supervised within the formalized mathematics group:
 * Hannah Scholz (master, supervisor: Michael Rothgang)
 * Mara Silge (bachelor, supervisor: Floris van Doorn)
 * Shuhan Wang (master, supervisor: Floris van Doorn)
-* Joshua Wirtz (bachelor, supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/))
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
 <!-- starting later -->
 <!-- Alexander Brodbelt Lopez (master, supervisor: [Rémy Degenne](https://remydegenne.github.io/)) -->
@@ -112,7 +111,7 @@ Conference on Certified Programs and Proofs (CPP '26). [Conference proceedings](
 Students (co-)supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
-* Wenrong Zou, *Formalization of Formal Group Laws* (2026; supervisor: [María Inés de Frutos-Fernández](https://mariainesdff.github.io/); [GitHub](https://github.com/WenrongZou/FormalGroupLaws), [thesis](theses/WenrongZou.pdf))
+* Wenrong Zou, *Formalization of Formal Group Laws* (2026; supervisor: [María Inés de Frutos-Fernández](https://mariainesdff.github.io/)); [GitHub](https://github.com/WenrongZou/FormalGroupLaws), [thesis](theses/WenrongZou.pdf))
 * Henri Nikoleit, *Using LLMs To Construct Adversarial Instances in Combinatorial Optimization* (2025; supervisor: [Heiko Röglin](http://roeglin.org/)); [GitHub](https://github.com/lumi-a?tab=repositories) ([1](https://github.com/lumi-a/funsearch), [2](https://github.com/lumi-a/exact-clustering), [3](https://github.com/lumi-a/py-exact-clustering)), [thesis](theses/HenriNikoleit.pdf)
 * Izabela Mandla, *Formalisation of the Walsh-Carleson Theorem* (2025; supervisors: Floris van Doorn and [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html)); [GitHub](https://github.com/izamandla/carleson/tree/master/Carleson/Project), [thesis](theses/IzabelaMandla.pdf)
 * Gabin Kolly, *Fraïssé limits in Lean* (2025; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/GabinKolly), [thesis](theses/GabinKolly.pdf)
@@ -122,6 +121,7 @@ Master students:
 * Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [GitHub](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
+* Joshua Wirtz, *Autoformalizations in Naproche with Large Language Models: Experiments and Logical Analyses* (2026; supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/)); [thesis](theses/JoshuaWirtz.pdf)
 * Felix Pernegger, *Formalisation of the Calderón Transference Principle in Ergodic Theory* (2025; supervisor: Floris van Doorn); [GitHub](https://github.com/felixpernegger/ErgodicAverages), [thesis](theses/FelixPernegger.pdf)
 * Johannes Folttmann, *Formalization of the Internal Language of a Topos* (2025; supervisor: Floris van Doorn); [GitHub](https://github.com/johannesfoltt/topos), [thesis](theses/JohannesFolttmann.pdf)
 * Ludwig Monnerjahn, *Formalisation of constructable numbers* (2024; supervisor: Floris van Doorn); [GitHub](https://github.com/Louis-Le-Grand/Formalisation-of-constructable-numbers), [thesis](theses/LudwigMonnerjahn.pdf)
