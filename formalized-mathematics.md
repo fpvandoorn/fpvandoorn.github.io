@@ -22,7 +22,7 @@ There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Ch
 * [Floris van Doorn](index.md) (professor; area: formalization, analysis and logic)
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; area: formalization and algebraic number theory)
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; area: formalization and symplectic geometry)
-* [Arend Mellendijk](https://github.com/FLDutchmann) (PhD student; area: formalization and analytic number theory)
+* [Arend Mellendijk](https://github.com/amellendijk) (PhD student; area: formalization and analytic number theory)
 * [Lua Viana Reis](https://github.com/lua-vr) (PhD student; area: formalization and ergodic theory)
 
 <!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
