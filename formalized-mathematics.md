@@ -112,7 +112,7 @@ Conference on Certified Programs and Proofs (CPP '26). [Conference proceedings](
 Students (co-)supervised within the formalized mathematics group or theses that include a Lean component. Between parentheses is the end date.
 
 Master students:
-* Wenrong Zou, *Formalization of Formal Group Laws* (2026; supervisor: [María Inés de Frutos-Fernández](https://mariainesdff.github.io/)); [GitHub](https://github.com/WenrongZou/FormalGroupLaws), [thesis](theses/WenrongZou.pdf))
+* Wenrong Zou, *Formalization of Formal Group Laws* (2026; supervisor: [María Inés de Frutos-Fernández](https://mariainesdff.github.io/)); [GitHub](https://github.com/WenrongZou/FormalGroupLaws), [thesis](theses/WenrongZou.pdf)
 * Henri Nikoleit, *Using LLMs To Construct Adversarial Instances in Combinatorial Optimization* (2025; supervisor: [Heiko Röglin](http://roeglin.org/)); [GitHub](https://github.com/lumi-a?tab=repositories) ([1](https://github.com/lumi-a/funsearch), [2](https://github.com/lumi-a/exact-clustering), [3](https://github.com/lumi-a/py-exact-clustering)), [thesis](theses/HenriNikoleit.pdf)
 * Izabela Mandla, *Formalisation of the Walsh-Carleson Theorem* (2025; supervisors: Floris van Doorn and [Christoph Thiele](https://www.math.uni-bonn.de/people/thiele/index.html)); [GitHub](https://github.com/izamandla/carleson/tree/master/Carleson/Project), [thesis](theses/IzabelaMandla.pdf)
 * Gabin Kolly, *Fraïssé limits in Lean* (2025; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/GabinKolly), [thesis](theses/GabinKolly.pdf)
