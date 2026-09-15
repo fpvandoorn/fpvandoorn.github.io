@@ -122,7 +122,7 @@ Master students:
 * Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [GitHub](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
-* Ruth Plümer, *Formalization of Quantifier Elimination Methods in Lean* (2026; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [thesis](theses/RuthPluemer.pdf)
+* Ruth Plümer, *Formalization of Quantifier Elimination Methods in Lean* (2026; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/RuthP628/QuantifierElimination), [thesis](theses/RuthPluemer.pdf)
 * Joshua Wirtz, *Autoformalizations in Naproche with Large Language Models: Experiments and Logical Analyses* (2026; supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/)); [thesis](theses/JoshuaWirtz.pdf)
 * Felix Pernegger, *Formalisation of the Calderón Transference Principle in Ergodic Theory* (2025; supervisor: Floris van Doorn); [GitHub](https://github.com/felixpernegger/ErgodicAverages), [thesis](theses/FelixPernegger.pdf)
 * Johannes Folttmann, *Formalization of the Internal Language of a Topos* (2025; supervisor: Floris van Doorn); [GitHub](https://github.com/johannesfoltt/topos), [thesis](theses/JohannesFolttmann.pdf)
