@@ -36,7 +36,6 @@ Students supervised within the formalized mathematics group:
 * Abel Doñate Muñoz (master, supervisor: [Dagur Asgeirsson](https://www.dagur.org/))
 * Samantha Naranjo Guevara (master, supervisor: Michael Rothgang)
 * Hannah Scholz (master, supervisor: Michael Rothgang)
-* Mara Silge (bachelor, supervisor: Floris van Doorn)
 * Shuhan Wang (master, supervisor: Floris van Doorn)
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
 <!-- starting later -->
@@ -122,6 +121,7 @@ Master students:
 * Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [GitHub](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
+* Mara Silge, *Formalising the Homotopy Extension Property in Lean* (2026: supervisor: Floris van Doorn); [GitHub](https://github.com/marasilge/Bachelorarbeit/tree/main), [thesis](theses/MaraSilge.pdf)
 * Ruth Plümer, *Formalization of Quantifier Elimination Methods in Lean* (2026; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/RuthP628/QuantifierElimination), [thesis](theses/RuthPluemer.pdf)
 * Joshua Wirtz, *Autoformalizations in Naproche with Large Language Models: Experiments and Logical Analyses* (2026; supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/)); [thesis](theses/JoshuaWirtz.pdf)
 * Felix Pernegger, *Formalisation of the Calderón Transference Principle in Ergodic Theory* (2025; supervisor: Floris van Doorn); [GitHub](https://github.com/felixpernegger/ErgodicAverages), [thesis](theses/FelixPernegger.pdf)
