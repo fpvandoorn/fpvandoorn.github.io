@@ -156,7 +156,7 @@ During the semester break, we will not have regular seminars, but there will be 
 * **10.08. 16:15-17:15** (in SR 0.007 as usual) Joshua Wirtz bachelor thesis defense.
 * **15.09. 13:00-14:00** (in SR N0.003 (annex building)) Ruth Plümer bachelor thesis defense (supervised by Philipp Hieronymi).
 * **18.09. 9:30-10:30** (in SR 0.007 as usual) Mara Silge bachelor thesis defense.
-* **05.10. 10:00-11:00** (location in SR 1.008) Yunus Maranki bachelor thesis defense (supervised by Philipp Hieronymi).
+* **05.10. 10:00-11:00** (in SR 1.008) Yunus Maranki bachelor thesis defense (supervised by Philipp Hieronymi).
 
 
 ### WiSe 25/26
