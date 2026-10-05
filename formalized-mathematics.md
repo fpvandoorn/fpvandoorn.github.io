@@ -21,6 +21,7 @@ There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Ch
 
 * [Floris van Doorn](index.md) (professor; area: formalization, analysis and logic)
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; area: formalization and algebraic number theory)
+* [Leo Mayer](https://github.com/leomayer1) (postdoc; area: formalization and algebraic geometry)
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; area: formalization and symplectic geometry)
 * [Arend Mellendijk](https://github.com/amellendijk) (PhD student; area: formalization and analytic number theory)
 * [Lua Viana Reis](https://github.com/lua-vr) (PhD student; area: formalization and ergodic theory)
@@ -51,39 +52,34 @@ Student research assistants:
 
 ## Seminar
 
-In SuSe 26 the seminar will be Thursdays 10:15-12:00 in seminar room 0.007 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
+In SuSe 26 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
-* 16.4. *Hacking session*
-* 23.4. Seminar canceled
-* 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification* and Lua Viana Reis: *An overview of Ergodic theory in Mathlib*.
-* 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room. *Collaboration using formalization in mathematics*
-* 14.5. No seminar (Ascension day)
-* 21.5. Leo Diedering: *Finishing the proof of Carleson's theorem*
-* 28.5. No seminar (Pentecost)
-* **01.6**. Thesis defense Wenrong Zou. **16:15-18:00 in seminar room 0.006**.
-* 04.6. No seminar (Corpus Christi)
-* 11.6. Felix Pernegger: *Formalisation of the Topology database π-base* and Hannah Scholz: *An introduction to Differential Geometry and Collar Neighbourhoods*
-* 18.6. Pan Lin: *the `positivity` tactic*
-* 25.6. No seminar
-* 2.7. No seminar
-* 9.7. Hannah Scholz: *the `grind` tactic*
-* 16.7. Mara Silge: *Formalising the homotopy extension property*, Maximilian Keßler: *Formalisation of Complexity theory: Building towards the Cook-Levin theorem*
-* 23.7. Maša Žaucer: *Formalization of the Knuth–Bendix completion algorithm*, Shuhan Wang: *Formalization of Hardy Spaces*
-
-During the semester break, we will not have regular seminars, but there will be irregular theses defenses.
-
-* **10.08. 16:15-17:15** (in SR 0.007 as usual) Joshua Wirtz bachelor thesis defense.
-* **15.09. 13:00-14:00** (in SR N0.003 (annex building)) Ruth Plümer bachelor thesis defense (supervised by Philipp Hieronymi).
-* **18.09. 9:30-10:30** (in SR 0.007 as usual) Mara Silge bachelor thesis defense.
-* **05.10. 10:00-11:00** (location in SR 1.008) Yunus Maranki bachelor thesis defense (supervised by Philipp Hieronymi).
+* 16.10. Arend Mellendijk and Lua Viana Reis: *AI tutorial* <!-- and discussion? -->
+* 23.10. *TBD*
+* 30.10. *TBD*
+* 06.11. *TBD*
+* 13.11. *TBD*
+* 20.11. *TBD*
+* 27.11. *TBD*
+* 04.12. *TBD*
+* 11.12. *TBD*
+* 18.12. *TBD*
+* 08.01. *TBD*
+* 15.01. *TBD*
+* 22.01. *TBD*
+* 29.01. *TBD*
+* 05.02. *TBD*
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
+
+<!-- 16.10. Lua & Arend: AI tutorial -->
 
 ## Lean hacking session
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-In SuSe 26 the time is Fridays 14:15-16:00 in seminar room 0.006, starting the *second* week of the semester.
+In WiSe 26/27 the time is TBD in seminar room TBD.
+<!-- , starting the *second* week of the semester. -->
 
 ## Courses
 
@@ -133,6 +129,35 @@ Bachelor students:
 
 
 ## Past seminar sessions
+
+### SuSe 26
+
+Time: Thursdays 10:15-12:00 in seminar room 0.007.
+
+* 16.4. *Hacking session*
+* 23.4. Seminar canceled
+* 30.4. Joshua Wirtz: *Mathematical Text Correctness: Theory and Practical Verification* and Lua Viana Reis: *An overview of Ergodic theory in Mathlib*.
+* 07.5. No seminar. Replacement: Floris van Doorn will give a job talk 9:00-10:00 in the Lipschitz Room. *Collaboration using formalization in mathematics*
+* 14.5. No seminar (Ascension day)
+* 21.5. Leo Diedering: *Finishing the proof of Carleson's theorem*
+* 28.5. No seminar (Pentecost)
+* **01.6**. Thesis defense Wenrong Zou. **16:15-18:00 in seminar room 0.006**.
+* 04.6. No seminar (Corpus Christi)
+* 11.6. Felix Pernegger: *Formalisation of the Topology database π-base* and Hannah Scholz: *An introduction to Differential Geometry and Collar Neighbourhoods*
+* 18.6. Pan Lin: *the `positivity` tactic*
+* 25.6. No seminar
+* 2.7. No seminar
+* 9.7. Hannah Scholz: *the `grind` tactic*
+* 16.7. Mara Silge: *Formalising the homotopy extension property*, Maximilian Keßler: *Formalisation of Complexity theory: Building towards the Cook-Levin theorem*
+* 23.7. Maša Žaucer: *Formalization of the Knuth–Bendix completion algorithm*, Shuhan Wang: *Formalization of Hardy Spaces*
+
+During the semester break, we will not have regular seminars, but there will be irregular theses defenses.
+
+* **10.08. 16:15-17:15** (in SR 0.007 as usual) Joshua Wirtz bachelor thesis defense.
+* **15.09. 13:00-14:00** (in SR N0.003 (annex building)) Ruth Plümer bachelor thesis defense (supervised by Philipp Hieronymi).
+* **18.09. 9:30-10:30** (in SR 0.007 as usual) Mara Silge bachelor thesis defense.
+* **05.10. 10:00-11:00** (location in SR 1.008) Yunus Maranki bachelor thesis defense (supervised by Philipp Hieronymi).
+
 
 ### WiSe 25/26
 
