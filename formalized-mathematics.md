@@ -92,6 +92,7 @@ In WiSe 26/27 the time is TBD in seminar room TBD.
 
 
 ## Papers/preprints
+* *Formalizing Carleson's Theorem in Lean*, Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, James Sundstrom, Jeremy Tan. [arXiv](https://arxiv.org/abs/2609.31334).
 <!-- The Equational Theories Project paper intentionally left out -->
 * Arend Mellendijk, *A Lean Tactic for Normalizing Expressions in an Algebra over a Ring*, 2026. To appear at the 17th International Conference on Interactive Theorem Proving (ITP '26).
 * Sven Manthe, *A formalization of Borel determinacy in Lean*, [Annals of Formalized Mathematics, Volume 2 (2026)](https://afm.episciences.org/17712). [arXiv](https://arxiv.org/abs/2502.03432).

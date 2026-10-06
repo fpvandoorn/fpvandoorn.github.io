@@ -150,6 +150,8 @@ Talks presenting a published paper at a conference are listed under *Publication
 
 ## Preprints and Unpublished Work
 
+- *Formalizing Carleson's Theorem in Lean*, Floris van Doorn et al. (14 authors). Preprint ([arXiv](https://arxiv.org/abs/2609.31334)).
+- *The Equational Theories Project: Advancing Collaborative Mathematical Research at Scale*, Terence Tao et al. (34 authors). Preprint ([arXiv](https://arxiv.org/abs/2512.07087)).
 - *Carleson operators on doubling metric measure spaces*, Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele. Preprint ([arXiv](https://arxiv.org/abs/2508.05563)).
 - *A blueprint for the formalization of Carleson's theorem on convergence of Fourier series*, Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Asgar Jamneshan, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, Rajula Srivastava, James Sundstrom, Jeremy Tan, Christoph Thiele. Blueprint for a Lean formalization ([arXiv](https://arxiv.org/abs/2405.06423), [Github](https://github.com/fpvandoorn/carleson)).
 - *Designing a general library for convolutions*, Floris van Doorn. Preprint ([arXiv](https://arxiv.org/abs/2210.07693)).
