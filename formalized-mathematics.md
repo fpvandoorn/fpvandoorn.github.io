@@ -118,6 +118,7 @@ Master students:
 * Theofanis Chatzidiamantis Christoforidis, *Formalizing Higher Categories* (2024; supervisor: [Nima Rasekh](https://nimarasekh.github.io/)); [GitHub](https://github.com/thchatzidiamantis/sHoTT), [thesis](theses/TheofanisChristoforidis.pdf) <!-- PhD in London, Western Ontario -->
 
 Bachelor students:
+* Yunus Maranki, *Formalization of Model Theory in Lean* (2026: supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/YunusM235/O-Minimality), [thesis](theses/YunusMaranki.pdf)
 * Mara Silge, *Formalising the Homotopy Extension Property in Lean* (2026: supervisor: Floris van Doorn); [GitHub](https://github.com/marasilge/Bachelorarbeit/tree/main), [thesis](theses/MaraSilge.pdf)
 * Ruth Plümer, *Formalization of Quantifier Elimination Methods in Lean* (2026; supervisor: [Philipp Hieronymi](https://www.math.uni-bonn.de/people/phierony/)); [GitHub](https://github.com/RuthP628/QuantifierElimination), [thesis](theses/RuthPluemer.pdf)
 * Joshua Wirtz, *Autoformalizations in Naproche with Large Language Models: Experiments and Logical Analyses* (2026; supervisor: [Peter Koepke](https://www.math.uni-bonn.de/people/koepke/)); [thesis](theses/JoshuaWirtz.pdf)
