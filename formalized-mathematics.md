@@ -36,6 +36,7 @@ Students supervised within the formalized mathematics group:
 * Maximilian Keßler (master, supervisor: Floris van Doorn)
 * Abel Doñate Muñoz (master, supervisor: [Dagur Asgeirsson](https://www.dagur.org/))
 * Samantha Naranjo Guevara (master, supervisor: Michael Rothgang)
+* Henrik Schlüter (bachelor, supervisor: María Inés de Frutos-Fernández)
 * Hannah Scholz (master, supervisor: Michael Rothgang)
 * Shuhan Wang (master, supervisor: Floris van Doorn)
 * Maša Žaucer (master, supervisors: Floris van Doorn and [Giles Gardam](https://www.gilesgardam.com/))
