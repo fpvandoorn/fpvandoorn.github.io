@@ -57,7 +57,7 @@ In SuSe 26 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Ende
 
 * 16.10. Arend Mellendijk and Lua Viana Reis: *AI tutorial* <!-- and discussion? -->
 * 23.10. *TBD*
-* 30.10. *TBD*
+* 30.10. Leo Mayer: *TBD*
 * 06.11. Hannah Scholz: *TBD*
 * 13.11. *TBD*
 * 20.11. *TBD*
