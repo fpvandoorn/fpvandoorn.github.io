@@ -79,7 +79,7 @@ If you would like to get reminders about the seminar and other activities of the
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-In WiSe 26/27 the time is 18:00-20:00 in seminar room 0.011 (tentative).
+In WiSe 26/27 the time is 18:00-20:00 in seminar room 0.011, starting 13.10.
 
 ## Courses
 
