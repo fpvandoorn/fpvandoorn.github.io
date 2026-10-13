@@ -53,12 +53,12 @@ Student research assistants:
 
 ## Seminar
 
-In SuSe 26 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
+In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 16.10. Arend Mellendijk and Lua Viana Reis: *AI tutorial* <!-- and discussion? -->
 * 23.10. *TBD*
 * 30.10. Leo Mayer: *TBD*
-* 06.11. Hannah Scholz: *TBD*
+* 06.11. Samanthe Naranjo Guevara: *TBD* and Hannah Scholz: *TBD*
 * 13.11. *TBD*
 * 20.11. *TBD*
 * 27.11. *TBD*
@@ -73,8 +73,6 @@ In SuSe 26 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Ende
 
 If you would like to get reminders about the seminar and other activities of the formalization group, you can subscribe to our mailing list [here](https://listen.uni-bonn.de/wws/info/formal-math).
 
-<!-- 16.10. Lua & Arend: AI tutorial -->
-
 ## Lean hacking session
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
@@ -83,6 +81,7 @@ In WiSe 26/27 the time is 18:00-20:00 in seminar room 0.011, starting 13.10.
 
 ## Courses
 
+* WiSe 26/27: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse26/)
 * SuSe 26: Seminar [Advanced topics in formalised mathematics](https://github.com/grunweg/LeanSeminar26)
 * WiSe 25/26: [Formalized Mathematics in Lean](https://github.com/fpvandoorn/LeanCourse25/)
 * SuSe 25: The Logic of Proof Assistants. [Lecture notes](https://github.com/scholzhannah/LogicOfProofAssistants/blob/main/script.pdf) written up by Hannah Scholz.
