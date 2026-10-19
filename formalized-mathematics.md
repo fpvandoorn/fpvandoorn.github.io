@@ -56,7 +56,7 @@ Student research assistants:
 In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar room 0.008 at Endenicher Allee 60. Feel free to join, even if you're not part of the formalization group!
 
 * 16.10. Arend Mellendijk and Lua Viana Reis: *AI tutorial* <!-- and discussion? -->
-* 23.10. *TBD*
+* 23.10. Lua Viana Reis: *TBD*, Michael Rothgang: *TBD*
 * 30.10. Leo Mayer: *TBD*
 * 06.11. Samanthe Naranjo Guevara: *TBD* and Hannah Scholz: *TBD*
 * 13.11. *TBD*
@@ -77,7 +77,7 @@ If you would like to get reminders about the seminar and other activities of the
 
 The *Lean hacking session* is a weekly informal meeting. There will be cookies! You are welcome to join, independent of your experience with Lean, to ask questions or for support needed during a formalization.
 
-In WiSe 26/27 the time is 18:00-20:00 in seminar room 0.011, starting 13.10.
+In WiSe 26/27 the time is Tuesdays 18:00-20:00 in seminar room 0.011, starting 13.10.
 
 ## Courses
 
