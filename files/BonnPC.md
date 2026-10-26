@@ -39,6 +39,7 @@ I didn't find a way to automatically run this when logging in (neither `.profile
 * In `Preferences > Window Manager > Keyboard` consider adding more convenient keyboard shortcuts for `Maximise window` and `Tile window to the left/right`.
 * Scrolling on an unfocused windows focuses that window. To change this, go to `Preferences > Window Manager Tweaks > Accessibility > *uncheck* Raise windows when any mouse button is pressed` (scrolling counts as a mouse button press).
 * In Firefox, consider adding bookmarks that can be used to search. For example, if you have a bookmark with URL `https://leanprover-community.github.io/mathlib4_docs/find/?pattern=%s#doc` and keyword `ml`, then typing `ml Nat` searches in the Mathlib docs for `Nat`. Similarly, `https://loogle.lean-lang.org/?q=%s` can be used to search with Loogle.
+* When not using my pc for a long time, the dongle plugged into the screen (that connects to the mouse and keyboard) stopped working for me. This was fixed by unplugging the monitor's power for 30 seconds (or plugging the dongle directly into the computer).
 
 ## Terminal and Git
 
