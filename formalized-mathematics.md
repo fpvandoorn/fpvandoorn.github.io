@@ -57,7 +57,7 @@ In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar ro
 
 * 16.10. Arend Mellendijk: *AI tutorial* <!-- and discussion? -->
 * 23.10. Lua Viana Reis: *Understanding your agent, so you can keep your agency.*, Michael Rothgang: *The role of mathlib in the age of AI*
-* 30.10. Leo Mayer: *TBD*
+* 30.10. Leo Mayer: *Formalizing Properties of Triangulated Categories*
 * 06.11. Samantha Naranjo Guevara: *TBD* and Hannah Scholz: *TBD*
 * 13.11. *TBD*
 * 20.11. *TBD*
