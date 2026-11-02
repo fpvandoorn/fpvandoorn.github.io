@@ -20,14 +20,12 @@ There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Ch
 ## Team
 
 * [Floris van Doorn](index.md) (professor; area: formalization, analysis and logic)
-* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; area: formalization and algebraic number theory)
 * [Leo Mayer](https://github.com/leomayer1) (postdoc; area: formalization and algebraic geometry)
 * [Michael Rothgang](https://www.math.uni-bonn.de/people/rothgang/) (postdoc; area: formalization and symplectic geometry)
+* [Koen Bresters](https://github.com/koenbres04) (PhD student; area: formalization and algebraic topology)
 * [Arend Mellendijk](https://github.com/amellendijk) (PhD student; area: formalization and analytic number theory)
 * [Lua Viana Reis](https://github.com/lua-vr) (PhD student; area: formalization and ergodic theory)
 
-<!-- Associated members: [Sven Manthe](https://www.math.uni-bonn.de/people/smanthe/). Maybe also mention Adrian, Peter Koepke, Lars Becker, other professors?
-This should be done on a different IRU webpage. -->
 
 ## Students
 
@@ -102,6 +100,11 @@ Conference on Certified Programs and Proofs (CPP '26). [Conference proceedings](
 * Antoine Chambert-Loir and María Inés de Frutos-Fernández, *A Formalization of Divided Powers in Lean*, 2025. 16th International Conference on Interactive Theorem Proving (ITP '25). [Conference proceedings](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2025.4), [arXiv](https://arxiv.org/abs/2507.05327).
 * Lars Becker, Floris van Doorn, Asgar Jamneshan, Rajula Srivastava, Christoph Thiele, *Carleson operators on doubling metric measure spaces*, 2025. [arXiv](https://arxiv.org/abs/2508.05563).
 * Lars Becker, María Inés de Frutos-Fernández, Leo Diedering, Floris van Doorn, Sébastien Gouëzel, Asgar Jamneshan, Evgenia Karunus, Edward van de Meent, Pietro Monticone, Jasper Mulder-Sohn, Jim Portegies, Joris Roos, Michael Rothgang, Rajula Srivastava, James Sundstrom, Jeremy Tan, Christoph Thiele, *A blueprint for the formalization of Carleson's theorem on convergence of Fourier series*, 2025. [arXiv](https://arxiv.org/abs/2405.06423).
+
+## Past team members
+
+* [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; moved to CNRS / Université Paris Cité)
+
 
 ## Past students
 
