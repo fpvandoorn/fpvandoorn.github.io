@@ -15,7 +15,7 @@ To learn Lean, try out the [Natural Number Game](https://adam.math.hhu.de/#/g/hh
 
 **Subscribe to our mailing list** [here](https://listen.uni-bonn.de/wws/info/formal-math). We will send 1-2 emails per week about the activities of the formalization group, including the seminar schedule.
 
-There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send me a message](https://leanprover.zulipchat.com/#narrow/dm/111080-Floris-van-Doorn) to get access.
+There is also a low-traffic private channel for Lean in Bonn on [Lean's Zulip Chat](https://leanprover.zulipchat.com). Please [send Lua Viana Reis a message](https://leanprover.zulipchat.com/#narrow/dm/571941-Lua-Viana-Reis) to get access.
 
 ## Team
 
