@@ -47,6 +47,7 @@ Student research assistants:
 * Evgenia Karunus
 * Pan Lin
 * Felix Pernegger
+* Mara Silge
 
 
 ## Seminar
@@ -104,6 +105,10 @@ Conference on Certified Programs and Proofs (CPP '26). [Conference proceedings](
 ## Past team members
 
 * [María Inés de Frutos-Fernández](https://mariainesdff.github.io/) (postdoc; moved to CNRS / Université Paris Cité)
+
+Past student research assistants:
+* Hannah Scholz
+
 
 
 ## Past students
