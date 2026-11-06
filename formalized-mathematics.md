@@ -59,7 +59,7 @@ In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar ro
 * 30.10. Leo Mayer: *Formalizing Properties of Triangulated Categories*
 * 06.11. Samantha Naranjo Guevara: *A local projection, a global geometry: submersions and their formalization in mathlib* and Hannah Scholz: *Inward Pointing Vectors on Manifolds with Corners*
 * 13.11. Felix Pernegger: *TBD*
-* 20.11. Abel Doñate: *TBD*
+* 20.11. Abel Doñate: *Formalizing quasicategory of anima*
 * 27.11. *TBD*
 * 04.12. *TBD*
 * 11.12. *TBD*
