@@ -58,7 +58,7 @@ In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar ro
 * 23.10. Lua Viana Reis: *Understanding your agent, so you can keep your agency.*, Michael Rothgang: *The role of mathlib in the age of AI*
 * 30.10. Leo Mayer: *Formalizing Properties of Triangulated Categories*
 * 06.11. Samantha Naranjo Guevara: *A local projection, a global geometry: submersions and their formalization in mathlib* and Hannah Scholz: *Inward Pointing Vectors on Manifolds with Corners*
-* 13.11. Felix Pernegger: *TBD*
+* 13.11. Felix Pernegger: *The Curious World of Misformalisations*
 * 20.11. Abel Doñate: *Formalizing quasicategory of anima*
 * 27.11. *TBD*
 * 04.12. *TBD*
