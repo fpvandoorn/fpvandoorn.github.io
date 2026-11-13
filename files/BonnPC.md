@@ -196,7 +196,7 @@ ssh-add ~/.ssh/id_office
 ```
 * Run the following to register your SSH key with the office computer. Both commands require you to type your math account password multiple times. After these command, if everything is configured correctly, you will not have to type this password again.
 ```
-ssh-copy-id -i .ssh/id_office.pub vdoorn@login.math.uni-bonn.de
+ssh-copy-id -i .ssh/id_office.pub <userName>@login.math.uni-bonn.de
 ssh-copy-id -i .ssh/id_office.pub office
 ```
 * [Windows only] Run the following in Powershell (this seems necessary for VSCode to recognize your key):
@@ -208,6 +208,10 @@ ssh-add $env:USERPROFILE.ssh\id_office
 * Now you're all set.
   * You can run `ssh office` to connect to your computer in a terminal.
   * In VSCode, enable/install the extension `Remote - SSH`. You can then run `ctrl+shift+P Remote-SSH: Connect to Host...` to connect to your office computer within VSCode. If you open a project folder on the remote machine, you can reopen it later via `ctrl+R` as usual.
+  * The SSH Extension in VSCode by default creates a hidden directory `/home/<userName>/.vscode-server`, which will blow through the MI data quota. To change this setting run `ctrl+shift+P Preferences: Open Remote Settings (JSON)` and append the following
+```
+"files.dialog.defaultPath": "/local/<userName>"
+```
 
 ## Note to self:
 * `Shift-insert` in LXTerminal does not paste, `ctrl+shift+V` does.
