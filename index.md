@@ -107,6 +107,7 @@ I have also studied the research question of which higher inductive types can be
 
 Talks presenting a published paper at a conference are listed under *Publications*.
 
+- *Formalized mathematics in the age of AI*, Nov 2026. [MaRDI Annual Meeting 2026](https://www.uni-muenster.de/AMM/num/mardi-conference.shtml) ([slides](talks/aimath_2611.pdf))
 - *Towards formalizing variation estimates for commuting transformations*, May 2026. [ICERM workshop: Techniques and Tools for the Formalization of Analysis](https://icerm.brown.edu/program/topical_workshop/tw-26-ttfa) ([slides](talks/ergodic2605.pdf)
 - *Towards formalizing variation estimates for commuting transformations*, Apr 2026. [Formalisation of mathematics with interactive theorem provers](https://talks.cam.ac.uk/show/index/164015/), Cambridge
 - *Lean: Collaboration using Formalization*, Mar 2026. [Institute of Science and Technology Austria](https://ist.ac.at/en/news-events/event/?eid=5761)
