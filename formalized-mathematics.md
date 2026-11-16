@@ -64,7 +64,7 @@ In winter semester 2026/27 the seminar will be Fridays 10:15-12:00 in seminar ro
 * 04.12. *TBD*
 * 11.12. *TBD*
 * 18.12. *TBD*
-* 08.01. *TBD*
+* 08.01. Hannah Scholz: *TBD* (master's thesis defence)
 * 15.01. *TBD*
 * 22.01. *TBD*
 * 29.01. *TBD*
